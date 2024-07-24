@@ -1,4 +1,4 @@
-<div class="carousel w-full h-[740px] overflow-hidden mt-0 md:mt-16c">
+<div class="carousel w-full h-[740px] overflow-hidden mt-0 md:mt-16">
     <div id="slide1" class="carousel-item relative w-full">
         <img src="https://plus.unsplash.com/premium_photo-1689701711379-154c21998787?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cnVhbmdhbiUyMHJhcGF0fGVufDB8fDB8fHww"
             class="w-full h-full object-cover animate-fade-in" />

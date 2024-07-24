@@ -43,7 +43,7 @@
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Home</a>
                     <a href="/ruangan"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Ruangan</a>
-                    <a href="/gedung"
+                    <a href="#"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Status
                         Ruangan</a>
                     <div class="relative group">
@@ -134,8 +134,8 @@
                         </svg>
                     </button>
                     <div id="mobile-property-menu" class="hidden mt-2 space-y-2 px-4">
-                        <a href="#"
-                            class="block py-2 text-sm text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Ruangan</a>
+                        <a href="/gedung"
+                            class="block py-2 text-sm text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Gedung</a>
                         <a href="#"
                             class="block py-2 text-sm text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Fasilitas Ruangan</a>
                     </div>
