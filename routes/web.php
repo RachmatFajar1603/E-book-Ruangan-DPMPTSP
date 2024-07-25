@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Dahsboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Livewire\Admin\DataRuangan;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,10 @@ Route::get('/', function () {
 Route::get('/gedung', function () {
     return view('pages/gedung');
 });
+
+Route::get('home', Dahsboard::class);
+
+Route::get('/dataruangan', DataRuangan::class);
 
 Route::get('/gedung', function () {
     return view('pages/gedung');

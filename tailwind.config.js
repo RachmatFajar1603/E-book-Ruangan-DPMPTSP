@@ -17,7 +17,7 @@ export default {
             screens: {
                 xs: "480px",
             },
-            animation: {
+            animation: { 
                 "fade-in": "fadeIn 0.5s ease-out",
                 "slide-up": "slideUp 0.5s ease-out",
             },
