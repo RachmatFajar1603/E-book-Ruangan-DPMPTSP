@@ -4,9 +4,9 @@
 <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
     <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
         <div>
-            <p class="text-2xl">Pegawai</p>
+            <p class="text-2xl">Peminjaman</p>
             <p class="text-3xl mt-3">0</p>
-            <p class="text-xl mt-2">Total Pegawai</p>
+            <p class="text-xl mt-2">Total Peminjaman</p>
         </div>
         <div>
             <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
@@ -14,9 +14,9 @@
     </div>
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
-            <p class="text-2xl">Admin</p>
+            <p class="text-2xl">Dibatalkan</p>
             <p class="text-3xl mt-3">0</p>
-            <p class="text-xl mt-2">Total Admin</p>
+            <p class="text-xl mt-2">Total Dibatalkan</p>
         </div>
         <div>
             <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
@@ -51,13 +51,6 @@
         <!-- Users Table -->
         <div class="bg-white p-4 rounded-md shadow-md mt-8">
             <div class="flex justify-between items-center mb-4">
-
-                 <!-- Add User Button -->
-        <div class="flex justify-end mb-4">
-            <a href="/datapenggunacreate" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">
-                + Tambah Pengguna
-            </a>
-        </div>
                 <div>
                     <label class="mr-2">Tampilkan</label>
                     <select class="border-gray-300 rounded-md">
@@ -78,25 +71,28 @@
                 <thead>
                     <tr>
                         <th class="border-b px-4 py-4 text-left">NO</th>
-                        <th class="border-b px-4 py-4 text-left">PENGGUNA</th>
-                        <th class="border-b px-4 py-4 text-left">EMAIL</th>
-                        <th class="border-b px-4 py-4 text-left">NO. TELEPON</th>
-                        <th class="border-b px-4 py-4 text-left">BIDANG</th>
-                        <th class="border-b px-4 py-4 text-left">ROLE</th>
+                        <th class="border-b px-4 py-4 text-left">PENANGGUNG JAWAB</th>
+                        <th class="border-b px-4 py-4 text-left">RUANGAN</th>
+                        <th class="border-b px-4 py-4 text-left">TGL.MULAI PEMIJAMAN</th>
+                        <th class="border-b px-4 py-4 text-left">TGL. SELESAI PEMINJAMAN</th>
+                        <th class="border-b px-4 py-4 text-left">WAKTU MULAI</th>
+                        <th class="border-b px-4 py-4 text-left">WAKTU SELESAI</th>
+                        <th class="border-b px-4 py-4 text-left">KEPERLUAN</th>
+                        <th class="border-b px-3 py-4 text-left">STATUS</th>
                         <th class="border-b px-4 py-4 text-left">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-green-100">
                         <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2 flex items-center">
-                            <span class="bg-purple-200 text-purple-700 rounded-full h-8 w-8 flex items-center justify-center mr-2">A5</span>
-                            Admin Siparu
-                        </td>
-                        <td class="border-b px-4 py-2">admin@gmail.com</td>
-                        <td class="border-b px-4 py-2">081314697305</td>
-                        <td class="border-b px-4 py-2">-</td>
-                        <td class="border-b px-4 py-2">ADMIN</td>
+                        <td class="border-b px-4 py-2 flex items-center">bg gafar</td>
+                        <td class="border-b px-4 py-2">OPPROOM</td>
+                        <td class="border-b px-4 py-2">12-02-2004</td>
+                        <td class="border-b px-4 py-2">12-02-2004</td>
+                        <td class="border-b px-4 py-2">10.00</td>
+                        <td class="border-b px-4 py-2">12.00</td>
+                        <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
+                        <td class="border-b px-4 py-2 text-green-500"> Verified</td>
                         <td class="border-b px-4 py-2 flex space-x-2">
                             <button class="text-green-600 hover:text-green-800">
                                 <img src ="/images/trash.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

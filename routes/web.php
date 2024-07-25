@@ -7,6 +7,8 @@ use App\Http\Controllers\RoomController;
 use App\Livewire\Admin\DataPengguna;
 use App\Livewire\Admin\DataRuangan;
 use App\Livewire\Admin\DataPenggunaCreate;
+use App\Livewire\Admin\DataPeminjaman;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,8 @@ Route::get('/dataruangan', DataRuangan::class);
 
 Route::get('/datapengguna', DataPengguna::class);
 Route::get('/datapenggunacreate', DataPenggunaCreate::class);
+
+Route::get('/datapeminjaman', DataPeminjaman::class);
 
 Route::get('/gedung', function () {
     return view('pages/gedung');

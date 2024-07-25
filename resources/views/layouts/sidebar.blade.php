@@ -1,3 +1,10 @@
+<main class="p-4 sm:ml-64">
+ <!-- Navbar -->
+  <div class="bg-white p-2 rounded-md shadow-md flex justify-between items-center">
+            <div class="flex flex-col items-center ml-auto">
+                <img src="/images/profile.svg" alt="Profile Image" class="w-12 h-12 rounded-full object-cover">
+            </div>
+        </div>
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
     <span class="sr-only">Open sidebar</span>
     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +41,7 @@
         </ul>
         <ul class="space-y-2 font-medium ">
            <li>
-              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <a wire:navigate href="/datapengguna" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="ri-user-line text-gray-500"></i>
                  <span class="ms-3 text-gray-500">Data Pengguna</span>
               </a>
@@ -47,7 +54,7 @@
        <div class="pt-5 ml-6">
          <ul class="space-y-2 font-medium">
             <li>
-               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <a wire:navigate href="datapeminjaman" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <i class="ri-calendar-2-line text-gray-500"></i>
                   <span class="ms-3 text-gray-500">Data Peminjaman</span>
                </a>
@@ -74,6 +81,7 @@
        </div>
     </div>
  </aside>
+ </main>
  
  {{ $slot }}
  

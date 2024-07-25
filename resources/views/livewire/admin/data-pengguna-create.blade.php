@@ -1,10 +1,6 @@
 <div class="flex flex-col min-h-screen">
         <!-- Navbar -->
-        <div class="bg-white p-2 rounded-md shadow-md flex justify-between items-center">
-            <div class="flex flex-col items-center ml-auto">
-                <img src="/images/profile.svg" alt="Profile Image" class="w-12 h-12 rounded-full object-cover">
-            </div>
-        </div>
+      
         
         <!-- Main Content -->
         <main class="flex-grow p-4 sm:ml-64 flex items-center justify-center">
@@ -49,7 +45,10 @@
                             <select name="role" id="role" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
                                 <option value="" disabled selected>-- Pilih Role --</option>
                                 <option value="admin">Admin Bidang</option>
+                                <option value="pegawai">Admin</option>
+                                <option value="pegawai">Kepala Dinas</option>
                                 <option value="pegawai">Pegawai</option>
+
                             </select>
                         </div>
                         <div class="mb-4">
