@@ -21,8 +21,8 @@ Route::get('/', function () {
     return view('pages/welcome');
 });
 
-Route::get('/gedung', function () {
-    return view('pages/gedung');
+Route::get('/contact', function () {
+    return view('pages/contact');
 });
 
 Route::get('home', Dahsboard::class);

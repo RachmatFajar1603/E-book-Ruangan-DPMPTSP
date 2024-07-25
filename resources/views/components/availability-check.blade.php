@@ -1,7 +1,7 @@
-<div class="max-w-5xl mx-auto p-6 sm:p-8 bg-white rounded-lg shadow-lg my-12 sm:my-16">
+<div class="max-w-5xl mx-auto p-6 sm:p-8 bg-white rounded-lg shadow-lg my-12 sm:my-16" data-aos="fade-right">
     <form action="" method="POST">
         @csrf
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-end">
             <div class="w-full">
                 <label for="tanggal_awal" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Awal</label>
                 <div class="relative">
@@ -33,6 +33,46 @@
                 </div>
             </div>
             <div class="w-full">
+                <label for="jam_mulai" class="block mb-2 text-sm font-medium text-gray-900">Jam Mulai</label>
+                <div class="flex">
+                    <select id="jam_mulai_hour" name="jam_mulai_hour"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @for ($i = 0; $i < 24; $i++)
+                            <option value="{{ sprintf('%02d', $i) }}">{{ sprintf('%02d', $i) }}</option>
+                        @endfor
+                    </select>
+                    <span
+                        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300">:</span>
+                    <select id="jam_mulai_minute" name="jam_mulai_minute"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @for ($i = 0; $i < 60; $i += 15)
+                            <option value="{{ sprintf('%02d', $i) }}">{{ sprintf('%02d', $i) }}</option>
+                        @endfor
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-full">
+                <label for="jam_selesai" class="block mb-2 text-sm font-medium text-gray-900">Jam Selesai</label>
+                <div class="flex">
+                    <select id="jam_selesai_hour" name="jam_selesai_hour"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @for ($i = 0; $i < 24; $i++)
+                            <option value="{{ sprintf('%02d', $i) }}">{{ sprintf('%02d', $i) }}</option>
+                        @endfor
+                    </select>
+                    <span
+                        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300">:</span>
+                    <select id="jam_selesai_minute" name="jam_selesai_minute"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @for ($i = 0; $i < 60; $i += 15)
+                            <option value="{{ sprintf('%02d', $i) }}">{{ sprintf('%02d', $i) }}</option>
+                        @endfor
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-full">
                 <label for="gedung" class="block mb-2 text-sm font-medium text-gray-900">Gedung</label>
                 <select id="gedung" name="gedung"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3">
@@ -44,7 +84,7 @@
             </div>
             <div class="w-full sm:col-span-2 lg:col-span-1">
                 <button type="submit"
-                    class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full px-5 py-3 text-center transition duration-300 ease-in-out">
+                    class="text-white bg-gray-800 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full px-5 py-3 text-center transition duration-300 ease-in-out">
                     Check
                 </button>
             </div>
