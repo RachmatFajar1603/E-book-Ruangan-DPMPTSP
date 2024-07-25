@@ -35,7 +35,7 @@
     <nav class="bg-gray-100 rounded">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
-                <a href="#" class="flex items-center space-x-3">
+                <a href="/" class="flex items-center space-x-3">
                     <img src="/images/logo-dmptsp.png" alt="ST-LNF Logo" class="h-12">
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
@@ -43,7 +43,7 @@
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Beranda</a>
                     <a href="/ruangan"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Ruangan</a>
-                    <a href="#"
+                    <a href="/pengumuman"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Pengumuman</a>
                     <a href="/contact"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Contact</a>
@@ -95,7 +95,7 @@
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Beranda</a>
                 <a href="/ruangan"
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Ruangan</a>
-                <a href="#"
+                <a href="/pengumuman"
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Pengumuman</a>
                 <a href="/contact"
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Contact</a>

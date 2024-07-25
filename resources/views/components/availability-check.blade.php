@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto p-6 sm:p-8 bg-white rounded-lg shadow-lg my-12 sm:my-16" data-aos="fade-right">
+<div class="max-w-5xl mx-auto p-6 sm:p-8 bg-white rounded-lg shadow-lg my-12 sm:my-16" >
     <form action="" method="POST">
         @csrf
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-end">

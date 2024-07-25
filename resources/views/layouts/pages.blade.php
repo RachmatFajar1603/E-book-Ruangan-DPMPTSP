@@ -24,6 +24,7 @@
 </head>
 
 <body class="bg-gray-100">
+    <x-welcome-popup title="Special Announcement" message="We've just launched our new feature!" buttonText="Got it" />
     <x-header />
 
     <main>

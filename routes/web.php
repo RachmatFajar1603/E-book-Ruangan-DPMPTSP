@@ -38,6 +38,14 @@ Route::get('/gedung', function () {
     return view('pages/gedung');
 });
 
+Route::get('/ruangan-detail', function () {
+    return view('pages/ruangan-detail');
+});
+
+Route::get('/pengumuman', function () {
+    return view('pages/pengumuman');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

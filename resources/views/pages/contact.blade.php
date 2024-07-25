@@ -25,14 +25,14 @@
             </div>
         </div>
     </div>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl">
-                <div class="p-6 bg-white">
-                    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Contact Us</h1>
+    <div class="py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-lg rounded-xl">
+                <div class="p-4 md:p-6 lg:p-8 bg-white">
+                    <h1 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 text-gray-800">Contact Us</h1>
 
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="w-full lg:w-1/2 px-3 mb-6 lg:mb-0">
                             <form action="" method="POST">
                                 @csrf
                                 <div class="mb-4">
@@ -40,7 +40,7 @@
                                         Name
                                     </label>
                                     <input
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="name" type="text" name="name" required>
                                 </div>
                                 <div class="mb-4">
@@ -48,7 +48,7 @@
                                         Email
                                     </label>
                                     <input
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="email" type="email" name="email" required>
                                 </div>
                                 <div class="mb-6">
@@ -56,32 +56,32 @@
                                         Message
                                     </label>
                                     <textarea
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="message" name="message" rows="5" required></textarea>
                                 </div>
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center justify-start">
                                     <button
-                                        class="bg-gray-700 hover:bg-gray-300 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        class="bg-gray-700 hover:bg-gray-600 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
                                         type="submit">
                                         Send Message
                                     </button>
                                 </div>
                             </form>
                         </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <div class="mb-6">
+                        <div class="w-full lg:w-1/2 px-3 mt-6 lg:mt-0">
+                            <div class="mb-6 bg-gray-100 p-4 rounded-xl">
                                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Address</h3>
                                 <p class="text-gray-600">123 Main Street, City, Country, ZIP</p>
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-6 bg-gray-100 p-4 rounded-xl">
                                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Phone</h3>
                                 <p class="text-gray-600">+1 234 567 890</p>
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-6 bg-gray-100 p-4 rounded-xl">
                                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Email</h3>
                                 <p class="text-gray-600">contact@example.com</p>
                             </div>
-                            <div>
+                            <div class="bg-gray-100 p-4 rounded-xl">
                                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Working Hours</h3>
                                 <p class="text-gray-600">Monday - Friday: 9AM - 5PM</p>
                                 <p class="text-gray-600">Saturday: 10AM - 2PM</p>
