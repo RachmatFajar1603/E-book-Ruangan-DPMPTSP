@@ -32,45 +32,21 @@
             </div>
         </div>
     </div>
-    <nav class="bg-white ">
-        <div class="container mx-auto px-4">
+    <nav class="bg-gray-100 rounded">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <a href="#" class="flex items-center space-x-3">
                     <img src="/images/logo-dmptsp.png" alt="ST-LNF Logo" class="h-12">
                 </a>
                 <div class="hidden md:flex space-x-4 items-center">
                     <a href="/"
-                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Home</a>
+                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Beranda</a>
                     <a href="/ruangan"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Ruangan</a>
                     <a href="#"
-                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Status
-                        Ruangan</a>
-                    <div class="relative group">
-                        <button
-                            class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out flex items-center font-semibold">
-                            Property
-                            <svg class="ml-2 h-5 w-5 transition duration-300 ease-in-out transform group-hover:rotate-180"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div
-                            class="absolute left-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out">
-                            <div class="py-2">
-                                <a href="/gedung"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-300 ease-in-out">Gedung</a>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-300 ease-in-out">Fasilitas
-                                    Ruangan</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#"
-                        class="text-gray-700 hover:text-gray-300 transition duration-3000 font-semibold">Peminjaman</a>
-
+                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Pengumuman</a>
+                    <a href="/contact"
+                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Contact</a>
                     @if (Route::has('login'))
                         <div class="flex items-center">
                             @auth
@@ -79,7 +55,7 @@
                             @else
                                 <a href="{{ route('login') }}"
                                     class="font-semibold text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-                                    in</a>
+                                    in/Pinjam</a>
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
                                         class="ml-4 font-semibold text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
@@ -116,32 +92,13 @@
             <div class="px-6 py-4 space-y-2">
                 <!-- Menu items here -->
                 <a href="/"
-                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Home</a>
+                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Beranda</a>
                 <a href="/ruangan"
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Ruangan</a>
                 <a href="#"
-                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Status
-                    Ruangan</a>
-                <div class="relative">
-                    <button id="mobile-property-dropdown"
-                        class="flex items-center justify-between w-full py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">
-                        Property
-                        <svg class="ml-2 h-5 w-5 transition duration-300 ease-in-out transform"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div id="mobile-property-menu" class="hidden mt-2 space-y-2 px-4">
-                        <a href="/gedung"
-                            class="block py-2 text-sm text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Gedung</a>
-                        <a href="#"
-                            class="block py-2 text-sm text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Fasilitas Ruangan</a>
-                    </div>
-                </div>
-                <a href="#"
-                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Peminjaman</a>
+                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Pengumuman</a>
+                <a href="/contact"
+                    class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Contact</a>
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/dashboard') }}"
@@ -149,7 +106,7 @@
                     @else
                         <a href="{{ route('login') }}"
                             class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Log
-                            in</a>
+                            in/Pinjam</a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}"
                                 class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Register</a>

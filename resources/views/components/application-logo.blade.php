@@ -1,1 +1,1 @@
-<img src="/images/logo-dmptsp.png" alt="dpmptsp Logo" className="block h-12 w-auto"/>
+<img src="/images/logo-dmptsp.png" alt="dpmptsp Logo" class="w-32 md:w-40 lg:w-56 h-auto"/>
