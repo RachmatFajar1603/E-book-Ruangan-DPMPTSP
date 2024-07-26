@@ -1,9 +1,10 @@
 <div>
-   <main class="p-4 sm:ml-64" >
-      <div class="bg-white">
+   <main class="bg-white" >
+      <div class="">
          <p>
             ini dashboard
          </p>
       </div>
    </main>
 </div>
+   
