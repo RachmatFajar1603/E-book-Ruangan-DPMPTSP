@@ -9,6 +9,8 @@ use App\Livewire\Admin\DataRuangan;
 use App\Livewire\Admin\DataPenggunaCreate;
 use App\Livewire\Admin\DataPeminjaman;
 use App\Livewire\Admin\Laporan;
+use App\Livewire\Admin\PeminjamanSaya;
+
 
 
 /*
@@ -38,6 +40,8 @@ Route::get('/datapengguna', DataPengguna::class);
 Route::get('/datapenggunacreate', DataPenggunaCreate::class);
 
 Route::get('/datapeminjaman', DataPeminjaman::class);
+
+Route::get('/peminjaman-saya', PeminjamanSaya::class);
 
 Route::get('/laporan', Laporan::class);
 
