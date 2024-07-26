@@ -8,43 +8,46 @@
             <p class="text-3xl mt-3">0</p>
             <p class="text-xl mt-2">Total Pegawai</p>
         </div>
-        <div>
-            <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
+        <div class="flex items-center justify-center bg-blue-200 rounded-md p-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.42 0-8 3.58-8 8h16c0-4.42-3.58-8-8-8z"></path>
+            </svg>
         </div>
     </div>
+
+
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Admin</p>
             <p class="text-3xl mt-3">0</p>
             <p class="text-xl mt-2">Total Admin</p>
         </div>
-        <div>
-            <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
+        <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
         </div>
     </div>
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Admin Bidang</p>
             <p class="text-3xl mt-3">0</p>
-            <p class="text-xl mt-2">Total Kepala Bidang</p>
+            <p class="text-xl mt-2">Total Admin Bidang</p>
         </div>
-        <div>
-            <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
+        <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
         </div>
     </div>
-
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Kepala Dinas</p>
             <p class="text-3xl mt-3">0</p>
             <p class="text-xl mt-2">Total Kepala Dinas</p>
         </div>
-        <div>
-            <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
+        <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
         </div>
     </div>
-
 </div>
+
 
 
 
