@@ -1,7 +1,7 @@
 <div>
     <main class="p-4 sm:ml-64">
 
-<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
+<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-600">
     <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Pegawai</p>

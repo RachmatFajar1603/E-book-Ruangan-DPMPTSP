@@ -1,7 +1,7 @@
 <div>
     <main class="p-4 sm:ml-64">
 
-<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
+<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-600">
     <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Peminjaman</p>
@@ -24,9 +24,9 @@
     </div>
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
-            <p class="text-2xl">Admin Bidang</p>
+            <p class="text-2xl">DiSetujui</p>
             <p class="text-3xl mt-3">0</p>
-            <p class="text-xl mt-2">Total Kepala Bidang</p>
+            <p class="text-xl mt-2">Total DiSetujui</p>
         </div>
         <div>
             <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
@@ -35,9 +35,9 @@
 
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
-            <p class="text-2xl">Kepala Dinas</p>
+            <p class="text-2xl">DiTolak</p>
             <p class="text-3xl mt-3">0</p>
-            <p class="text-xl mt-2">Total Kepala Dinas</p>
+            <p class="text-xl mt-2">Total DiTolak</p>
         </div>
         <div>
             <img src="/images/database-line.png" class="p-4 bg-blue-200 rounded-md" alt="">
@@ -78,6 +78,7 @@
                         <th class="border-b px-4 py-4 text-left">WAKTU MULAI</th>
                         <th class="border-b px-4 py-4 text-left">WAKTU SELESAI</th>
                         <th class="border-b px-4 py-4 text-left">KEPERLUAN</th>
+                        <th class="border-b px-4 py-4 text-left">JUMLAH YANG HADIR</th>
                         <th class="border-b px-3 py-4 text-left">STATUS</th>
                         <th class="border-b px-4 py-4 text-left">AKSI</th>
                     </tr>
@@ -92,17 +93,23 @@
                         <td class="border-b px-4 py-2">10.00</td>
                         <td class="border-b px-4 py-2">12.00</td>
                         <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
-                        <td class="border-b px-4 py-2 text-green-500"> Verified</td>
+                        <td class="border-b px-4 py-2">12 Orang</td>
+                        <td class="border-b px-4 py-2 text-yellow-400">PENDING</td>
                         <td class="border-b px-4 py-2 flex space-x-2">
-                            <button class="text-green-600 hover:text-green-800">
-                                <img src ="/images/trash.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <!-- Button for Approved -->
+                            <button class="bg-green-500 text-white hover:bg-green-600 flex items-center px-3 py-1 rounded-lg mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </=>
+                                </svg>
+                                <span class="ml-2">Approved</span>
                             </button>
-                            <button class="text-red-600 hover:text-red-800">
-                                <img src ="/images/edit.svg"  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                            <!-- Button for Rejected -->
+                            <button class="bg-red-500 text-white hover:bg-red-600 flex items-center px-3 py-1 rounded-lg mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
+                                <span class="ml-2">Rejected</span>
                             </button>
                         </td>
                     </tr>
