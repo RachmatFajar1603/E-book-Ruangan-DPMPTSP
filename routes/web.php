@@ -12,6 +12,7 @@ use App\Livewire\Admin\Laporan;
 use App\Livewire\Admin\PeminjamanSaya;
 use App\Livewire\Admin\PinjamRuangan;
 use App\Livewire\Admin\PinjamRuanganBook;
+use App\Livewire\Admin\BerandaAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,12 @@ Route::get('/contact', function () {
 
 
 Route::get('home', Dahsboard::class);
+Route::get('/beranda', BerandaAdmin::class);
 Route::get('/dataruangan', DataRuangan::class);
 Route::get('/datapengguna', DataPengguna::class);
 Route::get('/datapenggunacreate', DataPenggunaCreate::class);
 Route::get('/datapeminjaman', DataPeminjaman::class);
+Route::get('/peminjamansaya', PeminjamanSaya::class);
 Route::get('/laporan', Laporan::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
