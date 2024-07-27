@@ -7,10 +7,8 @@
                     <p class="text-3xl mt-3">0</p>
                     <p class="text-xl mt-2">Total Ruangan</p>
                 </div>
-                <div class="flex items-center justify-center bg-blue-200 rounded-md p-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.42 0-8 3.58-8 8h16c0-4.42-3.58-8-8-8z"></path>
-                    </svg>
+                <div class="">
+                    <img src="/images/database-line.png" class="p-4 bg-blue-300 rounded-md text-green-300" alt="">
                 </div>
             </div>
 
@@ -20,7 +18,7 @@
                     <p class="text-3xl mt-3">0</p>
                     <p class="text-xl mt-2">Total Pengguna</p>
                 </div>
-                <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
+                <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
                 </div>
             </div>
@@ -30,7 +28,7 @@
                     <p class="text-3xl mt-3">0</p>
                     <p class="text-xl mt-2">Total Bidang</p>
                 </div>
-                <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
+                <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
                 </div>
             </div>
@@ -40,8 +38,8 @@
                     <p class="text-3xl mt-3">0</p>
                     <p class="text-xl mt-2">Total Peminjaman</p>
                 </div>
-                <div class="flex items-center justify-center bg-blue-400 rounded-md p-4">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5" alt="Admin Bidang Icon">
+                <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
                 </div>
             </div>
         </div>
@@ -53,7 +51,7 @@
                 <canvas id="barChart"></canvas>
             </div>
             <div class="bg-white p-8 rounded-md shadow-md">
-                <p class="text-2xl mb-4">Pengguna per Jurusan</p>
+                <p class="text-2xl mb-4">Pengguna Per Bidang</p>
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
