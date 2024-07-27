@@ -37,6 +37,7 @@ Route::get('/dataruangan', DataRuangan::class);
 Route::get('/datapengguna', DataPengguna::class);
 Route::get('/datapenggunacreate', DataPenggunaCreate::class);
 Route::get('/datapeminjaman', DataPeminjaman::class);
+Route::get('/laporan', Laporan::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
 
