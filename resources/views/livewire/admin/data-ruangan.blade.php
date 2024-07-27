@@ -1,6 +1,6 @@
 <div>
     <main class="p-4 sm:ml-64" >
-       <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
+       <div class="mt-4 grid grid-cols-3 gap-8 text-gray-600">
             <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">
@@ -84,6 +84,25 @@
                           <option value="FR">SEKRETARIAT</option>
                           <option value="DE">PROMOSI</option>
                         </select>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Kelengkapan</label>
+                        <div class="flex items-center mb-4">
+                            <input id="ac" type="checkbox" value="AC" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="ac" class="ml-2 text-sm font-medium text-gray-900">AC</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="table" type="checkbox" value="Meja" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="table" class="ml-2 text-sm font-medium text-gray-900">Meja</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="chair" type="checkbox" value="Kursi" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="chair" class="ml-2 text-sm font-medium text-gray-900">Kursi</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="projector" type="checkbox" value="Proyektor" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="projector" class="ml-2 text-sm font-medium text-gray-900">Proyektor</label>
+                        </div>
                     </div>
                     <div class="mt-3">
                         <label for="thumbnail" class="block mb-2 text-sm font-medium text-gray-900">THUMBNAIL <span class="text-red-500">*</span></label>

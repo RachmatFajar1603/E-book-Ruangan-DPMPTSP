@@ -13,7 +13,7 @@
     rel="stylesheet"
     />
 </head>
-<body class="bg-gray-50 dark:bg-gray-50">
+<body class="bg-gray-50 dark:bg-gray-50 m-5">
 
     @include('layouts.sidebar')
 </body>
