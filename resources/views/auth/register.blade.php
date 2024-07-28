@@ -43,25 +43,21 @@
             <div id="internal-fields" style="display: none;">
                 <div>
                     <x-input-label for="nip" :value="__('NIP/Noreg')" class="block text-sm font-medium text-gray-700" />
-                    <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip"
-                        :value="old('nip')" />
-                    <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+                    <x-text-input id="nip_reg" class="block mt-1 w-full" type="text" name="nip_reg"
+                        :value="old('nip_reg')" />
+                    <x-input-error :messages="$errors->get('nip_reg')" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <x-input-label for="department" :value="__('Bidang/Bagian')" class="block text-sm font-medium text-gray-700" />
-                    <select id="department" name="department"
+                    <x-input-label for="bidang" :value="__('Bidang/Bagian')" class="block text-sm font-medium text-gray-700" />
+                    <select id="bidang_id" name="bidang_id"
                         class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-700 focus:ring-opacity-50">
                         <option value="">Pilih Bidang/Bagian</option>
-                        <option value="DATIN" {{ old('department') == 'DATIN' ? 'selected' : '' }}>DATIN</option>
-                        <option value="DALAK" {{ old('department') == 'DALAK' ? 'selected' : '' }}>DALAK</option>
-                        <option value="Sekretariat" {{ old('department') == 'Sekretariat' ? 'selected' : '' }}>Sekretariat</option>
-                        <option value="SEKSI BIDANG A" {{ old('department') == 'SEKSI BIDANG A' ? 'selected' : '' }}>SEKSI BIDANG A</option>
-                        <option value="SEKSI BIDANG B" {{ old('department') == 'SEKSI BIDANG B' ? 'selected' : '' }}>SEKSI BIDANG B</option>
-                        <option value="SEKSI BIDANG C" {{ old('department') == 'SEKSI BIDANG C' ? 'selected' : '' }}>SEKSI BIDANG C</option>
-                        <option value="SEKSI BIDANG D" {{ old('department') == 'SEKSI BIDANG D' ? 'selected' : '' }}>SEKSI BIDANG D</option>
+                        @foreach ($bidang as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('department')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('bidang')" class="mt-2" />
                 </div>
             </div>
 
@@ -113,7 +109,7 @@
                     </a>
                 </div>
 
-                <x-primary-button class="ml-4">
+                <x-primary-button class="ml-4" type="submit">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>
