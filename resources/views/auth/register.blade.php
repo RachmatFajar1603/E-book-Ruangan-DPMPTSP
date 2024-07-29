@@ -17,6 +17,16 @@
 
         <!-- Dynamic Form Fields -->
         <div id="dynamic-fields" style="display: none;">
+            <!-- Internal-specific fields -->
+            <div id="internal-fields" style="display: none;">
+                <div>
+                    <x-input-label for="nip" :value="__('NIP/Noreg')" class="block text-sm font-medium text-gray-700" />
+                    <x-text-input id="nip_reg" class="block mt-1 w-full" type="number" name="nip_reg"
+                        :value="old('nip_reg')" required />
+                    <x-input-error :messages="$errors->get('nip_reg')" class="mt-2" />
+                </div>
+            </div>
+
             <!-- Common Fields -->
             <div>
                 <x-input-label for="name" :value="__('Name')" class="block text-sm font-medium text-gray-700" />
@@ -39,15 +49,8 @@
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
             </div>
 
-            <!-- Internal-specific fields -->
-            <div id="internal-fields" style="display: none;">
-                <div>
-                    <x-input-label for="nip" :value="__('NIP/Noreg')" class="block text-sm font-medium text-gray-700" />
-                    <x-text-input id="nip_reg" class="block mt-1 w-full" type="text" name="nip_reg"
-                        :value="old('nip_reg')" />
-                    <x-input-error :messages="$errors->get('nip_reg')" class="mt-2" />
-                </div>
-
+            <!-- Internal-specific fields (Bidang) -->
+            <div id="internal-fields-2" style="display: none;">
                 <div class="mt-4">
                     <x-input-label for="bidang" :value="__('Bidang/Bagian')" class="block text-sm font-medium text-gray-700" />
                     <select id="bidang_id" name="bidang_id"
@@ -84,7 +87,7 @@
                 </div>
             </div>
 
-            <!-- Password -->
+            <!-- Password fields -->
             <div>
                 <x-input-label for="password" :value="__('Password')" class="block text-sm font-medium text-gray-700" />
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
@@ -92,7 +95,6 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            <!-- Confirm Password -->
             <div>
                 <x-input-label for="password_confirmation" :value="__('Confirm Password')"
                     class="block text-sm font-medium text-gray-700" />
@@ -120,19 +122,23 @@
         document.getElementById('role').addEventListener('change', function() {
             var dynamicFields = document.getElementById('dynamic-fields');
             var internalFields = document.getElementById('internal-fields');
+            var internalFields2 = document.getElementById('internal-fields-2');
             var externalFields = document.getElementById('external-fields');
 
             if (this.value === 'internal') {
                 dynamicFields.style.display = 'block';
                 internalFields.style.display = 'block';
+                internalFields2.style.display = 'block';
                 externalFields.style.display = 'none';
             } else if (this.value === 'external') {
                 dynamicFields.style.display = 'block';
                 internalFields.style.display = 'none';
+                internalFields2.style.display = 'none';
                 externalFields.style.display = 'block';
             } else {
                 dynamicFields.style.display = 'none';
                 internalFields.style.display = 'none';
+                internalFields2.style.display = 'none';
                 externalFields.style.display = 'none';
             }
         });
