@@ -48,7 +48,7 @@
 
             @If (auth()->user()->can('view_beranda'))
             <p class="pt-16 ml-6 font-semibold text-gray-300">DASHBOARD</p>
-            <div class="pt-5 ml-6">
+            <div class="pt-4 ml-6">
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a wire:navigate href="/beranda" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -61,12 +61,12 @@
             @endif
             
             @if (auth()->user()->can('view_datapegawai') || auth()->user()->can('view_dataruangan') || auth()->user()->can('view_datapengguna'))
-            <p class="pt-16 ml-6 font-semibold text-gray-300">DATA MASTER</p>
+            <p class="pt-10  ml-6 font-semibold text-gray-300">DATA MASTER</p>
             <div class="pt-5 ml-6">
             @if (auth()->user()->can('view_datapegawai'))
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a wire:navigate href="pegawai" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-database-line text-gray-500"></i>
                             <span class="ms-3 text-gray-500">Data Pegawai</span>
                         </a>

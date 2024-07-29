@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Admin\Pegawai\PegawaiCreate;
+use App\Livewire\Admin\Pegawai\PegawaiList;
 use App\Livewire\Dahsboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
@@ -13,6 +15,8 @@ use App\Livewire\Admin\PeminjamanSaya;
 use App\Livewire\Admin\PinjamRuangan;
 use App\Livewire\Admin\PinjamRuanganBook;
 use App\Livewire\Admin\BerandaAdmin;
+use App\Livewire\Admin\Pegawai\PegawaiEdit;
+use App\Livewire\Admin\Pegawai\PegawaiUpdate;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +47,9 @@ Route::get('/peminjamansaya', PeminjamanSaya::class);
 Route::get('/laporan', Laporan::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
-
+Route::get('pegawai-create', PegawaiCreate::class);
+Route::get('pegawai', PegawaiList::class);
+Route::get('pegawai/{id}/update', PegawaiUpdate::class);
 
 Route::get('/gedung', function () {
     return view('pages/gedung');
