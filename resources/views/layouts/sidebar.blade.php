@@ -1,4 +1,4 @@
-<main class="p-4 sm:ml-64">
+<main class="p-4 sm:ml-64 font-poppins">
  <!-- Navbar -->
   <div class="bg-white p-2 rounded-md shadow-md flex justify-between items-center">
             <div class="flex flex-col items-center ml-auto">
@@ -60,7 +60,7 @@
                </a>
             </li>
             <li>
-               <a href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <a wire:navigate href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-calendar-check-line text-gray-500"></i>
                   <span class="ms-3 text-gray-500">Pinjam Ruangan</span>
                </a>
@@ -72,7 +72,7 @@
                </a>
             </li>
             <li>
-               <a  wire:navigate href="/laporan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <a wire:navigate href="/laporan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <i class="ri-file-3-line text-gray-500"></i>
                   <span class="ms-3 text-gray-500">Laporan</span>
                </a>

@@ -1,5 +1,5 @@
 <div>
-    <main class="p-4 sm:ml-64" >
+    <main class="p-4 sm:ml-64 font-poppins" >
        <div class="mt-4 grid grid-cols-3 gap-8 text-gray-600">
             <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
