@@ -32,15 +32,15 @@
             popupContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 popup.classList.add('opacity-0', 'pointer-events-none');
-                // Set a flag in local storage to indicate the popup has been shown
-                localStorage.setItem('popupShown', 'true');
+                // Set a flag in sessionStorage to indicate the popup has been shown
+                sessionStorage.setItem('popupShown', 'true');
             }, 300);
         }
 
-        // Check if the popup has been shown before
-        const popupShown = localStorage.getItem('popupShown');
+        // Check if the popup has been shown in this session
+        const popupShown = sessionStorage.getItem('popupShown');
 
-        // Show popup only if it hasn't been shown before
+        // Show popup if it hasn't been shown in this session
         if (!popupShown) {
             showPopup();
         }

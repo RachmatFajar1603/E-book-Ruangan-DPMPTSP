@@ -12,6 +12,7 @@ use App\Livewire\Admin\Laporan;
 use App\Livewire\Admin\PeminjamanSaya;
 use App\Livewire\Admin\PinjamRuangan;
 use App\Livewire\Admin\PinjamRuanganBook;
+use App\Livewire\Admin\BerandaAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,14 @@ Route::get('/contact', function () {
 });
 
 
-Route::get('home', Dahsboard::class);
-Route::get('/dataruangan', DataRuangan::class);
-Route::get('/datapengguna', DataPengguna::class);
+Route::get('home', Dahsboard::class)->middleware(['auth', 'verified', 'role_or_permission:admin|user']);
+Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_beranda']);
+Route::get('/dataruangan', DataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
+Route::get('/datapengguna', DataPengguna::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_datapengguna']);
 Route::get('/datapenggunacreate', DataPenggunaCreate::class);
 Route::get('/datapeminjaman', DataPeminjaman::class);
+Route::get('/peminjamansaya', PeminjamanSaya::class);
+Route::get('/laporan', Laporan::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
 
@@ -53,6 +57,7 @@ Route::get('/pengumuman', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

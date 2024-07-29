@@ -3,8 +3,8 @@
       
         
         <!-- Main Content -->
-        <main class="flex-grow p-4 sm:ml-64 flex items-center justify-center">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
+        <main class="flex-grow p-4 sm:ml-64">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full">
                 <h2 class="text-2xl font-bold mb-6">Tambah Pengguna</h2>
                 <form>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

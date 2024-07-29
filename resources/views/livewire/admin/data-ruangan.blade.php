@@ -50,72 +50,72 @@
                 </div>
             </div>
             <div class="bg-white p-6 rounded-md shadow-md">
-                <form>
+                <form wire:submit.prevent="create" enctype="multipart/form-data">
+                    @csrf
                     <div>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-black">Nama Ruangan</label>
-                        <input type="text" id="first_name" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  required />
+                        <label for="nama" class="block mb-2 text-sm font-medium text-black">Nama Ruangan</label>
+                        <input type="text" wire:model="nama" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                     </div>
                     <div class="flex justify between mt-3 justify-center space-x-6">
                         <div class="w-1/2">
-                            <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900">Kapasitas</label>
-                            <input type="number" id="number-input" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                            <label for="kapasitas" class="block mb-2 text-sm font-medium text-gray-900">Kapasitas</label>
+                            <input type="number" wire:model="kapasitas" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                         </div>
                         <div class="w-1/2">
-                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Lokasi</label>
-                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <label for="lokasi" class="block mb-2 text-sm font-medium text-gray-900">Lokasi</label>
+                            <select wire:model="lokasi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                               <option selected>Lokasi</option>
-                              <option value="US">Lantai 1</option>
-                              <option value="CA">Lantai 2</option>
-                              <option value="FR">Lantai 3</option>
-                              <option value="DE">Lantai 4</option>
+                              <option value="Lantai 1">Lantai 1</option>
+                              <option value="Lantai 2">Lantai 2</option>
+                              <option value="Lantai 3">Lantai 3</option>
+                              <option value="Lantai 4">Lantai 4</option>
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 mt-3">Deskripsi</label>
-                        <textarea id="message" rows="4" class=" h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Tambahkan deskripsi..."></textarea>
+                        <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 mt-3">Deskripsi</label>
+                        <textarea wire:model="deskripsi" rows="4" class=" h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Tambahkan deskripsi..."></textarea>
                     </div>
                     <div class="mt-3">
-                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Kepemilikan</label>
-                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                          <option selected>Kepemilikan</option>
-                          <option value="US">DATIN</option>
-                          <option value="CA">DALAK</option>
-                          <option value="FR">SEKRETARIAT</option>
-                          <option value="DE">PROMOSI</option>
+                        <label for="kepemilikan" class="block mb-2 text-sm font-medium text-gray-900">Kepemilikan</label>
+                        <select wire:model="kepemilikan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option selected>Kepemilikan</option>
+                          @foreach ($bidangs as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mt-4">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Kelengkapan</label>
                         <div class="flex items-center mb-4">
-                            <input id="ac" type="checkbox" value="AC" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <input wire:model="ac" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                             <label for="ac" class="ml-2 text-sm font-medium text-gray-900">AC</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="table" type="checkbox" value="Meja" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                            <label for="table" class="ml-2 text-sm font-medium text-gray-900">Meja</label>
+                            <input wire:model="meja" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="meja" class="ml-2 text-sm font-medium text-gray-900">Meja</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="chair" type="checkbox" value="Kursi" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                            <label for="chair" class="ml-2 text-sm font-medium text-gray-900">Kursi</label>
+                            <input wire:model="kursi" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="kursi" class="ml-2 text-sm font-medium text-gray-900">Kursi</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="projector" type="checkbox" value="Proyektor" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <input wire:model="projector" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                             <label for="projector" class="ml-2 text-sm font-medium text-gray-900">Proyektor</label>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <label for="thumbnail" class="block mb-2 text-sm font-medium text-gray-900">THUMBNAIL <span class="text-red-500">*</span></label>
+                        <label for="image" class="block mb-2 text-sm font-medium text-gray-900">THUMBNAIL <span class="text-red-500">*</span></label>
                         <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center items-center">
-                            <input id="thumbnail" type="file" class="hidden" accept="image/*" onchange="previewImage(event)" />
-                            <label for="thumbnail" class="cursor-pointer flex flex-col items-center">
-                                <span id="thumbnail-label" class="bg-gray-300 p-4 rounded-md">PILIH FILE</span>
+                            <input wire:model="image" type="file" class="hidden" accept="image/*" onchange="previewImage(event)" />
+                            <label for="image" class="cursor-pointer flex flex-col items-center">
+                                <span wire:model="thumbnail-label" class="bg-gray-300 p-4 rounded-md">PILIH FILE</span>
                             </label>
-                            <img id="thumbnail-preview" class="mt-4 hidden w-full h-full object-contain" />
+                            <img wire:model="thumbnail-preview" class="mt-4 hidden w-full h-full object-contain" />
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <button type="button" class=" mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button type="submit" class=" mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                     </div>
                 </form>
             </div>
@@ -146,6 +146,7 @@
                                 <th class="border-b px-4 py-4 text-left">LOKASI</th>
                                 <th class="border-b px-4 py-4 text-left">KAPASITAS</th>
                                 <th class="border-b px-4 py-4 text-left">STATUS</th>
+                                <th class="border-b px-4 py-4 text-left">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -168,6 +169,20 @@
                                 <td class="border-b px-4 py-2">
                                     <span class="p-2 bg-green-500 rounded text-white text-center">
                                         TERSEDIA
+                                    </span>
+                                </td>
+                                <td class="border-b px-4 py-2 flex space-x-2">
+                                    <span class="p-2 rounded text-white text-center">
+                                        <button class="text-green-600 hover:text-green-800">
+                                            <img src ="/images/trash.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                            </=>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-800">
+                                            <img src ="/images/edit.svg"  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
                                     </span>
                                 </td>
                             </tr>

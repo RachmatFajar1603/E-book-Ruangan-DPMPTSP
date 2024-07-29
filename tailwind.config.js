@@ -3,6 +3,7 @@ import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -18,7 +19,7 @@ export default {
             screens: {
                 xs: "480px",
             },
-            animation: { 
+            animation: {
                 "fade-in": "fadeIn 0.5s ease-out",
                 "slide-up": "slideUp 0.5s ease-out",
             },
