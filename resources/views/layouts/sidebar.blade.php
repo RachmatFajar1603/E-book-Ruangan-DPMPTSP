@@ -105,7 +105,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a wire:navigate href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-calendar-check-line text-gray-500"></i>
                             <span class="ms-3 text-gray-500">Pinjam Ruangan</span>
                         </a>

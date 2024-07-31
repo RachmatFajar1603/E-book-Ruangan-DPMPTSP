@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Pegawai;
 
 use App\Models\Pegawai;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class PegawaiUpdate extends Component
@@ -16,6 +17,8 @@ class PegawaiUpdate extends Component
         $this->nip = $this->pegawai->nip;
         $this->nama = $this->pegawai->nama;
     }
+
+    #[Title('Update Pegawai')]
     public function render()
     {
         return view('livewire.admin.pegawai.pegawai-update');

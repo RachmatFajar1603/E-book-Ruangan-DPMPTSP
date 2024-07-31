@@ -15,6 +15,7 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 poppins: ["Poppins", "sans-serif"],
+                barlow: ["Barlow", "sans-serif"],
             },
             screens: {
                 xs: "480px",

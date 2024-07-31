@@ -6,6 +6,7 @@ use App\Models\Bidang;
 use App\Models\Fasilitas;
 use Livewire\Component;
 use App\Models\Ruang;
+use Livewire\Attributes\Title;
 use Livewire\WithFileUploads;
 
 class DataRuangan extends Component
@@ -25,6 +26,7 @@ class DataRuangan extends Component
     public $kursi;
     public $proyektor;
 
+    #[Title('Data Ruangan')]
     public function render()
     {
         $bidangs = Bidang::all();

@@ -1,7 +1,7 @@
 <div>
-   <main class="p-4 sm:ml-64 grid grid-cols-3 space-x-8">
+   <main class="p-4 sm:ml-64 grid grid-cols-3 space-x-8 font-poppins">
         <div class="bg-white col-span-2 p-8 text-center rounded-lg shadow">
-            <p class="text-2xl font-serif text-blue-400">
+            <p class="text-2xl text-blue-400">
                 Ruang Rapat
             </p>
             <div class="flex items-center my-4 mt-10">
@@ -71,7 +71,7 @@
             </form>
         </div>
         <div class="bg-white col-span p-8 rounded-lg shadow">
-            <p class="text-2xl font-serif text-blue-400 text-center">
+            <p class="text-2xl text-blue-400 text-center">
                 Info Ruangan
             </p>
             <div class="flex items-center my-4 mt-10">
@@ -80,14 +80,14 @@
                 <div class="flex-grow border-t border-gray-400"></div>
             </div> 
             <img src="images/logo-dmptsp.png" alt="" class="w-full h-72 border mx-auto rounded-lg mt-8 object-contain">
-            <p class="text-2xl font-serif text-gray-500 mt-4">
+            <p class="text-2xl text-gray-500 mt-4">
                 Ruangan Rapat
             </p>
             <div class="mt-2 space-x-2">
-                <span class="p-1 bg-gray-200 rounded font-serif text-gray-600">Lantai 2</span>
-                <span class="p-1 bg-gray-200 rounded font-serif text-gray-600">15 Orang</span>
+                <span class="p-1 bg-gray-200 rounded text-gray-600">Lantai 2</span>
+                <span class="p-1 bg-gray-200 rounded text-gray-600">15 Orang</span>
             </div>
-            <p class="text-gray-600 mt-4 text-xl font-serif">
+            <p class="text-gray-600 mt-4 text-xl">
                 Ruangan ini digunakan oleh bidang 
                 <br>
                 Datin

@@ -1,5 +1,5 @@
 <div>
-    <main class="p-4 sm:ml-64">
+    <main class="p-4 sm:ml-64 font-poppins">
 
     <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-600">
         <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
@@ -57,7 +57,7 @@
 
                  <!-- Add User Button -->
         <div class="flex justify-end mb-4">
-            <a href="/datapenggunacreate" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">
+            <a wire:navigate href="/datapenggunacreate" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">
                 + Tambah Pengguna
             </a>
         </div>
