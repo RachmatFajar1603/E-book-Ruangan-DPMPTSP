@@ -20,10 +20,6 @@
 
                 <!-- Buttons with Font Awesome Icons -->
                 <div class="flex space-x-2">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center mt-3">
-                        <i class="fas fa-filter h-5 w-5 mr-2"></i>
-                        Filter
-                    </button>
                     <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 flex items-center mt-3">
                         <i class="fas fa-trash-alt h-5 w-5 mr-2"></i>
                         Bersihkan
@@ -67,9 +63,12 @@
                 <thead>
                     <tr>
                         <th class="border-b px-4 py-4 text-left">NO</th>
+                        <th class="border-b px-4 py-4 text-left">USERNAME</th>
+                        <th class="border-b px-4 py-4 text-left">NIP/NO REG/NIK</th>
+                        <th class="border-b px-4 py-4 text-left">BIDANG</th>
                         <th class="border-b px-4 py-4 text-left">PENANGGUNG JAWAB</th>
                         <th class="border-b px-4 py-4 text-left">RUANGAN</th>
-                        <th class="border-b px-4 py-4 text-left">TGL. MULAI PEMINJAMAN</th>
+                        <th class="border-b px-4 py-4 text-left">TGL.MULAI PEMIJAMAN</th>
                         <th class="border-b px-4 py-4 text-left">TGL. SELESAI PEMINJAMAN</th>
                         <th class="border-b px-4 py-4 text-left">WAKTU MULAI</th>
                         <th class="border-b px-4 py-4 text-left">WAKTU SELESAI</th>
@@ -82,7 +81,10 @@
                 <tbody>
                     <tr class="bg-green-100">
                         <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2">bg gafar</td>
+                        <td class="border-b px-4 py-2 ">Iklas</td>
+                        <td class="border-b px-4 py-2 ">1234567890</td>
+                        <td class="border-b px-4 py-2 ">DATIN</td>
+                        <td class="border-b px-4 py-2 ">bg gafar</td>
                         <td class="border-b px-4 py-2">OPPROOM</td>
                         <td class="border-b px-4 py-2">12-02-2004</td>
                         <td class="border-b px-4 py-2">12-02-2004</td>
@@ -90,8 +92,29 @@
                         <td class="border-b px-4 py-2">12.00</td>
                         <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
                         <td class="border-b px-4 py-2">12 Orang</td>
-                        <td class="border-b px-4 py-2 text-green-500">DITERIMA</td>
-                        <td class="border-b px-4 py-2 flex space-x-2 mt-3">-</td>
+                        <td class="border-b px-4 py-2 text-green-400">Aproved</td>
+                        <td class="border-b px-4 py-2 flex space-x-2">
+                        <div class="flex flex-col items-start space-y-5">
+                        
+            <div class="flex flex-col items-start space-y-5">
+                <!-- Button for Approved -->
+                <button class="bg-green-500 text-white hover:bg-green-600 flex items-center px-2 py-1 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="ml-2">Approved</span>
+                </button>
+
+                <!-- Button for Rejected -->
+                <button class="bg-red-500 text-white hover:bg-red-600 flex items-center px-3 py-1 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="ml-2">Rejected</span>
+                </button>
+            </div>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
