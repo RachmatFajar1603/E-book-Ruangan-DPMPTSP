@@ -58,10 +58,12 @@
                 <canvas id="barChart2"></canvas>
             </div>
         </div>
-        <div class="mt-8">
-            <div class="bg-white p-8 rounded-md shadow-md">
-                <p class="text-2xl mb-4">Chart Baru</p>
-                <canvas id="barChart3"></canvas>
+        <div class="flex justify-center">
+            <div class="mt-8 w-1/2">
+                <div class="bg-white p-8 rounded-md shadow-md">
+                    <p class="text-2xl mb-4">Total peminjaman Ruangan</p>
+                    <canvas id="barChart3"></canvas>
+                </div>
             </div>
         </div>
     </main>
@@ -76,9 +78,9 @@
         new Chart(barCtx1, {
             type: 'bar',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: ['OPPROOM', 'MEETINGROOM', 'AUDITORIUM', 'LABORATORIUM', 'KANTOR', 'RUANGAN_A', 'RUANGAN_B'],
                 datasets: [{
-                    label: '# of Peminjaman',
+                    label: '# Peminjaman Ruangan',
                     data: [12, 19, 3, 5, 2, 3, 7],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -117,7 +119,7 @@
             data: {
                 labels: ['DALAK', 'DATIN', 'P2IPM', 'SEKRETARIAT', 'PROMOSI', 'KEUANGAN', 'PERIZINAN_A', 'PERIZINAN_B', 'PERIZINAN_C', 'PERIZINAN_D'],
                 datasets: [{
-                    label: '# of Users',
+                    label: '# Pengguna Ruangan Per Bidang',
                     data: [12, 19, 3, 5, 2, 7, 8, 6, 4, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -162,7 +164,7 @@
             data: {
                 labels: ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER','NOVEMBER','DESEMBER'],
                 datasets: [{
-                    label: '# of Users',
+                    label: '# Total Peminjaman Ruangan',
                     data: [12, 19, 3, 5, 2, 7, 8, 6, 4, 3,6,8,2],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
