@@ -17,10 +17,14 @@ return new class extends Migration
             $table->string('kapasitas');
             $table->string('lokasi');
             $table->string('deskripsi');
-            $table->string('kepemilikan');
-            $table->string('fasilitas_id')->nullable();
+            $table->unsignedBigInteger('bidang_id');
+            $table->unsignedBigInteger('fasilitas_id');
             $table->string('image')->nullable();
+            $table->string('status')->default('Tersedia');
             $table->timestamps();
+
+            $table->foreign('fasilitas_id')->references('id')->on('fasilitas')->onDelete('cascade');
+            $table->foreign('bidang_id')->references('id')->on('bidangs')->onDelete('cascade');
         });
     }
 
