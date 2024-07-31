@@ -85,21 +85,23 @@
                         <th class="border-b px-4 py-4 text-left">EMAIL</th>
                         <th class="border-b px-4 py-4 text-left">NO. TELEPON</th>
                         <th class="border-b px-4 py-4 text-left">BIDANG</th>
+                        <th class="border-b px-4 py-4 text-left">KET</th>
                         <th class="border-b px-4 py-4 text-left">ROLE</th>
                         <th class="border-b px-4 py-4 text-left">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-green-100">
+                        @foreach($users as $user)
                         <td class="border-b px-4 py-2">1</td>
                         <td class="border-b px-4 py-2 flex items-center">
-                            <span class="bg-purple-200 text-purple-700 rounded-full h-8 w-8 flex items-center justify-center mr-2">A5</span>
-                            Admin Siparu
+                            {{ $user->nama }}
                         </td>
-                        <td class="border-b px-4 py-2">admin@gmail.com</td>
-                        <td class="border-b px-4 py-2">081314697305</td>
-                        <td class="border-b px-4 py-2">-</td>
-                        <td class="border-b px-4 py-2">ADMIN</td>
+                        <td class="border-b px-4 py-2">{{ $user->email }}</td>
+                        <td class="border-b px-4 py-2">{{ $user->telepon }}</td>
+                        <td class="border-b px-4 py-2">{{ $user->bidang_id}}</td>
+                        <td class="border-b px-4 py-2">{{ $user->keterangan }}</td>
+                        <td class="border-b px-4 py-2">{{ $user->role }}</td>
                         <td class="border-b px-4 py-2 flex space-x-2">
                             <button class="text-green-600 hover:text-green-800">
                                 <img src ="/images/trash.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -112,6 +114,7 @@
                                 </svg>
                             </button>
                         </td>
+                        @endforeach
                     </tr>
                 </tbody>
             </table>

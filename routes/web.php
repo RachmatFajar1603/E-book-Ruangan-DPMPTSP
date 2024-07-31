@@ -61,7 +61,7 @@ Route::get('/pengumuman', function () {
     return view('pages/pengumuman');
 });
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('beranda');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

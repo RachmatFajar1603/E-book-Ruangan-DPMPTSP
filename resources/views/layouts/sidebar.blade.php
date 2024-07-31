@@ -1,4 +1,4 @@
-<main class="p-4 sm:ml-64">
+<main class="p-4 sm:ml-64 font-poppins">
     <!-- Navbar -->
     <div class="bg-white p-2 rounded-md shadow-md flex justify-between items-center">
         <div class="relative flex items-center ml-auto">
@@ -47,13 +47,13 @@
             </div>
 
             @If (auth()->user()->can('view_beranda'))
-            <p class="pt-16 ml-6 font-semibold text-gray-300">DASHBOARD</p>
+            <p class="pt-16 ml-6 font-semibold text-gray-400">DASHBOARD</p>
             <div class="pt-4 ml-6">
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a wire:navigate href="/beranda" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-database-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Beranda</span>
+                            <span class="ms-3 text-gray-600">Beranda</span>
                         </a>
                     </li>
                 </ul>
@@ -61,14 +61,14 @@
             @endif
             
             @if (auth()->user()->can('view_datapegawai') || auth()->user()->can('view_dataruangan') || auth()->user()->can('view_datapengguna'))
-            <p class="pt-10  ml-6 font-semibold text-gray-300">DATA MASTER</p>
+            <p class="pt-10  ml-6 font-semibold text-gray-400">DATA MASTER</p>
             <div class="pt-5 ml-6">
             @if (auth()->user()->can('view_datapegawai'))
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a wire:navigate href="pegawai" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-database-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Data Pegawai</span>
+                            <span class="ms-3 text-gray-600">Data Pegawai</span>
                         </a>
                     </li>
                 </ul>
@@ -78,7 +78,7 @@
                     <li>
                         <a wire:navigate href="/dataruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-database-fill text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Data Ruangan</span>
+                            <span class="ms-3 text-gray-600">Data Ruangan</span>
                         </a>
                     </li>
                 </ul>
@@ -88,38 +88,38 @@
                     <li>
                         <a wire:navigate href="/datapengguna" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-user-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Data Pengguna</span>
+                            <span class="ms-3 text-gray-600">Data Pengguna</span>
                         </a>
                     </li>
                 </ul>
             @endif
             </div>
             @endif
-            <p class="pt-10 ml-6 font-semibold text-gray-300">PEMINJAMAN</p>
+            <p class="pt-10 ml-6 font-semibold text-gray-400">PEMINJAMAN</p>
             <div class="pt-5 ml-6">
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a wire:navigate href="datapeminjaman" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-calendar-2-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Data Peminjaman</span>
+                            <span class="ms-3 text-gray-600">Data Peminjaman</span>
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-calendar-check-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Pinjam Ruangan</span>
+                            <span class="ms-3 text-gray-600">Pinjam Ruangan</span>
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="/peminjamansaya" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-user-shared-2-fill text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Peminjaman Saya</span>
+                            <span class="ms-3 text-gray-600">Peminjaman Saya</span>
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="/laporan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-file-3-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-500">Laporan</span>
+                            <span class="ms-3 text-gray-600">Laporan</span>
                         </a>
                     </li>
                 </ul>

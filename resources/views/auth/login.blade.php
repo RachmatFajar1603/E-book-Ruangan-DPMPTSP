@@ -69,6 +69,15 @@
     <!-- Login with Google -->
     <div class="mt-6">
         <div class="relative">
+            <div class="relative flex justify-center">
+                <span class="px-2 bg-white text-gray-500 ">
+                    Dont Have An Account? 
+                </span>
+                <a href="/register">Register</a>
+            </div>
+        </div>
+
+        <div class="relative my-4">
             <div class="absolute inset-0 flex items-center">
                 <div class="w-full border-t border-gray-300"></div>
             </div>

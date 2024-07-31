@@ -120,25 +120,17 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <label for="image" class="block mb-2 text-sm font-medium text-gray-900">THUMBNAIL <span
-                                class="text-red-500">*</span></label>
-                        <div
-                            class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex justify-center items-center">
-                            <input wire:model="image" type="file" id="fileInput" class="hidden" accept="image/*"
-                                onchange="previewImage(event)" />
-                            <label for="fileInput" id="fileLabel" class="cursor-pointer flex flex-col items-center">
-                                <span class="bg-gray-300 p-4 rounded-md">PILIH FILE</span>
-                            </label>
-                            @if ($thumbnailPreview)
-                            <img id="thumbnailPreview" src="{{ $thumbnailPreview }}"
-                                class="mt-4 w-full h-full object-contain" />
-                            @else
-                            <img id="thumbnailPreview" class="hidden mt-4 w-full h-full object-contain" />
-                            @endif
-                            <button id="removeButton" class="hidden mt-4 bg-red-500 text-white p-2 rounded"
-                                onclick="removeImage()">X</button>
-                        </div>
-                    </div>
+                        <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Pilih Foto <span class="text-red-500">*</span></label>
+                        <input wire:model="image" type="file" id="fileInput" class="hidden" accept="image/*" onchange="previewImage(event)" />
+                        <label for="fileInput" id="fileLabel" class="cursor-pointer flex flex-col items-center">
+                            <span class="bg-gray-300 p-4 rounded-md">PILIH FILE</span>
+                        </label>
+                        @if ($thumbnailPreview)
+                        <img id="thumbnailPreview" src="{{ $thumbnailPreview }}" class="mt-4 w-full h-full object-contain" />
+                        @else
+                        <img id="thumbnailPreview" class="hidden mt-4 w-full h-full object-cover" />
+                        @endif
+                    </div>                                    
                     <div class="flex justify-end">
                         <button type="submit"
                             class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -182,7 +174,7 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="border-b px-2 py-2">
-                                    <img src="{{ $ruang->image_url }}" class="w-28 h-12" alt="">
+                                    <img src="{{ $ruang->image_url }}" class="w-28 h-12 object-contain" alt="">
                                 </td>
                                 <td class="border-b px-4 py-2 w-4">
                                     {{ $ruang->nama }}
@@ -228,7 +220,7 @@
     function previewImage(event) {
         const reader = new FileReader();
         reader.onload = function () {
-            const imgElement = document.getElementById('thumbnailPreview');
+            const imgElement = document.getElementById('pilih');
             if (imgElement) {
                 imgElement.src = reader.result;
                 imgElement.classList.remove('hidden');
@@ -236,5 +228,4 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
-
 </script>
