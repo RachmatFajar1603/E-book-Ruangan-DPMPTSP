@@ -8,7 +8,7 @@ use Livewire\Component;
 use App\Models\Ruang;
 use Livewire\Attributes\Title;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; 
 
 class DataRuangan extends Component
 {
@@ -37,6 +37,8 @@ class DataRuangan extends Component
     #[Title('Data Ruangan')]
     public function render()
     {
+        $ruangtersedia = Ruang::where('status', 'Tersedia')->get();
+        $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->get();
         $ruangs = Ruang::all();
 
         foreach ($ruangs as $ruang){
@@ -44,7 +46,7 @@ class DataRuangan extends Component
         }
         
         $bidangs = Bidang::all();
-        return view('livewire.admin.data-ruangan', compact('bidangs', 'ruangs'));
+        return view('livewire.admin.data-ruangan', compact('bidangs', 'ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
     }
 
     public function create()
