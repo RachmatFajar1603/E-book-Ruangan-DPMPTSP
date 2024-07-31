@@ -47,6 +47,7 @@ Route::get('/peminjamansaya', PeminjamanSaya::class);
 Route::get('/laporan', Laporan::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
+Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruangan');
 Route::get('pegawai-create', PegawaiCreate::class);
 Route::get('pegawai', PegawaiList::class);
 Route::get('pegawai/{id}/update', PegawaiUpdate::class);

@@ -17,6 +17,7 @@ class Ruang extends Model
         'bidang_id',
         'fasilitas_id',
         'image',
+        'status',
     ];
 
     public function fasilitas()
@@ -26,6 +27,6 @@ class Ruang extends Model
 
     public function bidang()
     {
-        return $this->belongsTo(Bidang::class);
+        return $this->belongsTo(Bidang::class, 'bidang_id');
     }
 }

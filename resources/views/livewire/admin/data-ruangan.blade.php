@@ -7,7 +7,7 @@
                         Ruangan
                     </p>
                     <p class="text-3xl mt-3">
-                        0
+                        {{ $ruangs->count() }}
                     </p>
                     <p class="text-xl mt-2">
                         Total ruangan keseluruhan
@@ -23,7 +23,7 @@
                         Tersedia
                     </p>
                     <p class="text-3xl mt-3">
-                        0
+                        {{ $ruangtersedia->count() }}
                     </p>
                     <p class="text-xl mt-2">
                         Ruangan yang tersedia
@@ -39,7 +39,7 @@
                         Tidak tersedia
                     </p>
                     <p class="text-3xl mt-3">
-                        0
+                        {{ $ruangtidaktersedia->count() }}
                     </p>
                     <p class="text-xl mt-2">
                         Ruangan yang sedang dipinjam
