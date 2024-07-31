@@ -14,12 +14,18 @@ class Ruang extends Model
         'kapasitas',
         'lokasi',
         'deskripsi',
-        'kepemilikan',
+        'bidang_id',
+        'fasilitas_id',
         'image',
     ];
 
     public function fasilitas()
     {
         return $this->belongsTo(Fasilitas::class);
+    }
+
+    public function bidang()
+    {
+        return $this->belongsTo(Bidang::class);
     }
 }
