@@ -20,6 +20,9 @@ use App\Livewire\Admin\Pegawai\PegawaiUpdate;
 use App\Livewire\Admin\Pengguna\PenggunaCreate;
 use App\Livewire\Admin\Pengguna\PenggunaList;
 use App\Livewire\Admin\Pengguna\PenggunaUpdate;
+use App\Livewire\Admin\AnnouncementManager;
+use App\Http\Controllers\AnnouncementController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,12 @@ Route::get('home', Dahsboard::class)->middleware(['auth', 'verified', 'role_or_p
 Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_beranda']);
 Route::get('/dataruangan', DataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
 
+Route::get('/pengumuman-manager', AnnouncementManager::class);
+Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
+Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
+Route::get('/pengumuman', function () {
+    return view('pages.pengumuman');
+})->name('pengumuman.index');
 
 Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_datapengguna']);
 Route::get('/datapenggunacreate', PenggunaCreate::class);
@@ -66,9 +75,6 @@ Route::get('/gedung', function () {
 Route::get('/ruangan-detail', function () {
     return view('pages/ruangan-detail');
 });
-Route::get('/pengumuman', function () {
-    return view('pages/pengumuman');
-});
 Route::get('/dashboard', function () {
     return view('beranda');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -80,4 +86,4 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/ruangan', [RoomController::class, 'index'])->name('rooms.index');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
