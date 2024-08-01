@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\Pengguna;
 
 use App\Models\Bidang;
 use App\Models\User;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class DataPenggunaCreate extends Component
+class PenggunaCreate extends Component
 {   
+    
     public $nip_reg;
     public $nama;
     public $email;
@@ -18,15 +18,12 @@ class DataPenggunaCreate extends Component
     public $role;
     public $password;
 
-    #[Title('Tambah Pengguna')]
-
     public function render()
     {   
-        $bidangs = Bidang::where('nama');
-        return view('livewire.admin.data-pengguna-create', compact('bidangs'));
+        $bidangs = Bidang::all();
+        return view('livewire.admin.pengguna.pengguna-create', compact('bidangs'));
     }
 
-    
     public function create(){
         $data = $this->all();
         User::create($data);
