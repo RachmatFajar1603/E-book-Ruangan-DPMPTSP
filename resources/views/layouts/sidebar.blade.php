@@ -72,7 +72,7 @@
             @if (auth()->user()->can('view_datapegawai'))
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a wire:navigate href="pegawai" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a wire:navigate href="/pegawai" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-database-line text-gray-500"></i>
                             <span class="ms-3 text-gray-600">Data Pegawai</span>
                         </a>
@@ -105,13 +105,13 @@
             <div class="pt-5 ml-6">
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a wire:navigate href="datapeminjaman" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a wire:navigate href="/datapeminjaman" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-calendar-2-line text-gray-500"></i>
                             <span class="ms-3 text-gray-600">Data Peminjaman</span>
                         </a>
                     </li>
                     <li>
-                        <a wire:navigate href="pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a wire:navigate href="/pinjam-ruangan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="ri-calendar-check-line text-gray-500"></i>
                             <span class="ms-3 text-gray-600">Pinjam Ruangan</span>
                         </a>

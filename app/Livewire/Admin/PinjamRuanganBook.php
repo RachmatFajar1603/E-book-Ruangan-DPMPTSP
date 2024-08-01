@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use App\Jobs\SetRoomAvailable;
 use App\Jobs\SetRoomUnavailable;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\UpdateRoomStatus;
+use Illuminate\Support\Facades\Bus;
 
 class PinjamRuanganBook extends Component
 {
@@ -37,20 +39,31 @@ class PinjamRuanganBook extends Component
         return view('livewire.admin.pinjam-ruangan-book', compact('ruangan'));
     }
 
-    private function isRoomOccupied($ruang_id, $tanggal_pinjam, $waktu_mulai, $waktu_selesai)
+    private function isRoomOccupied($ruang_id, $tanggal_pinjam, $tanggal_selesai, $waktu_mulai, $waktu_selesai)
     {
-        return Peminjaman::where('ruang_id', $ruang_id)
-        ->where('tanggal_pinjam', $tanggal_pinjam)
-        ->where(function ($query) use ($waktu_mulai, $waktu_selesai) {
-            $query->where(function ($q) use ($waktu_mulai, $waktu_selesai) {
-                $q->where('waktu_mulai', '<=', $waktu_mulai)
-                ->where('waktu_selesai', '>', $waktu_mulai);
-            })->orWhere(function ($q) use ($waktu_mulai, $waktu_selesai) {
-                $q->where('waktu_mulai', '<', $waktu_selesai)
-                ->where('waktu_selesai', '>=', $waktu_selesai);
-            });
-        })
-        ->exists();
+    $start_date = Carbon::parse($tanggal_pinjam);
+    $end_date = Carbon::parse($tanggal_selesai);
+
+    // Loop through each day
+    for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
+            $conflict = Peminjaman::where('ruang_id', $ruang_id)
+                ->where('status', '!=', 'rejected') // Exclude rejected bookings
+                ->where('tanggal_pinjam', '<=', $date)
+                ->where('tanggal_selesai', '>=', $date)
+                ->where(function ($query) use ($waktu_mulai, $waktu_selesai) {
+                    $query->where(function ($q) use ($waktu_mulai, $waktu_selesai) {
+                        $q->where('waktu_mulai', '<', $waktu_selesai)
+                          ->where('waktu_selesai', '>', $waktu_mulai);
+                    });
+                })
+                ->exists();
+
+            if ($conflict) {
+            return true;
+            }
+        }
+        
+        return false;
     }
     
     public function create()
@@ -67,13 +80,13 @@ class PinjamRuanganBook extends Component
             'waktu_selesai' => 'required',
             'catatan' => 'required',
         ]);
-
-        if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->waktu_mulai, $this->waktu_selesai)) {
-            session()->flash('error', 'Ruangan sudah dipesan untuk waktu yang dipilih.');
+    
+        if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
+            session()->flash('message', 'Ruangan sudah dipesan pada tanggal dan waktu tersebut');
             return;
         }
         
-        Peminjaman::create([
+        $peminjaman = Peminjaman::create([
             'user_id' => auth()->user()->id,
             'ruang_id' => $this->ruang_id,
             'penanggung_jawab' => $this->penanggung_jawab,
@@ -86,13 +99,29 @@ class PinjamRuanganBook extends Component
             'waktu_selesai' => $this->waktu_selesai,
             'catatan' => $this->catatan,
         ]);
-
-        $startTime = Carbon::parse($this->tanggal_pinjam . ' ' . $this->waktu_mulai);
-        $endTime = Carbon::parse($this->tanggal_selesai . ' ' . $this->waktu_selesai);
-
-        SetRoomUnavailable::dispatch($this->ruang_id)->delay($startTime);
-        SetRoomAvailable::dispatch($this->ruang_id)->delay($endTime);
-
+    
+        $startDate = Carbon::parse($this->tanggal_pinjam);
+        $endDate = Carbon::parse($this->tanggal_selesai);
+    
+        $jobs = [];
+    
+        // Prepare jobs for daily status updates
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $setUnavailable = $date->copy()->setTimeFromTimeString($this->waktu_mulai);
+            $setAvailable = $date->copy()->setTimeFromTimeString($this->waktu_selesai);
+    
+            $unavailableJob = new UpdateRoomStatus($this->ruang_id, $peminjaman->id, 'Tidak Tersedia');
+            $availableJob = new UpdateRoomStatus($this->ruang_id, $peminjaman->id, 'Tersedia');
+            
+            $jobs[] = $unavailableJob->delay($setUnavailable);
+            $jobs[] = $availableJob->delay($setAvailable);
+        }
+    
+        // Dispatch jobs as a batch
+        Bus::batch($jobs)
+            ->name("peminjaman_{$peminjaman->id}")
+            ->dispatch();
+    
         session()->flash('message', 'Data Ruangan Berhasil Ditambahkan');
         return redirect()->to('pinjam-ruangan');
     }

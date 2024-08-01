@@ -75,9 +75,7 @@ class DataRuangan extends Component
             'image' => $imagePath,
         ]);
 
-        $imageUrl = Storage::url($imagePath);
-
-        session()->flash('message', 'Data Ruangan Berhasil Ditambahkan. Image Path: ' . $imageUrl);
+        $this->dispatch('showToast', type: 'success', message: 'Data Ruangan Berhasil Ditambahkan');
         return $this->redirect('/dataruangan');
     }
 }

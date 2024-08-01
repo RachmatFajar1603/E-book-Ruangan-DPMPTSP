@@ -75,47 +75,26 @@
                         <th class="border-b px-4 py-4 text-left">KEPERLUAN</th>
                         <th class="border-b px-4 py-4 text-left">JUMLAH YANG HADIR</th>
                         <th class="border-b px-3 py-4 text-left">STATUS</th>
-                        <th class="border-b px-4 py-4 text-left">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($peminjaman as $item)
                     <tr class="bg-green-100">
-                        <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2 ">Iklas</td>
-                        <td class="border-b px-4 py-2 ">1234567890</td>
-                        <td class="border-b px-4 py-2 ">DATIN</td>
-                        <td class="border-b px-4 py-2 ">bg gafar</td>
-                        <td class="border-b px-4 py-2">OPPROOM</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">10.00</td>
-                        <td class="border-b px-4 py-2">12.00</td>
-                        <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
-                        <td class="border-b px-4 py-2">12 Orang</td>
-                        <td class="border-b px-4 py-2 text-green-400">Aproved</td>
-                        <td class="border-b px-4 py-2 flex space-x-2">
-                        <div class="flex flex-col items-start space-y-5">
-                        
-            <div class="flex flex-col items-start space-y-5">
-                <!-- Button for Approved -->
-                <button class="bg-green-500 text-white hover:bg-green-600 flex items-center px-2 py-1 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="ml-2">Approved</span>
-                </button>
-
-                <!-- Button for Rejected -->
-                <button class="bg-red-500 text-white hover:bg-red-600 flex items-center px-3 py-1 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span class="ml-2">Rejected</span>
-                </button>
-            </div>
-
-                        </td>
+                        <td class="border-b px-4 py-2">{{ $loop->iteration }}</td>
+                        <td class="border-b px-4 py-2 ">{{ $item->user->nama }} </td>
+                        <td class="border-b px-4 py-2 ">{{ $item->user->nip_reg }}
+                        <td class="border-b px-4 py-2 ">{{ $item->user->bidang->nama }}</td>
+                        <td class="border-b px-4 py-2 ">{{ $item->penanggung_jawab }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->nama_ruangan}} </td>
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_mulai }} </td>
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_selesai }} </td>
+                        <td class="border-b px-4 py-2">{{ $item->waktu_mulai }} </td>
+                        <td class="border-b px-4 py-2">{{ $item->waktu_selesai }} </td>
+                        <td class="border-b px-4 py-2">{{ $item->catatan }} </td>
+                        <td class="border-b px-4 py-2">{{ $item->kapasitas }} </td>
+                        <td class="border-b px-4 py-2 text-green-400">{{ $item->status }} </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             

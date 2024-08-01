@@ -5,7 +5,7 @@
     <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Peminjaman</p>
-            <p class="text-3xl mt-3">0</p>
+            <p class="text-3xl mt-3">{{ $sumall }}</p>
             <p class="text-xl mt-2">Total Peminjaman</p>
         </div>
         <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
@@ -27,7 +27,7 @@
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">DiSetujui</p>
-            <p class="text-3xl mt-3">0 <span class="text-lg text-green-500">(0%)</span></p>
+            <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span></p>
             <p class="text-xl mt-2">Total DiSetujui</p>
         </div>
         <div class="flex items-center justify-center bg-green-200 rounded-md p-4">
@@ -38,7 +38,7 @@
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">DiTolak</p>
-            <p class="text-3xl mt-3">0 <span class="text-lg text-red-500">(0%)</span></p>
+            <p class="text-3xl mt-3">{{ $sumrejected }} <span class="text-lg text-red-500">(0%)</span></p>
             <p class="text-xl mt-2">Total DiTolak</p>
         </div>
         <div class="flex items-center justify-center bg-red-200 rounded-md p-4">

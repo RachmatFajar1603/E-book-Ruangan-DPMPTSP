@@ -8,7 +8,9 @@
     <title>{{ $title?? 'Booking' }}</title>   
      <!-- Scripts -->
      @vite(['resources/css/app.css', 'resources/js/app.js'])
-     
+     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
     rel="stylesheet"
@@ -16,8 +18,18 @@
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-50 m-5">
-
+    @livewireScripts
     @include('layouts.sidebar')
+
+    <script>
+    document.addEventListener('livewire:initialized', () => {
+        Livewire.on('showToast', (event) => {
+            toastr[event.type](event.message);
+        });
+    });
+</script>
+
+
 </body>
 
 </html>

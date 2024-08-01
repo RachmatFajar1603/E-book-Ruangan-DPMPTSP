@@ -21,7 +21,6 @@ class PegawaiCreate extends Component
 
     public function create(){
         $data = $this->all();
-        dd($data);
         Pegawai::create($data);
         return $this->redirect('/pegawai');
     }
