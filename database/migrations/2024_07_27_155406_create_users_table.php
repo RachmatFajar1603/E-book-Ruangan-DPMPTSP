@@ -20,8 +20,8 @@ return new class extends Migration
                 $table->string('telepon')->unique();
                 $table->unsignedBigInteger('bidang_id');
                 $table->timestamp('email_verified_at')->nullable();
-                $table->string('keterangan');
-                $table->string('role');
+                $table->string('keterangan')->nullable();
+                $table->string('role')->nullable();
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();

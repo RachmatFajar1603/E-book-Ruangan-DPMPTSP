@@ -29,10 +29,10 @@
 
             <!-- Common Fields -->
             <div>
-                <x-input-label for="name" :value="__('Name')" class="block text-sm font-medium text-gray-700" />
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                    required autofocus autocomplete="name" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-label for="nama" :value="__('Name')" class="block text-sm font-medium text-gray-700" />
+                <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('name')"
+                    required autofocus autocomplete="nama" />
+                <x-input-error :messages="$errors->get('nama')" class="mt-2" />
             </div>
 
             <div>
@@ -43,10 +43,10 @@
             </div>
 
             <div>
-                <x-input-label for="phone" :value="__('Phone Number')" class="block text-sm font-medium text-gray-700" />
-                <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')"
+                <x-input-label for="telepon" :value="__('Phone Number')" class="block text-sm font-medium text-gray-700" />
+                <x-text-input id="telepon" class="block mt-1 w-full" type="tel" name="telepon" :value="old('telepon')"
                     required />
-                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                <x-input-error :messages="$errors->get('telepon')" class="mt-2" />
             </div>
 
             <!-- Internal-specific fields (Bidang) -->
@@ -119,7 +119,7 @@
     </form>
 
     <script>
-        
+
         function checkNip(nip) {
         if (nip.length > 0) {
             fetch(`/check-nip/${nip}`)
