@@ -24,6 +24,7 @@ return new class extends Migration
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
             $table->string('catatan')->nullable();
+            $table->enum('status', ['booked', 'verified', 'rejected'])->default('booked');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

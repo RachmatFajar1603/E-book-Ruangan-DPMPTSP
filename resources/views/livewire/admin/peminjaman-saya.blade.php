@@ -111,17 +111,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($peminjaman as $item)
                     <tr class="bg-green-100">
-                        <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2 flex items-center">bg gafar</td>
-                        <td class="border-b px-4 py-2">OPPROOM</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">10.00</td>
-                        <td class="border-b px-4 py-2">12.00</td>
-                        <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
-                        <td class="border-b px-4 py-2">12 Orang</td>
-                        <td class="border-b px-4 py-2 text-yellow-400">PENDING</td>
+                        <td class="border-b px-4 py-2">{{ $loop->iteration }}</td>
+                        <td class="border-b px-4 py-2 flex items-center">{{ $item->penanggung_jawab }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->ruang->nama}}
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_pinjam }}
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_selesai }}
+                        <td class="border-b px-4 py-2">{{ $item->waktu_mulai }}
+                        <td class="border-b px-4 py-2">{{ $item->waktu_selesai }}
+                        <td class="border-b px-4 py-2">{{ $item->acara_kegiatan }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->kapasitas }}
+                        @if ($item->status == 'booked')
+                        <td class="border-b px-4 py-2 text-yellow-400">Booked</td>
+                        @elseif ($item->status == 'verified')
+                        <td class="border-b px-4 py-2 text-green-400">Verified</td>
+                        @elseif ($item->status == 'rejected')
+                        <td class="border-b px-4 py-2 text-red-400">Rejected</td>
+                        @endif
                         <td class="border-b px-4 py-2 flex space-x-2 mt-2">
                             <button class="text-red-600 hover:text-red-800">
                                 <img src ="/images/edit.svg"  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,6 +137,7 @@
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             

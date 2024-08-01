@@ -8,11 +8,12 @@ use Livewire\Component;
 use App\Models\Peminjaman;
 use Carbon\Carbon;
 use App\Jobs\SetRoomAvailable;
-use Illuminate\Support\Facades\Log;
+use App\Jobs\SetRoomUnavailable;
+use Illuminate\Support\Facades\Storage;
 
 class PinjamRuanganBook extends Component
 {
-          #[Title('Book Ruangan')]
+    #[Title('Book Ruangan')]
     public $ruang_id;
     public $penanggung_jawab;
     public $acara_kegiatan;
@@ -32,6 +33,7 @@ class PinjamRuanganBook extends Component
     public function render()
     {
         $ruangan = Ruang::findOrFail($this->ruang_id);
+        $ruangan->image_url = Storage::url($ruangan->image);
         return view('livewire.admin.pinjam-ruangan-book', compact('ruangan'));
     }
 
@@ -84,16 +86,12 @@ class PinjamRuanganBook extends Component
             'waktu_selesai' => $this->waktu_selesai,
             'catatan' => $this->catatan,
         ]);
-        Log::info('Peminjaman created for room_id: ' . $this->ruang_id);
 
-        $ruang = Ruang::findOrFail($this->ruang_id);
-        $ruang->status = 'Tidak Tersedia';
-        $ruang->save();
-        Log::info('Room status updated to Tidak Tersedia for room_id: ' . $this->ruang_id);
+        $startTime = Carbon::parse($this->tanggal_pinjam . ' ' . $this->waktu_mulai);
+        $endTime = Carbon::parse($this->tanggal_selesai . ' ' . $this->waktu_selesai);
 
-        $endtime = Carbon::parse($this->tanggal_selesai . ' ' . $this->waktu_selesai);
-        Log::info('Dispatching SetRoomAvailable job for room_id: ' . $this->ruang_id . ' at ' . $endtime);
-        SetRoomAvailable::dispatch($this->ruang_id)->delay($endtime);
+        SetRoomUnavailable::dispatch($this->ruang_id)->delay($startTime);
+        SetRoomAvailable::dispatch($this->ruang_id)->delay($endTime);
 
         session()->flash('message', 'Data Ruangan Berhasil Ditambahkan');
         return redirect()->to('pinjam-ruangan');

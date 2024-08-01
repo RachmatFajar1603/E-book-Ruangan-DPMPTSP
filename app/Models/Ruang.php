@@ -29,4 +29,9 @@ class Ruang extends Model
     {
         return $this->belongsTo(Bidang::class, 'bidang_id');
     }
+
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }

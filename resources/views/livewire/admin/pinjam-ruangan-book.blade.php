@@ -81,18 +81,16 @@
                 <span class="mx-4 text-gray-500">Data Peminjaman</span>
                 <div class="flex-grow border-t border-gray-400"></div>
             </div> 
-            <img src="images/logo-dmptsp.png" alt="" class="w-full h-72 border mx-auto rounded-lg mt-8 object-contain">
+            <img src="{{ $ruangan->image_url }} " alt="" class="w-full h-72 border mx-auto rounded-lg mt-8 object-contain">
             <p class="text-2xl text-gray-500 mt-4">
-                Ruangan Rapat
+                {{ $ruangan->nama }}
             </p>
             <div class="mt-2 space-x-2">
-                <span class="p-1 bg-gray-200 rounded text-gray-600">Lantai 2</span>
-                <span class="p-1 bg-gray-200 rounded text-gray-600">15 Orang</span>
+                <span class="p-1 bg-gray-200 rounded text-gray-600">{{ $ruangan->lokasi }}</span>
+                <span class="p-1 bg-gray-200 rounded text-gray-600">{{ $ruangan->kapasitas }} Orang </span>
             </div>
             <p class="text-gray-600 mt-4 text-xl">
-                Ruangan ini digunakan oleh bidang 
-                <br>
-                Datin
+                {{ $ruangan->deskripsi }}
             </p>
         </div>
    </main>

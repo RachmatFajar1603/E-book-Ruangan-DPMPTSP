@@ -106,23 +106,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($peminjaman as $item)
                     <tr class="bg-green-100">
-                        <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2 ">Iklas</td>
-                        <td class="border-b px-4 py-2 ">1234567890</td>
-                        <td class="border-b px-4 py-2 ">DATIN</td>
-                        <td class="border-b px-4 py-2 ">bg gafar</td>
-                        <td class="border-b px-4 py-2">OPPROOM</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">12-02-2004</td>
-                        <td class="border-b px-4 py-2">10.00</td>
-                        <td class="border-b px-4 py-2">12.00</td>
-                        <td class="border-b px-4 py-2">RAPAT KERJA BIDANG SISTEM INFORMASI</td>
-                        <td class="border-b px-4 py-2">12 Orang</td>
-                        <td class="border-b px-4 py-2 text-yellow-400">PENDING</td>
+                        <td class="border-b px-4 py-2">{{ $loop->iteration }}</td>
+                        <td class="border-b px-4 py-2 ">{{ $item->user->nama }}
+                        <td class="border-b px-4 py-2 ">{{ $item->user->nip_reg }}
+                        <td class="border-b px-4 py-2 ">{{ $item->user->bidang->nama }} </td>
+                        <td class="border-b px-4 py-2 ">{{ $item->penanggung_jawab }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->ruang->nama }}
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_pinjam }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->tanggal_selesai }}
+                        <td class="border-b px-4 py-2">{{ $item->waktu_mulai }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->waktu_selesai }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->acara_kegiatan }}</td>
+                        <td class="border-b px-4 py-2">{{ $item->kapasitas }}</td>
+                        @if ($item->status == 'booked')
+                        <td class="border-b px-4 py-2 text-yellow-400">Booked</td>
+                        @elseif ($item->status == 'verified')
+                        <td class="border-b px-4 py-2 text-green-400">Verified</td>
+                        @else
+                        <td class="border-b px-4 py-2 text-red-400">Rejected</td>
+                        @endif
                         <td class="border-b px-4 py-2 flex space-x-2">
                         <div class="flex flex-col items-start space-y-5">
-                        
+                        @endforeach
             <div class="flex flex-col items-start space-y-5">
                 <!-- Button for Approved -->
                 <button class="bg-green-500 text-white hover:bg-green-600 flex items-center px-2 py-1 rounded-lg">

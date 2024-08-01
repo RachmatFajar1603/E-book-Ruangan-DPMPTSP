@@ -21,6 +21,7 @@ class Peminjaman extends Model
         'waktu_mulai',
         'waktu_selesai',
         'catatan',
+        'status',
     ];
 
     public function ruang()

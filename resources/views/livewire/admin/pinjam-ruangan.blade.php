@@ -31,7 +31,7 @@
                 </div>
                 <div class="p-2 flex justify-end mt-4">
                     <i class="ri-calendar-check-line text-gray-500"></i>
-                    <span class="text-gray-500 mr-1">0x</span>
+                    <span class="text-gray-500 mr-1">{{ $items->total_peminjaman }}</span>
                     <span class="text-gray-500">dipinjam</span>
                 </div>
             </div>
