@@ -22,7 +22,7 @@ use App\Livewire\Admin\Pengguna\PenggunaList;
 use App\Livewire\Admin\Pengguna\PenggunaUpdate;
 use App\Livewire\Admin\AnnouncementManager;
 use App\Http\Controllers\AnnouncementController;
-
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +46,8 @@ Route::get('/contact', function () {
 Route::get('home', Dahsboard::class)->middleware(['auth', 'verified', 'role_or_permission:admin|user']);
 Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_beranda']);
 Route::get('/dataruangan', DataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
+Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
+
 
 Route::get('/pengumuman-manager', AnnouncementManager::class);
 Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Bidang;
+use App\Models\Pegawai;
 
 class RegisteredUserController extends Controller
 {
@@ -23,6 +24,17 @@ class RegisteredUserController extends Controller
     {
         $bidang = Bidang::all();
         return view('auth.register', compact('bidang'));
+    }
+
+    public function checkNip($nip)
+    {
+        $pegawai = Pegawai::where('nip', $nip)->first();
+        
+        if ($pegawai) {
+            return response()->json(['nama' => $pegawai->nama]);
+        }
+        
+        return response()->json(['nama' => null]);
     }
 
     /**

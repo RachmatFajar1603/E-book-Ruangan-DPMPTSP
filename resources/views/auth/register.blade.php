@@ -22,7 +22,7 @@
                 <div>
                     <x-input-label for="nip" :value="__('NIP/Noreg')" class="block text-sm font-medium text-gray-700" />
                     <x-text-input id="nip_reg" class="block mt-1 w-full" type="number" name="nip_reg"
-                        :value="old('nip_reg')" required />
+                    :value="old('nip_reg')" required onkeyup="checkNip(this.value)" />
                     <x-input-error :messages="$errors->get('nip_reg')" class="mt-2" />
                 </div>
             </div>
@@ -119,6 +119,22 @@
     </form>
 
     <script>
+        
+        function checkNip(nip) {
+        if (nip.length > 0) {
+            fetch(`/check-nip/${nip}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.nama) {
+                        document.getElementById('name').value = data.nama;
+                    } else {
+                        document.getElementById('name').value = '';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+
         document.getElementById('role').addEventListener('change', function() {
             var dynamicFields = document.getElementById('dynamic-fields');
             var internalFields = document.getElementById('internal-fields');

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Pegawai;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +18,7 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             RolePermissionSeeder::class,
             UserSeeder::class,
+            PegawaiSeeder::class,
         ]);
     }
 }
