@@ -18,6 +18,6 @@ class Announcement extends Model
         'title',
         'content',
         'is_published',
-        // Add any other fields that should be fillable here
+        'photo',
     ];
 }

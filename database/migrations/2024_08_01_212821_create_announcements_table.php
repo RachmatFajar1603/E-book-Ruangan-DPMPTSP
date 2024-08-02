@@ -16,14 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->boolean('is_published')->default(false);
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('announcements');
     }

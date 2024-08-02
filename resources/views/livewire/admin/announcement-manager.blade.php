@@ -31,6 +31,17 @@
                     @enderror
                 </div>
 
+                <div>
+                    <label for="photo" class="block text-sm font-medium text-gray-700">Foto</label>
+                    <input type="file" id="photo" wire:model="photo" class="mt-1 block w-full">
+                    @error('photo')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                    @if ($photo)
+                        <img src="{{ $photo->temporaryUrl() }}" alt="Preview" class="mt-2 h-20 w-20 object-cover">
+                    @endif
+                </div>
+
                 <div class="flex items-center">
                     <input type="checkbox" wire:model="is_published" id="is_published"
                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
@@ -57,12 +68,36 @@
             <ul class="divide-y divide-gray-200">
                 @foreach ($announcements as $announcement)
                     <li class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-start space-x-4">
+                            @if ($announcement->photo)
+                                <img src="{{ Storage::url($announcement->photo) }}" alt="{{ $announcement->title }}"
+                                    class="w-24 h-24 object-cover rounded-md flex-shrink-0">
+                            @else
+                                <div
+                                    class="w-24 h-24 bg-gray-200 flex items-center justify-center rounded-md flex-shrink-0">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            @endif
                             <div class="flex-1 min-w-0">
-                                <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $announcement->title }}</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 truncate">{{ $announcement->title }}
+                                </h3>
                                 <p class="mt-1 text-sm text-gray-600">{{ Str::limit($announcement->content, 100) }}</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Dipublikasikan pada {{ $announcement->created_at->format('d M Y') }}
+                                </div>
                             </div>
-                            <div class="flex shrink-0 ml-4 space-x-2">
+                            <div class="flex flex-col space-y-2 ml-4">
                                 <button wire:click="edit({{ $announcement->id }})"
                                     class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                     Edit
@@ -72,15 +107,6 @@
                                     Hapus
                                 </button>
                             </div>
-                        </div>
-                        <div class="mt-2 flex items-center text-sm text-gray-500">
-                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Dipublikasikan pada {{ $announcement->created_at->format('d M Y') }}
                         </div>
                     </li>
                 @endforeach

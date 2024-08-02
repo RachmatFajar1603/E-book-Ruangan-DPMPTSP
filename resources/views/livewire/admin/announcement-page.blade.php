@@ -39,14 +39,19 @@
                 <div class="space-y-12">
                     @foreach ($announcements as $announcement)
                         <article class="prose lg:prose-xl max-w-none">
+                            @if($announcement->photo)
+                                <img src="{{ Storage::url($announcement->photo) }}" alt="{{ $announcement->title }}" class="w-full h-64 object-cover mb-4 rounded-lg">
+                            @endif
                             <h2 id="pengumuman-{{ $announcement->id }}" class="text-3xl font-semibold text-gray-800">
-                                {{ $announcement->title }}</h2>
+                                {{ $announcement->title }}
+                            </h2>
                             <p class="text-gray-600 text-sm">Dipublikasikan pada
                                 {{ $announcement->created_at->format('d M Y') }}</p>
                             <p>{{ Str::limit($announcement->content, 200) }}</p>
                             <a href="{{ route('pengumuman.show', $announcement->id) }}"
-                                class="inline-block bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-300 transition duration-300 ease-in-out mt-4">Baca
-                                Selengkapnya</a>
+                                class="inline-block bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out mt-4">
+                                Baca Selengkapnya
+                            </a>
                         </article>
                     @endforeach
                 </div>
