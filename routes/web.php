@@ -23,6 +23,7 @@ use App\Livewire\Admin\Pengguna\PenggunaUpdate;
 use App\Livewire\Admin\AnnouncementManager;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Livewire\Admin\AnnouncementUpdate;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->n
 
 
 Route::get('/pengumuman-manager', AnnouncementManager::class);
+Route::get('/pengumuman-update/{id}', AnnouncementUpdate::class);
 Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
 Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
 Route::get('/pengumuman', function () {

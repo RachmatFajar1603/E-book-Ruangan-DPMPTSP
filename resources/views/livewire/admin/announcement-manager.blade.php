@@ -42,12 +42,6 @@
                     @endif
                 </div>
 
-                <div class="flex items-center">
-                    <input type="checkbox" wire:model="is_published" id="is_published"
-                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                    <label for="is_published" class="ml-2 block text-sm text-gray-700">Publikasikan</label>
-                </div>
-
                 <div class="flex justify-end space-x-3">
                     @if ($isEditing)
                         <button type="button" wire:click="create"
@@ -98,15 +92,18 @@
                                 </div>
                             </div>
                             <div class="flex flex-col space-y-2 ml-4">
-                                <button wire:click="edit({{ $announcement->id }})"
-                                    class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-                                    Edit
-                                </button>
+                                <a href="/pengumuman-update/{{ $announcement->id }}">
+                                    <button
+                                        class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                        Edit
+                                    </button>
+                                </a>
                                 <button wire:click="delete({{ $announcement->id }})"
                                     class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
                                     Hapus
                                 </button>
                             </div>
+
                         </div>
                     </li>
                 @endforeach
