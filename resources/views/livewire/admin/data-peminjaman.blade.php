@@ -124,7 +124,7 @@
                         <th class="border-b px-4 py-4 text-left">KEPERLUAN</th>
                         <th class="border-b px-4 py-4 text-left">JUMLAH YANG HADIR</th>
                         <th class="border-b px-3 py-4 text-left">STATUS</th>
-                        @if (auth()->user()->can('approve_peminjaman')) || auth()->user()->can('reject_peminjaman')
+                        @if (auth()->user()->can('approve_peminjaman') || auth()->user()->can('reject_peminjaman'))
                         <th class="border-b px-4 py-4 text-left">AKSI</th>
                         @endif
                     </tr>
@@ -152,7 +152,7 @@
                     @endif">
                             {{ ucfirst($item->status) }}
                         </td>
-                        @if (auth()->user()->can('approve_peminjaman')) || auth()->user()->can('reject_peminjaman')
+                        @if (auth()->user()->can('approve_peminjaman') || auth()->user()->can('reject_peminjaman'))
                         <td class="border-b px-4 py-2">
                             <div class="flex flex-col items-start space-y-2">
                                 @if($item->status == 'booked')

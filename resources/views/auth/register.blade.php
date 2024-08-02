@@ -126,9 +126,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.nama) {
-                        document.getElementById('name').value = data.nama;
+                        document.getElementById('nama').value = data.nama;
                     } else {
-                        document.getElementById('name').value = '';
+                        document.getElementById('nama').value = '';
                     }
                 })
                 .catch(error => console.error('Error:', error));
