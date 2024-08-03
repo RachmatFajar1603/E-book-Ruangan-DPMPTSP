@@ -16,7 +16,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('nip_reg')->unique();
                 $table->string('email'); 
-                $table->string('nama')->unique();
+                $table->string('nama');
                 $table->string('telepon')->unique();
                 $table->unsignedBigInteger('bidang_id');
                 $table->timestamp('email_verified_at')->nullable();

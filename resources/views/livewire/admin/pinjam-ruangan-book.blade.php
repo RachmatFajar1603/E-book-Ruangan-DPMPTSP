@@ -2,7 +2,7 @@
    <main class="p-4 sm:ml-64 grid grid-cols-3 space-x-8 font-poppins">
         <div class="bg-white col-span-2 p-8 text-center rounded-lg shadow">
             <p class="text-2xl text-blue-400">
-                Ruang Rapat
+                {{ $ruangan->nama }}
             </p>
             <div class="flex items-center my-4 mt-10">
                 <div class="flex-grow border-t border-gray-400"></div>
@@ -21,7 +21,7 @@
                         <input type="text" wire:model="acara_kegiatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                     </div>
                     <div>
-                        <label for="kapasitas" class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a number:</label>
+                        <label for="kapasitas" class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah peserta</label>
                         <input type="number" wire:model="kapasitas" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                     </div>
                     <div>
@@ -66,7 +66,7 @@
                     <div class="flex-grow border-t border-gray-400"></div>
                 </div>
                 <div>
-                    <label for="catatan" class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+                    <label for="catatan" class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah pesan</label>
                     <textarea wire:model="catatan" rows="4" class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ></textarea>
                 </div>
                 <button type="submit" class="my-8 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -81,7 +81,7 @@
                 <span class="mx-4 text-gray-500">Data Peminjaman</span>
                 <div class="flex-grow border-t border-gray-400"></div>
             </div> 
-            <img src="{{ $ruangan->image_url }} " alt="" class="w-full h-72 border mx-auto rounded-lg mt-8 object-contain">
+            <img src="{{ $ruangan->image_url }} " alt="" class="w-full h-72 border mx-auto rounded-lg mt-8 object-cover">
             <p class="text-2xl text-gray-500 mt-4">
                 {{ $ruangan->nama }}
             </p>

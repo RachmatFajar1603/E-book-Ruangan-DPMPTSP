@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\Ruangan;
 
 use App\Models\Bidang;
 use App\Models\Fasilitas;
-use Livewire\Component;
 use App\Models\Ruang;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage; 
 
-class DataRuangan extends Component
-{
-
+class RuanganCreate extends Component
+{       
     use WithFileUploads;
 
     public $nama;
@@ -29,24 +28,23 @@ class DataRuangan extends Component
     public $thumbnailLabel;
     public $thumbnailPreview;
 
+    #[Title('Tambah Ruangan')]
+
     public function updatedImage()
     {
         $this->thumbnailPreview = $this->image->temporaryUrl();
     }
 
-    #[Title('Data Ruangan')]
     public function render()
-    {
-        $ruangtersedia = Ruang::where('status', 'Tersedia')->get();
-        $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->get();
+    {   
         $ruangs = Ruang::all();
 
         foreach ($ruangs as $ruang){
             $ruang->image_url = Storage::url($ruang->image);
         }
-        
+
         $bidangs = Bidang::all();
-        return view('livewire.admin.data-ruangan', compact('bidangs', 'ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
+        return view('livewire.admin.ruangan.ruangan-create', compact('bidangs', 'ruangs'));
     }
 
     public function create()

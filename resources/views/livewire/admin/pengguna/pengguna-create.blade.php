@@ -10,7 +10,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="mb-4">
                         <label for="nama_lengkap" class="block text-gray-700 font-semibold">NIP / NO REG *</label>
-                        <input wire:model="nip_reg" type="number" name="nama_lengkap" id="nama_lengkap" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="Masukkan NIP Anda">
+                        <input wire:model="nip_reg" type="text" name="nama_lengkap" id="nama_lengkap" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="Masukkan NIP Anda">
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-gray-700 font-semibold">E-mail *</label>

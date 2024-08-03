@@ -21,7 +21,7 @@
             <div id="internal-fields" style="display: none;">
                 <div>
                     <x-input-label for="nip" :value="__('NIP/Noreg')" class="block text-sm font-medium text-gray-700" />
-                    <x-text-input id="nip_reg" class="block mt-1 w-full" type="number" name="nip_reg"
+                    <x-text-input id="nip_reg" class="block mt-1 w-full" type="text" name="nip_reg"
                     :value="old('nip_reg')" required onkeyup="checkNip(this.value)" />
                     <x-input-error :messages="$errors->get('nip_reg')" class="mt-2" />
                 </div>
@@ -105,13 +105,16 @@
 
             <div class="flex items-center justify-between">
                 <div class="text-sm">
-                    <a class="font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out"
+                    <span>
+                        Sudah punya akun?
+                    </span>
+                    <a class="font-semibold text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out"
                         href="{{ route('login') }}">
-                        {{ __('Already registered?') }}
+                        Login
                     </a>
                 </div>
 
-                <x-primary-button class="ml-4" type="submit">
+                <x-primary-button class="ml-4 mt-4" type="submit">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>

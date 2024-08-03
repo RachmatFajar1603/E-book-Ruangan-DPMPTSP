@@ -2,8 +2,8 @@
     <main class="p-4 sm:ml-64">
         <div class="grid grid-cols-4 space-y-8 font-poppins">
             @foreach ($ruangans as $items)
-            <div class="w-fit bg-white p-4 shadow rounded-lg mt-8">
-                <img src="{{ $items->image_url }}" alt="" class="w-full h-48 object-cover rounded-lg">
+            <div class="w-fit bg-white p-4 shadow  mt-8">
+                <img src="{{ $items->image_url }}" alt="" class="w-full h-48 object-cover">
                 <div class="flex justify-beetween mt-4">
                     <p class="mx-2 text-xl">
                         {{ $items->nama }}

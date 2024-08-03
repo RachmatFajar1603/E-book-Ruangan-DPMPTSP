@@ -20,18 +20,3 @@
         </div>
     </main>
 </div>
-<script>
-    document
-        .querySelector('input[inputmode="numeric"]')
-        .addEventListener("input", (e) => {
-            const value = e.target.value;
-
-            const notDIgit = /\D/;
-
-            if (notDIgit.test(value) === true) {
-                e.target.value = value.replace(notDIgit, "");
-            }
-
-            console.log(value);
-        })
-</script>

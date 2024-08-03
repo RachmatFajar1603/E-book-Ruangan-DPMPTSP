@@ -23,6 +23,8 @@ use App\Livewire\Admin\Pengguna\PenggunaUpdate;
 use App\Livewire\Admin\AnnouncementManager;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Livewire\Admin\Ruangan\DataRuangan as RuanganDataRuangan;
+use App\Livewire\Admin\Ruangan\RuanganCreate;
 use App\Livewire\Admin\AnnouncementUpdate;
 
 /*
@@ -46,7 +48,11 @@ Route::get('/contact', function () {
 
 Route::get('home', Dahsboard::class)->middleware(['auth', 'verified', 'role_or_permission:admin|user']);
 Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_beranda']);
-Route::get('/dataruangan', DataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
+
+//ruangan
+Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
+Route::get('/ruangancreate', RuanganCreate::class);
+
 Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
 
 
@@ -58,6 +64,7 @@ Route::get('/pengumuman', function () {
     return view('pages.pengumuman');
 })->name('pengumuman.index');
 
+//pengguna
 Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_datapengguna']);
 Route::get('/datapenggunacreate', PenggunaCreate::class);
 Route::get('pengguna/{id}/update', PenggunaUpdate::class);
@@ -79,8 +86,8 @@ Route::get('/gedung', function () {
 Route::get('/ruangan-detail', function () {
     return view('pages/ruangan-detail');
 });
-Route::get('/dashboard', function () {
-    return view('beranda');
+Route::get('/dashboard-ruangan', function () {
+    return view('ruangan');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
