@@ -83,11 +83,11 @@ Route::get('pegawai/{id}/update', PegawaiUpdate::class);
 Route::get('/gedung', function () {
     return view('pages/gedung');
 });
-Route::get('/ruangan-detail', function () {
-    return view('pages/ruangan-detail');
-});
-Route::get('/dashboard-ruangan', function () {
-    return view('ruangan');
+
+Route::get('/ruangan-detail/{id}', [RoomController::class, 'show'])->name('ruangan.detail');
+
+Route::get('/dashboard', function () {
+    return view('beranda');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="px-6 pt-4 pb-2">
-        <a href="/ruangan-detail" class="bg-gray-700 hover:bg-gray-300 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-lg inline-block">
+        <a href="{{ route('ruangan.detail', ['id' => $room->id]) }}" class="bg-gray-700 hover:bg-gray-300 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded-lg inline-block">
             View Details
         </a>
     </div>

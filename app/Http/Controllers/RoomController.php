@@ -17,4 +17,10 @@ class RoomController extends Controller
         }
         return view('pages.ruangan', compact('rooms'));
     }
+
+    public function show($id)
+    {
+        $room = Ruang::with('fasilitas')->findOrFail($id);
+        return view('pages.ruangan-detail', compact('room'));
+    }
 }
