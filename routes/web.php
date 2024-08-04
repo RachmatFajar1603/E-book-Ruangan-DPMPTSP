@@ -1,32 +1,32 @@
 <?php
 
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Admin\Pegawai\PegawaiCreate;
 use App\Livewire\Admin\Pegawai\PegawaiList;
 use App\Livewire\Dahsboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
-use App\Livewire\Admin\DataPengguna;
-use App\Livewire\Admin\DataRuangan;
-use App\Livewire\Admin\DataPenggunaCreate;
 use App\Livewire\Admin\DataPeminjaman;
 use App\Livewire\Admin\Laporan;
 use App\Livewire\Admin\PeminjamanSaya;
 use App\Livewire\Admin\PinjamRuangan;
 use App\Livewire\Admin\PinjamRuanganBook;
 use App\Livewire\Admin\BerandaAdmin;
-use App\Livewire\Admin\Pegawai\PegawaiEdit;
 use App\Livewire\Admin\Pegawai\PegawaiUpdate;
 use App\Livewire\Admin\Pengguna\PenggunaCreate;
 use App\Livewire\Admin\Pengguna\PenggunaList;
 use App\Livewire\Admin\Pengguna\PenggunaUpdate;
 use App\Livewire\Admin\AnnouncementManager;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Livewire\Admin\Ruangan\DataRuangan as RuanganDataRuangan;
 use App\Livewire\Admin\Ruangan\RuanganCreate;
 use App\Livewire\Admin\AnnouncementUpdate;
 use App\Livewire\Admin\Ruangan\EditRuang;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +39,10 @@ use App\Livewire\Admin\Ruangan\EditRuang;
 |
 */
 
-Route::get('/', function () {
-    return view('pages/welcome');
-});
+Route::get('/ruangan', function () {
+    return view('pages/ruangan');
+})->middleware(['auth', 'verified']);
+
 Route::get('/contact', function () {
     return view('pages/contact');
 });
@@ -99,5 +100,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/ruangan', [RoomController::class, 'index'])->name('rooms.index');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verify-email');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/resend', [EmailVerificationNotificationController::class, 'store'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
 
 require __DIR__ . '/auth.php';
