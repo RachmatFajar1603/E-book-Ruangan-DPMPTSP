@@ -21,13 +21,13 @@ use App\Livewire\Admin\AnnouncementManager;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Livewire\User\EditPeminjaman;
 use App\Livewire\Admin\Ruangan\DataRuangan as RuanganDataRuangan;
 use App\Livewire\Admin\Ruangan\RuanganCreate;
 use App\Livewire\Admin\AnnouncementUpdate;
 use App\Livewire\Admin\Ruangan\EditRuang;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +39,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function () {
+    return view('pages/welcome');
+});
+
 Route::get('/ruangan', function () {
     return view('pages/ruangan');
 })->middleware(['auth', 'verified']);
@@ -48,11 +52,11 @@ Route::get('/contact', function () {
 });
 
 
-Route::get('home', Dahsboard::class)->middleware(['auth', 'verified', 'role_or_permission:admin|user']);
-Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_beranda']);
+Route::get('home', Dahsboard::class)->middleware(['auth', 'role_or_permission:admin|user']);
+Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'role_or_permission:admin|view_beranda']);
 
 //ruangan
-Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
+Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'role_or_permission:admin|view_dataruangan']);
 Route::get('/ruangancreate', RuanganCreate::class);
 Route::get('/ruangan/{id}/edit', EditRuang::class);
 
@@ -68,12 +72,13 @@ Route::get('/pengumuman', function () {
 })->name('pengumuman.index');
 
 //pengguna
-Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_datapengguna']);
+Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'role_or_permission:admin|view_datapengguna']);
 Route::get('/datapenggunacreate', PenggunaCreate::class);
 Route::get('pengguna/{id}/update', PenggunaUpdate::class);
 
 Route::get('/datapeminjaman', DataPeminjaman::class);
 Route::get('/peminjamansaya', PeminjamanSaya::class);
+Route::get('/peminjamansaya/{id}/edit', EditPeminjaman::class);
 Route::get('/laporan', Laporan::class);
 Route::get('/peggunaedit', PenggunaUpdate::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);

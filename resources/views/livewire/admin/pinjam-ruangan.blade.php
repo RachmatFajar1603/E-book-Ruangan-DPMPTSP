@@ -13,9 +13,15 @@
                     </span>
                 </div>
                 <div class="flex justify-beetween space-x-4 p-2 text-xs">
+                    @if ($items->status == 'Tersedia')
                     <span class="p-2 bg-green-200 text-green-700 rounded-lg text-center">
                         {{ $items->status }}
                     </span>
+                    @else
+                    <span class="p-2 bg-red-200 text-red-700 rounded-lg text-center">
+                        {{ $items->status }}
+                    </span>
+                    @endif
                     <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-center">
                         {{ $items->lokasi }}
                     </span>

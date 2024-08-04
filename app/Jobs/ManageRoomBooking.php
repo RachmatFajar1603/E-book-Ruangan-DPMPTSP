@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ManageRoomBooking implements ShouldQueue
 {
@@ -34,20 +35,22 @@ class ManageRoomBooking implements ShouldQueue
             $startTime = Carbon::parse($peminjaman->waktu_mulai);
             $endTime = Carbon::parse($peminjaman->waktu_selesai);
 
+            Log::info("Scheduling jobs for peminjaman_id: {$this->peminjaman_id}, from {$startDate} to {$endDate}");
+
             for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
                 $bookingStart = $date->copy()->setTimeFrom($startTime);
                 $bookingEnd = $date->copy()->setTimeFrom($endTime);
 
-                UpdateRoomStatus::dispatch($ruang->id, $peminjaman->id, 'Tidak Tersedia')
-                    ->delay($bookingStart);
-                UpdateRoomStatus::dispatch($ruang->id, $peminjaman->id, 'Tersedia')
-                    ->delay($bookingEnd);
+                Log::info("Scheduling 'Tidak Tersedia' job for {$bookingStart}");
+                UpdateRoomStatus::dispatch($ruang->id, $peminjaman->id, 'Tidak Tersedia', $bookingStart);
+
+                Log::info("Scheduling 'Tersedia' job for {$bookingEnd}");
+                UpdateRoomStatus::dispatch($ruang->id, $peminjaman->id, 'Tersedia', $bookingEnd);
             }
 
-            Log::info("Booking jobs scheduled for peminjaman_id: {$this->peminjaman_id}");
+            Log::info("All booking jobs scheduled for peminjaman_id: {$this->peminjaman_id}");
         } catch (\Exception $e) {
             Log::error("Error in ManageRoomBooking job: " . $e->getMessage());
-            Log::error($e->getTraceAsString());
             throw $e;
         }
     }
@@ -60,32 +63,58 @@ class UpdateRoomStatus implements ShouldQueue
     protected $ruang_id;
     protected $peminjaman_id;
     protected $status;
+    public $executeAt;
 
-    public function __construct($ruang_id, $peminjaman_id, $status)
+    public $tries = 3;
+    public $maxExceptions = 3;
+    public $backoff = [10, 60, 120];
+
+    public function __construct($ruang_id, $peminjaman_id, $status, $executeAt)
     {
         $this->ruang_id = $ruang_id;
         $this->peminjaman_id = $peminjaman_id;
         $this->status = $status;
+        $this->executeAt = $executeAt;
     }
 
     public function handle()
     {
-        try {
-            $ruang = Ruang::findOrFail($this->ruang_id);
-            $peminjaman = Peminjaman::findOrFail($this->peminjaman_id);
+        Log::info("UpdateRoomStatus job started for room_id: {$this->ruang_id}, status: {$this->status}");
 
-            if ($peminjaman->status == 'verified' || $peminjaman->status == 'booking') {
+        $now = Carbon::now();
+        Log::info("Current time: {$now}, Scheduled execution time: {$this->executeAt}");
+
+        if ($now->lt($this->executeAt)) {
+            $delay = $this->executeAt->diffInSeconds($now);
+            Log::info("Releasing job back to queue. Will retry in {$delay} seconds");
+            $this->release($delay);
+            return;
+        }
+
+        try {
+            DB::transaction(function () {
+                $ruang = Ruang::lockForUpdate()->findOrFail($this->ruang_id);
+                $peminjaman = Peminjaman::findOrFail($this->peminjaman_id);
+
+                Log::info("Current peminjaman status: {$peminjaman->status}");
+                Log::info("Current room status: {$ruang->status}");
+
+                // Periksa apakah status peminjaman adalah 'reject'
+                if ($peminjaman->status === 'reject') {
+                    Log::info("Peminjaman status is 'reject'. Cancelling the job.");
+                    $this->delete();
+                    return;
+                }
+
+                // Ubah status ruangan jika peminjaman tidak di-reject
                 $ruang->status = $this->status;
                 $ruang->save();
+
                 Log::info("Room status updated to '{$this->status}' for room_id: {$this->ruang_id}");
-            } elseif ($peminjaman->status == 'rejected') {
-                $ruang->status = 'Tersedia';
-                $ruang->save();
-                Log::info("Room status set to 'Tersedia' due to rejected booking for room_id: {$this->ruang_id}");
-            }
+                Log::info("Final room status: {$ruang->fresh()->status}");
+            });
         } catch (\Exception $e) {
             Log::error("Error in UpdateRoomStatus job: " . $e->getMessage());
-            Log::error($e->getTraceAsString());
             throw $e;
         }
     }

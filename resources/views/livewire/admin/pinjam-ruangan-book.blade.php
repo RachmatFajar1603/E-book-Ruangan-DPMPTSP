@@ -39,7 +39,8 @@
                         <label for="nomor_handphone"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
                             Handphone</label>
-                        <input type="tel" wire:model="nomor_handphone" pattern="08[0-9]{10}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        <input type="tel" wire:model="nomor_handphone" pattern="08[0-9]{10}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="08XXXXXXXXX" required />
                     </div>
                     <input type="hidden" wire:model="ruang_id">
@@ -49,7 +50,7 @@
                             Pinjam</label>
                         <input type="date" wire:model="tanggal_pinjam"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Pilih tanggal mulai dan selesai" required />
+                            required />
                     </div>
                     <div>
                         <label for="tanggal_selesai"
@@ -57,7 +58,10 @@
                             Selesai</label>
                         <input type="date" wire:model="tanggal_selesai"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Pilih tanggal mulai dan selesai" required />
+                            required />
+                        @if ($tanggalError)
+                        <p class="text-red-500 text-xs mt-1">{{ $tanggalError }}</p>
+                        @endif
                     </div>
                     <div>
                         <label for="waktu_mulai"
@@ -96,6 +100,9 @@
                                 </svg>
                             </span>
                         </div>
+                        @if ($waktuError)
+                            <p class="text-red-500 text-xs mt-1">{{ $waktuError }}</p>
+                        @endif
                     </div>
                 </div>
                 <div class="flex items-center my-4 mt-10">

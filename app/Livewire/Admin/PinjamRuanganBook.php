@@ -23,10 +23,58 @@ class PinjamRuanganBook extends Component
     public $waktu_mulai;
     public $waktu_selesai;
     public $catatan;
+    public $tanggalError = '';
+    public $waktuError = '';
 
     public function mount($id)
     {
         $this->ruang_id = $id;
+    }
+
+    public function updatedTanggalPinjam()
+    {
+        $this->validateDates();
+    }
+
+    public function updatedTanggalSelesai()
+    {
+        $this->validateDates();
+    }
+
+    public function updatedWaktuMulai()
+    {
+        $this->validateTimes();
+    }
+
+    public function updatedWaktuSelesai()
+    {
+        $this->validateTimes();
+    }
+
+    public function validateDates()
+    {
+        if ($this->tanggal_pinjam && $this->tanggal_selesai) {
+            if (strtotime($this->tanggal_selesai) < strtotime($this->tanggal_pinjam)) {
+                $this->tanggalError = 'Tanggal selesai tidak boleh sebelum tanggal mulai.';
+            } else {
+                $this->tanggalError = '';
+            }
+        }
+    }
+
+    public function validateTimes()
+    {
+        if ($this->waktu_mulai && $this->waktu_selesai) {
+            if ($this->tanggal_pinjam == $this->tanggal_selesai) {
+                if (strtotime($this->waktu_selesai) <= strtotime($this->waktu_mulai)) {
+                    $this->waktuError = 'Waktu selesai harus setelah waktu mulai.';
+                } else {
+                    $this->waktuError = '';
+                }
+            } else {
+                $this->waktuError = '';
+            }
+        }
     }
 
     public function render()
@@ -64,6 +112,13 @@ class PinjamRuanganBook extends Component
     
     public function create()
     {   
+        $this->validateDates();
+        $this->validateTimes();
+
+        if ($this->tanggalError || $this->waktuError) {
+            return;
+        }
+
         $this->validate([
             'ruang_id' => 'required',
             'acara_kegiatan' => 'required',
@@ -78,7 +133,7 @@ class PinjamRuanganBook extends Component
         ]);
     
         if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
-            $this->dispatch('showToast', type: 'error', message: 'Ruangan sudah dipesan pada tanggal dan waktu tersebut');
+            session()->flash('toast', ['type' => 'success', 'message' => 'Ruangan sudah dipesan pada waktu tersebut']);
             return;
         }
         
@@ -99,7 +154,7 @@ class PinjamRuanganBook extends Component
         // Dispatch the job to manage room booking
         ManageRoomBooking::dispatch($peminjaman->id);
     
-        $this->dispatch('showToast', type: 'success', message: 'Ruangan berhasil dipesan');
+        session()->flash('toast', ['type' => 'success', 'message' => 'Peminjaman berhasil diajukan']);
         $this->redirect('/pinjam-ruangan');
     }
 }
