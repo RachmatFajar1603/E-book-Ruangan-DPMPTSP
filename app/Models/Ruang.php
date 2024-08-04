@@ -39,4 +39,9 @@ class Ruang extends Model
     {
         return $this->hasMany(Image::class)->orderBy('order');
     }
+
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class, 'ruang_id');
+    }
 }

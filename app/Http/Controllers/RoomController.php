@@ -20,7 +20,21 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Ruang::with('fasilitas')->findOrFail($id);
-        return view('pages.ruangan-detail', compact('room'));
+        $room = Ruang::with(['fasilitas', 'images', 'peminjaman' => function($query) {
+            $query->where('tanggal_pinjam', '>=', now())
+                  ->orderBy('tanggal_pinjam');
+        }])->findOrFail($id);
+
+        $room->image_url = Storage::url($room->image);
+        
+        $bookings = $room->peminjaman->map(function ($peminjaman) {
+            return [
+                'tanggal' => $peminjaman->tanggal_pinjam->format('d-m-Y'),
+                'jam_mulai' => $peminjaman->waktu_mulai,
+                'jam_selesai' => $peminjaman->waktu_selesai
+            ];
+        });
+
+        return view('pages.ruangan-detail', compact('room', 'bookings'));
     }
 }

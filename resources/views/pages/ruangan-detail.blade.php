@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 py-8">
     <!-- Header -->
     <div class="relative h-48 md:h-64 bg-cover bg-center mb-8 rounded-xl overflow-hidden"
-        style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        style="background-image: url('{{ $room->image_url }}');">
         <div class="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
         <div class="absolute inset-0 flex flex-col md:flex-row items-center justify-between p-4 md:px-8">
             <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-0 z-10">{{ $room->nama }}</h1>
@@ -17,17 +17,11 @@
 
     <!-- Room Images -->
     <div class="mb-8">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="Room" class="w-full h-96 object-cover rounded-xl mb-4">
-        <div class="flex space-x-4">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Room 1" class="w-1/4 h-24 object-cover rounded-lg">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Room 2" class="w-1/4 h-24 object-cover rounded-lg">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Room 3" class="w-1/4 h-24 object-cover rounded-lg">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt="Room 4" class="w-1/4 h-24 object-cover rounded-lg">
+        <img src="{{ $room->image_url }}" alt="Room" class="w-full h-96 object-cover rounded-xl mb-4">
+        <div class="flex space-x-4 overflow-x-auto">
+            @foreach($room->images as $image)
+                <img src="{{ Storage::url($image->image) }}" alt="Room {{ $loop->iteration }}" class="w-1/4 h-24 object-cover rounded-lg flex-shrink-0">
+            @endforeach
         </div>
     </div>
 
@@ -35,19 +29,19 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8">
         <div>
             <h3 class="font-semibold text-gray-700">Kategori</h3>
-            <p>Ruang Kelas</p>
+            <p>{{ $room->kategori }}</p>
         </div>
         <div>
             <h3 class="font-semibold text-gray-700">Lokasi</h3>
-            <p>Gedung Kampus B2</p>
+            <p>{{ $room->lokasi }}</p>
         </div>
         <div>
             <h3 class="font-semibold text-gray-700">Lantai</h3>
-            <p>2</p>
+            <p>{{ $room->lantai }}</p>
         </div>
         <div>
             <h3 class="font-semibold text-gray-700">Kapasitas</h3>
-            <p>10</p>
+            <p>{{ $room->kapasitas }}</p>
         </div>
     </div>
 
@@ -122,22 +116,13 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($bookings as $booking)
                 <tr class="bg-white border-b">
-                    <td class="px-6 py-4">01-01-2025</td>
-                    <td class="px-6 py-4">08:00</td>
-                    <td class="px-6 py-4">10:30</td>
+                    <td class="px-6 py-4">{{ $booking['tanggal'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['jam_mulai'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['jam_selesai'] }}</td>
                 </tr>
-                <tr class="bg-white border-b">
-                    <td class="px-6 py-4">01-01-2025</td>
-                    <td class="px-6 py-4">13:00</td>
-                    <td class="px-6 py-4">15:30</td>
-                </tr>
-                <tr class="bg-white border-b">
-                    <td class="px-6 py-4">01-01-2025</td>
-                    <td class="px-6 py-4">18:30</td>
-                    <td class="px-6 py-4">21:00</td>
-                </tr>
-                <!-- Tambahkan baris lain sesuai kebutuhan -->
+                @endforeach
             </tbody>
         </table>
     </div>
