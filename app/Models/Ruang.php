@@ -34,4 +34,9 @@ class Ruang extends Model
     {
         return $this->hasMany(Peminjaman::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class)->orderBy('order');
+    }
 }

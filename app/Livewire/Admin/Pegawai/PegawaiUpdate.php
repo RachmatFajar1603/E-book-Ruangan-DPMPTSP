@@ -26,6 +26,10 @@ class PegawaiUpdate extends Component
 
     public function update(){
         $this->pegawai->update($this->all());
+        session()->flash('toast', [
+            'type' => 'success',
+            'message' => 'Data Pegawai Diupdate'
+        ]);
         return redirect('pegawai');
     }
 }

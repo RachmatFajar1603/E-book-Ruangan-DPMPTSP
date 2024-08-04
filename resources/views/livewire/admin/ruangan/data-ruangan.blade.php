@@ -63,7 +63,7 @@
                             <span class="ml-2">entri</span>
                         </div>
                         <div class="bg-blue-500 text-white p-2 rounded-md">
-                            <a wire:navigate href="/ruangancreate"> Tambah Rangan</a>
+                            <a wire:navigate href="/ruangancreate"> Tambah Ruangan</a>
                         </div>
                         <div>
                             <label class="mr-2">Cari:</label>
@@ -111,19 +111,22 @@
                                 </td>
                                 <td class="border-b px-4 py-2 flex space-x-2">
                                     <span class="p-2 rounded text-white text-center">
-                                        <button class="text-green-600 hover:text-green-800">
+                                        <button wire:click="delete({{ $ruang->id }})"
+                                            wire:confirm="Apakah anda yakin ingin menghapus ruangan ini?">
                                             <img src="/images/trash.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7" />
-                                            </=>
                                         </button>
                                         <button class="text-red-600 hover:text-red-800">
-                                            <img src="/images/edit.svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
+                                            <a href="/ruangan/{{ $ruang->id }}/edit"
+                                                class="text-blue-600 hover:text-blue-800">
+                                                <img src="/images/edit.svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </a>
                                         </button>
                                     </span>
                                 </td>
@@ -147,4 +150,5 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
+
 </script>

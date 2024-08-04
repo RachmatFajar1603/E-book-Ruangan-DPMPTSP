@@ -7,11 +7,8 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Peminjaman;
 use Carbon\Carbon;
-use App\Jobs\SetRoomAvailable;
-use App\Jobs\SetRoomUnavailable;
+use App\Jobs\ManageRoomBooking;
 use Illuminate\Support\Facades\Storage;
-use App\Jobs\UpdateRoomStatus;
-use Illuminate\Support\Facades\Bus;
 
 class PinjamRuanganBook extends Component
 {
@@ -41,13 +38,12 @@ class PinjamRuanganBook extends Component
 
     private function isRoomOccupied($ruang_id, $tanggal_pinjam, $tanggal_selesai, $waktu_mulai, $waktu_selesai)
     {
-    $start_date = Carbon::parse($tanggal_pinjam);
-    $end_date = Carbon::parse($tanggal_selesai);
+        $start_date = Carbon::parse($tanggal_pinjam);
+        $end_date = Carbon::parse($tanggal_selesai);
 
-    // Loop through each day
-    for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
+        for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
             $conflict = Peminjaman::where('ruang_id', $ruang_id)
-                ->where('status', '!=', 'rejected') // Exclude rejected bookings
+                ->where('status', 'verified')
                 ->where('tanggal_pinjam', '<=', $date)
                 ->where('tanggal_selesai', '>=', $date)
                 ->where(function ($query) use ($waktu_mulai, $waktu_selesai) {
@@ -59,7 +55,7 @@ class PinjamRuanganBook extends Component
                 ->exists();
 
             if ($conflict) {
-            return true;
+                return true;
             }
         }
         
@@ -74,15 +70,15 @@ class PinjamRuanganBook extends Component
             'kapasitas' => 'required',
             'penanggung_jawab' => 'required',
             'nomor_handphone' => 'required',
-            'tanggal_pinjam' => 'required',
-            'tanggal_selesai' => 'required',
+            'tanggal_pinjam' => 'required|date',
+            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_pinjam',
             'waktu_mulai' => 'required',
-            'waktu_selesai' => 'required',
+            'waktu_selesai' => 'required|after:waktu_mulai',
             'catatan' => 'required',
         ]);
     
         if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
-            session()->flash('message', 'Ruangan sudah dipesan pada tanggal dan waktu tersebut');
+            $this->dispatch('showToast', type: 'error', message: 'Ruangan sudah dipesan pada tanggal dan waktu tersebut');
             return;
         }
         
@@ -100,29 +96,10 @@ class PinjamRuanganBook extends Component
             'catatan' => $this->catatan,
         ]);
     
-        $startDate = Carbon::parse($this->tanggal_pinjam);
-        $endDate = Carbon::parse($this->tanggal_selesai);
+        // Dispatch the job to manage room booking
+        ManageRoomBooking::dispatch($peminjaman->id);
     
-        $jobs = [];
-    
-        // Prepare jobs for daily status updates
-        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            $setUnavailable = $date->copy()->setTimeFromTimeString($this->waktu_mulai);
-            $setAvailable = $date->copy()->setTimeFromTimeString($this->waktu_selesai);
-    
-            $unavailableJob = new UpdateRoomStatus($this->ruang_id, $peminjaman->id, 'Tidak Tersedia');
-            $availableJob = new UpdateRoomStatus($this->ruang_id, $peminjaman->id, 'Tersedia');
-            
-            $jobs[] = $unavailableJob->delay($setUnavailable);
-            $jobs[] = $availableJob->delay($setAvailable);
-        }
-    
-        // Dispatch jobs as a batch
-        Bus::batch($jobs)
-            ->name("peminjaman_{$peminjaman->id}")
-            ->dispatch();
-    
-        session()->flash('message', 'Data Ruangan Berhasil Ditambahkan');
-        return redirect()->to('pinjam-ruangan');
+        $this->dispatch('showToast', type: 'success', message: 'Ruangan berhasil dipesan');
+        $this->redirect('/pinjam-ruangan');
     }
 }

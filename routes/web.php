@@ -26,6 +26,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Livewire\Admin\Ruangan\DataRuangan as RuanganDataRuangan;
 use App\Livewire\Admin\Ruangan\RuanganCreate;
 use App\Livewire\Admin\AnnouncementUpdate;
+use App\Livewire\Admin\Ruangan\EditRuang;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'verified', 'ro
 //ruangan
 Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'verified', 'role_or_permission:admin|view_dataruangan']);
 Route::get('/ruangancreate', RuanganCreate::class);
+Route::get('/ruangan/{id}/edit', EditRuang::class);
 
 Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
 
@@ -79,6 +81,7 @@ Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruanga
 Route::get('pegawai-create', PegawaiCreate::class);
 Route::get('pegawai', PegawaiList::class);
 Route::get('pegawai/{id}/update', PegawaiUpdate::class);
+Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
 
 Route::get('/gedung', function () {
     return view('pages/gedung');

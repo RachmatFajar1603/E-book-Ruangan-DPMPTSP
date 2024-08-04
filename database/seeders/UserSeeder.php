@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'nip_reg' => '1234567890',
             'bidang_id' => 1,
             'keterangan' =>'INTERNAL',
-            'role' => 'admin',
             'password' => bcrypt('12345678'),
         ]);
 
@@ -33,7 +32,6 @@ class UserSeeder extends Seeder
             'nip_reg' => '1234567891',
             'bidang_id' => 1,
             'keterangan' =>'EKSTERNAL',
-            'role' => 'user',
             'password' => bcrypt('12345678'),
         ]);
 

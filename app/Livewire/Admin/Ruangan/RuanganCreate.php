@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\Image;
 
 class RuanganCreate extends Component
 {       
@@ -20,19 +21,35 @@ class RuanganCreate extends Component
     public $deskripsi;
     public $kepemilikan;
     public $fasilitas_id;
-    public $image;
+    public $thumbnail;
+    public $additionalImages = [];
     public $ac;
     public $meja;
     public $kursi;
     public $projector;
-    public $thumbnailLabel;
     public $thumbnailPreview;
+    public $additionalImagesPreview = [];
 
     #[Title('Tambah Ruangan')]
 
-    public function updatedImage()
+    public function mount()
     {
-        $this->thumbnailPreview = $this->image->temporaryUrl();
+        if (session()->has('message')) {
+            $this->dispatch('showToastr', message: session('message'));
+        }
+    }
+
+    public function updatedThumbnail()
+    {
+        $this->thumbnailPreview = $this->thumbnail->temporaryUrl();
+    }
+
+    public function updatedAdditionalImages()
+    {
+        $this->additionalImagesPreview = [];
+        foreach ($this->additionalImages as $image) {
+            $this->additionalImagesPreview[] = $image->temporaryUrl();
+        }
     }
 
     public function render()
@@ -50,30 +67,42 @@ class RuanganCreate extends Component
     public function create()
     {
         $this->validate([
-            'image' => 'required|image|',
+            'thumbnail' => 'required|image', // max 2MB
+            'additionalImages.*' => 'image', // max 2MB per image
+            'additionalImages' => 'max:4', // max 4 additional images
         ]);
 
-        $imagePath = $this->image->store('ruang', 'public');
-
-        Fasilitas::create([
+        $fasilitas = Fasilitas::create([
             'ac' => $this->ac,
             'meja' => $this->meja,
             'kursi' => $this->kursi,
             'proyektor' => $this->projector,
         ]);
 
-        Ruang::create([
+        $thumbnailPath = $this->thumbnail->store('ruang', 'public');
+
+        $ruang = Ruang::create([
             'nama' => $this->nama,
             'kapasitas' => $this->kapasitas,
             'lokasi' => $this->lokasi,
             'deskripsi' => $this->deskripsi,
             'bidang_id' => $this->kepemilikan,
-            // set fasilitas_id same with this ruang id for now
-            'fasilitas_id' => Fasilitas::latest()->first()->id,
-            'image' => $imagePath,
+            'fasilitas_id' => $fasilitas->id,
+            'image' => $thumbnailPath, // This is the thumbnail
         ]);
 
-        $this->dispatch('showToast', type: 'success', message: 'Data Ruangan Berhasil Ditambahkan');
-        return $this->redirect('/dataruangan');
+        if ($this->additionalImages) {
+            foreach ($this->additionalImages as $index => $image) {
+                $imagePath = $image->store('ruang', 'public');
+                Image::create([
+                    'ruang_id' => $ruang->id,
+                    'image' => $imagePath,
+                    'order' => $index + 1,
+                ]);
+            }
+        }
+
+        session()->flash('toast', ['type' => 'success', 'message' => 'Ruangan berhasil ditambahkan']);
+        return redirect()->to('/dataruangan');
     }
 }

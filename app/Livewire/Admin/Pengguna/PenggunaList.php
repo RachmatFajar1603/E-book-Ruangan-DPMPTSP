@@ -19,6 +19,6 @@ class PenggunaList extends Component
     public function delete($id){
         $pengguna = User::find($id);
         $pengguna->delete();
-        return redirect('datapengguna');
+        $this->dispatch('showToast', type: 'error', message: 'Pengguna Dihapus');
     }
 }

@@ -22,6 +22,10 @@ class PegawaiCreate extends Component
     public function create(){
         $data = $this->all();
         Pegawai::create($data);
+        session()->flash('toast', [
+            'type' => 'success',
+            'message' => 'Pegawai Ditambahkan'
+        ]);
         return $this->redirect('/pegawai');
     }
 }

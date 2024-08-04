@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'telepon' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'nip_reg' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'bidang_id' => ['required', 'integer'],
+            'role' => ['required', 'string'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -59,6 +60,7 @@ class RegisteredUserController extends Controller
             'telepon' => $request->telepon,
             'nip_reg' => $request->nip_reg,
             'bidang_id' => $request->bidang_id,
+            'keterangan' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
