@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Fasilitas;
 use App\Models\Ruang;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class PinjamRuanganBook extends Component
 {
     #[Title('Book Ruangan')]
+    public $ruangan;
     public $ruang_id;
     public $penanggung_jawab;
     public $acara_kegiatan;
@@ -25,10 +27,34 @@ class PinjamRuanganBook extends Component
     public $catatan;
     public $tanggalError = '';
     public $waktuError = '';
+    public $fasilitas = [];
+
+
 
     public function mount($id)
     {
+        $this->ruangan = Ruang::findOrFail($id);
+        $this->ruangan->image_url = Storage::url($this->ruangan->image);
         $this->ruang_id = $id;
+        $this->fasilitas = $this->getFacilities();
+
+    }
+
+    private function getFacilities()
+    {
+        $fasilitas = $this->ruangan->fasilitas;
+        if (!$fasilitas) {
+            return [];
+        }
+
+        return collect($fasilitas->getAttributes())
+            ->filter(function ($value, $key) {
+                return $value === 1 && !in_array($key, ['id', 'created_at', 'updated_at']);
+            })
+            ->keys()
+            ->map(function ($item) {
+                return ucfirst(str_replace('_', ' ', $item));
+            });
     }
 
     public function updatedTanggalPinjam()

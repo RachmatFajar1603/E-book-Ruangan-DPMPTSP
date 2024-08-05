@@ -72,7 +72,13 @@
                 </thead>
                 <tbody>
                     @foreach($peminjaman as $item)
-                    <tr class="bg-green-100">
+                    @if ($item->status == 'booked')
+                        <tr class="bg-blue-100">
+                        @elseif ($item->status == 'verified')
+                        <tr class="bg-green-100">
+                        @else
+                        <tr class="bg-red-100">
+                        @endif
                         <td class="border-b px-4 py-2">{{ $loop->iteration }}</td>
                         <td class="border-b px-4 py-2 ">{{ $item->user->nama }} </td>
                         <td class="border-b px-4 py-2 ">{{ $item->user->nip_reg }}

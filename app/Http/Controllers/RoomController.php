@@ -24,17 +24,18 @@ class RoomController extends Controller
             $query->where('tanggal_pinjam', '>=', now())
                   ->orderBy('tanggal_pinjam');
         }])->findOrFail($id);
-
+    
         $room->image_url = Storage::url($room->image);
-        
-        $bookings = $room->peminjaman->map(function ($peminjaman) {
+    
+        $bookings = $room->peminjamans->map(function ($peminjamans) {
             return [
-                'tanggal' => $peminjaman->tanggal_pinjam->format('d-m-Y'),
-                'jam_mulai' => $peminjaman->waktu_mulai,
-                'jam_selesai' => $peminjaman->waktu_selesai
+                'tanggal_pinjam' => $peminjamans->tanggal_pinjam,
+                'tanggal_selesai' => $peminjamans->tanggal_selesai,
+                'waktu_mulai' => $peminjamans->waktu_mulai,
+                'waktu_selesai' => $peminjamans->waktu_selesai
             ];
         });
-
+    
         return view('pages.ruangan-detail', compact('room', 'bookings'));
     }
 }

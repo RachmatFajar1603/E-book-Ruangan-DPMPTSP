@@ -21,6 +21,8 @@ class DataPeminjaman extends Component
 
     public $search = '';
     public $perPage = 10;
+    public $editingId = null;
+    public $editStatus = '';
 
     public function updatingSearch()
     {
@@ -54,6 +56,36 @@ class DataPeminjaman extends Component
             Log::error("Error rejecting peminjaman: " . $e->getMessage());
             $this->dispatch('showToast', type: 'error', message: 'Terjadi kesalahan saat menolak peminjaman');
         }
+    }
+
+    public function startEdit($id)
+    {
+        $this->editingId = $id;
+        $this->editStatus = Peminjaman::findOrFail($id)->status;
+    }
+
+    public function saveEdit()
+    {
+        $peminjaman = Peminjaman::findOrFail($this->editingId);
+        $oldStatus = $peminjaman->status;
+        $peminjaman->status = $this->editStatus;
+        $peminjaman->save();
+
+        if ($oldStatus !== 'booked' && $this->editStatus === 'booked') {
+            // If changing back to 'booked', we might need to reschedule jobs
+            // This logic would depend on your specific requirements
+        } elseif ($oldStatus === 'booked' && $this->editStatus !== 'booked') {
+            $this->cancelRoomStatusJobs($peminjaman);
+            $this->freeUpTimeSlot($peminjaman);
+        }
+
+        $this->editingId = null;
+        $this->dispatch('showToast', type: 'success', message: 'Status peminjaman berhasil diubah');
+    }
+
+    public function cancelEdit()
+    {
+        $this->editingId = null;
     }
 
     private function cancelRoomStatusJobs($peminjaman)
@@ -104,6 +136,6 @@ class DataPeminjaman extends Component
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage);
 
-            return view('livewire.admin.data-peminjaman', compact('peminjaman', 'sumall', 'sumverified', 'sumrejected'));
+        return view('livewire.admin.data-peminjaman', compact('peminjaman', 'sumall', 'sumverified', 'sumrejected'));
     }
 }

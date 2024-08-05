@@ -20,7 +20,8 @@
         <img src="{{ $room->image_url }}" alt="Room" class="w-full h-96 object-cover rounded-xl mb-4">
         <div class="flex space-x-4 overflow-x-auto">
             @foreach($room->images as $image)
-                <img src="{{ Storage::url($image->image) }}" alt="Room {{ $loop->iteration }}" class="w-1/4 h-24 object-cover rounded-lg flex-shrink-0">
+            <img src="{{ Storage::url($image->image) }}" alt="Room {{ $loop->iteration }}"
+                class="w-1/4 h-24 object-cover rounded-lg flex-shrink-0">
             @endforeach
         </div>
     </div>
@@ -111,16 +112,18 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">Tanggal Pinjam</th>
-                    <th scope="col" class="px-6 py-3">Jam Mulai</th>
-                    <th scope="col" class="px-6 py-3">Jam Akhir</th>
+                    <th scope="col" class="px-6 py-3">Tanggal Selesai</th>
+                    <th scope="col" class="px-6 py-3">Waktu Mulai</th>
+                    <th scope="col" class="px-6 py-3">Waktu Selesai</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($bookings as $booking)
                 <tr class="bg-white border-b">
-                    <td class="px-6 py-4">{{ $booking['tanggal'] }}</td>
-                    <td class="px-6 py-4">{{ $booking['jam_mulai'] }}</td>
-                    <td class="px-6 py-4">{{ $booking['jam_selesai'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['tanggal_pinjam'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['tanggal_selesai'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['waktu_mulai'] }}</td>
+                    <td class="px-6 py-4">{{ $booking['waktu_selesai'] }}</td>
                 </tr>
                 @endforeach
             </tbody>

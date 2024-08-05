@@ -101,7 +101,7 @@
                             </span>
                         </div>
                         @if ($waktuError)
-                            <p class="text-red-500 text-xs mt-1">{{ $waktuError }}</p>
+                        <p class="text-red-500 text-xs mt-1">{{ $waktuError }}</p>
                         @endif
                     </div>
                 </div>
@@ -142,6 +142,21 @@
             <p class="text-gray-600 mt-4 text-xl">
                 {{ $ruangan->deskripsi }}
             </p>
+            <div class="mt-4">
+                <h4 class="text-lg font-semibold text-gray-700 mb-3">Fasilitas:</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    @foreach ($fasilitas as $facility)
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span class="text-gray-600 text-sm">{{ $facility }}</span>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </main>
 </div>
