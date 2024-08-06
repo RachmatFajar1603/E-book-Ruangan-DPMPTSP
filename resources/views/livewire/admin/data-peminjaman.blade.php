@@ -104,7 +104,7 @@
                     </div>
                     <div>
                         <label class="mr-2">Cari:</label>
-                        <input wire:model.live.debounce.300ms="search" type="text" class="border-gray-300 rounded-md" />
+                        <input wire:model.live="search" type="text" class="border-gray-300 rounded-md" />
                         </div>
                 </div>
 
@@ -212,16 +212,9 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $peminjaman->links() }}
-
-                <!-- Pagination Controls -->
                 <div class="flex justify-between items-center mt-4">
-                    <span>Menampilkan 1 hingga 1 dari 1 entri</span>
-                    <div class="flex space-x-1">
-                        <button class="bg-gray-200 text-gray-600 px-3 py-1 rounded-md">Sebelumnya</button>
-                        <button class="bg-green-500 text-white px-3 py-1 rounded-md">1</button>
-                        <button class="bg-gray-200 text-gray-600 px-3 py-1 rounded-md">Selanjutnya</button>
-                    </div>
+                    <span>Menampilkan {{ $peminjaman->firstItem() }} hingga {{ $peminjaman->lastItem() }} dari {{ $peminjaman->total() }} entri</span>
+                    {{ $peminjaman->links('pagination::simple-tailwind') }}
                 </div>
             </div>
 

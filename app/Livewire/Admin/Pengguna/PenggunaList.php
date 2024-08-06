@@ -28,6 +28,6 @@ class PenggunaList extends Component
     }
 
     public function updatingSearch(){
-        $this->gotoPage(1);
+        $this->gotoPage(10);
     }
 }

@@ -1,8 +1,8 @@
 <div>
     <main class="p-4 sm:ml-64">
 
-<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-600">
-    <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
+<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-20 text-gray-600 ">
+    <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">Peminjaman</p>
             <p class="text-3xl mt-3">{{ $sumall }}</p>
@@ -12,18 +12,6 @@
             <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
         </div>
     </div>
-
-    <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
-        <div>
-            <p class="text-2xl">Dibatalkan</p>
-            <p class="text-3xl mt-3">0 <span class="text-lg text-red-500">(0%)</span></p>
-            <p class="text-xl mt-2">Total Dibatalkan</p>
-        </div>
-        <div class="flex items-center justify-center bg-red-200 rounded-md p-4">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" class="h-5 w-5" alt="Cancel Icon">
-        </div>
-    </div>
-
     <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
         <div>
             <p class="text-2xl">DiSetujui</p>
@@ -90,7 +78,7 @@
                 </div>
                 <div>
                     <label class="mr-2">Cari:</label>
-                    <input type="text" class="border-gray-300 rounded-md" />
+                    <input type="text" class="border-gray-300 rounded-md" wire:model.live="search"/>
                 </div>
             </div>
             
@@ -119,7 +107,9 @@
                         @else
                         <tr class="bg-red-100">
                         @endif
-                        <td class="border-b px-4 py-2">{{ $loop->iteration }}</td>
+                        <td class="border-b px-4 py-2">
+                            {{ ($peminjaman->currentPage() - 1) * $peminjaman->perPage() + $loop->iteration }}
+                        </td>
                         <td class="border-b px-4 py-2 flex items-center">{{ $item->penanggung_jawab }}</td>
                         <td class="border-b px-4 py-2">{{ $item->ruang->nama}}
                         <td class="border-b px-4 py-2">{{ $item->tanggal_pinjam }}

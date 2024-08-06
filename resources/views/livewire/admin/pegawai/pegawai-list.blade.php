@@ -1,8 +1,14 @@
 <div>
     <main class="p-4 sm:ml-64">
-        <div class="w-1/2 mx-auto font-poppins">
-            <div class="p-4 bg-blue-500 w-fit mb-4 text-white rounded-md">
-                <a wire:navigate href="pegawai-create" class="font-semibold">Tambah Pegawai</a>
+        <div class="w-full mx-auto font-poppins">
+            <div class="flex justify-between mb-4">
+                <div>
+                    <label class="mr-2">Cari:</label>
+                    <input type="text" class="border-gray-300 rounded-md" wire:model.live="search" />
+                </div>
+                <div class="p-4 bg-blue-500 w-fit mb-4 text-white rounded-md">
+                    <a wire:navigate href="pegawai-create" class="font-semibold">Tambah Pegawai</a>
+                </div>          
             </div>
             <table class="w-full rounded-lg text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md">
                 <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
@@ -24,9 +30,9 @@
                 <tbody>
                     @foreach ($pegawais as $pegawai)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $loop->iteration }}
-                        </th>
+                        <td class="border-b px-4 py-2">
+                            {{ ($pegawais->currentPage() - 1) * $pegawais->perPage() + $loop->iteration }}
+                        </td>
                         <td class="px-6 py-4">
                             {{ $pegawai->nip }}
                         </td>
@@ -50,6 +56,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="flex justify-between items-center mt-4">
+                <span>Menampilkan {{ $pegawais->firstItem() }} hingga {{ $pegawais->lastItem() }} dari {{ $pegawais->total() }} entri</span>
+                {{ $pegawais->links('pagination::simple-tailwind') }}
+            </div>
         </div>
     </main>
 </div>

@@ -67,7 +67,7 @@
                         </div>
                         <div>
                             <label class="mr-2">Cari:</label>
-                            <input type="text" class="border-gray-300 rounded-md" />
+                            <input type="text" class="border-gray-300 rounded-md" wire:model.live="search"/>
                         </div>
                     </div>
                     <table class="border-collapse min-w-full w-full">
@@ -86,8 +86,8 @@
                         <tbody>
                             @foreach ($ruangs as $ruang)
                             <tr class="">
-                                <td class="border-b px-4 py-2 text-wrap w-6">
-                                    {{ $loop->iteration }}
+                                <td class="border-b px-4 py-2">
+                                    {{ ($ruangs->currentPage() - 1) * $ruangs->perPage() + $loop->iteration }}
                                 </td>
                                 <td class="border-b px-2 py-2">
                                     <img src="{{ $ruang->image_url}}" class="w-28 h-12 object-contain" alt="">
@@ -133,6 +133,10 @@
                             </tr>
                             @endforeach
                     </table>
+                    <div class="flex justify-between items-center mt-4">
+                        <span>Menampilkan {{ $ruangs->firstItem() }} hingga {{ $ruangs->lastItem() }} dari {{ $ruangs->total() }} entri</span>
+                        {{ $ruangs->links('pagination::simple-tailwind') }}
+                    </div>
                 </div>
             </div>
     </main>

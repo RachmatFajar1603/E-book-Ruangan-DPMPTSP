@@ -134,7 +134,7 @@ class DataPeminjaman extends Component
                     });
             })
             ->orderBy('created_at', 'desc')
-            ->paginate($this->perPage);
+            ->paginate(10);
 
         return view('livewire.admin.data-peminjaman', compact('peminjaman', 'sumall', 'sumverified', 'sumrejected'));
     }

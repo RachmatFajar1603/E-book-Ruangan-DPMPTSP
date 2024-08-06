@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="flex justify-center">
-            <div class="mt-8 w-1/2">
+            <div class="mt-8 w-full">
                 <div class="bg-white p-8 rounded-md shadow-md">
                     <p class="text-2xl mb-4">Total peminjaman Ruangan</p>
                     <canvas id="barChart3"></canvas>

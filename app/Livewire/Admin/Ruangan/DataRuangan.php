@@ -8,11 +8,15 @@ use App\Models\Ruang;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DataRuangan extends Component
 {   
+    use WithPagination;
 
     #[Title('Data Ruangan')]
+
+    public $search;
 
     public function mount()
     {
@@ -25,14 +29,15 @@ class DataRuangan extends Component
     {   
         $ruangtersedia = Ruang::where('status', 'Tersedia')->get();
         $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->get();
-        $ruangs = Ruang::all();
 
-        foreach ($ruangs as $ruang){
+        $ruangs = Ruang::where('nama', 'LIKE', '%' . $this->search . '%')->paginate(10);
+
+        foreach ($ruangs as $ruang) {
             $ruang->image_url = Storage::url($ruang->image);
             $ruang->total_peminjaman = $ruang->peminjamans->count();
         }
 
-        return view('livewire.admin.ruangan.data-ruangan', compact( 'ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
+        return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
     }
 
     public function delete($id)
@@ -41,5 +46,9 @@ class DataRuangan extends Component
         Fasilitas::where('id', $id)->delete();
         Ruang::where('id', $id)->delete();
         $this->dispatch('showToast', type: 'error', message: 'Ruangan Dihapus');
+    }
+
+    public function updatingSearch(){
+        $this->gotoPage(1);
     }
 }
