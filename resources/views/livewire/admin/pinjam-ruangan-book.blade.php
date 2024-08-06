@@ -130,7 +130,7 @@
                 <span class="mx-4 text-gray-500">Data Peminjaman</span>
                 <div class="flex-grow border-t border-gray-400"></div>
             </div>
-            <img src="{{ $ruangan->image_url }} " alt=""
+            <img src="{{ $imageUrl }} " alt=""
                 class="w-full h-72 border mx-auto rounded-lg mt-8 object-cover">
             <p class="text-2xl text-gray-500 mt-4">
                 {{ $ruangan->nama }}
