@@ -76,7 +76,8 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-semibold text-2xl mb-1">Alamat</h3>
-                                    <p class="text-gray-300">123 Main Street, City, Country, ZIP</p>
+                                    <p class="text-gray-300">Jl. Tgk. Imeum Lueng Bata, Gampong Cot Masjid, Kecamatan Lueng
+                                        Bata, Kota Banda Aceh (23246), Aceh. </p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -88,7 +89,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-semibold text-2xl mb-1">Telepon</h3>
-                                    <p class="text-gray-300">+1 234 567 890</p>
+                                    <p class="text-gray-300">+0651-23170</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -100,7 +101,7 @@
                                 </svg>
                                 <div>
                                     <h3 class="font-semibold text-2xl mb-1">Email</h3>
-                                    <p class="text-gray-300">contact@example.com</p>
+                                    <p class="text-gray-300">dpmptspaceh@gmail.com</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -126,8 +127,9 @@
                 <h2 class="text-3xl font-bold mb-6 text-gray-800">Lokasi Kami</h2>
                 <div class="rounded-3xl overflow-hidden shadow-2xl">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sNational%20Monument!5e0!3m2!1sen!2sid!4v1659123456789!5m2!1sen!2sid"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15883.943540823508!2d95.34162640000004!3d5.569103450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3040392cb2f10c0f%3A0xf5f91eb4060bd040!2sDPMPTSP%20Aceh!5e0!3m2!1sid!2sid!4v1722907987792!5m2!1sid!2sid"
+                        width="100%"
+                        height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
