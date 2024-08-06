@@ -35,30 +35,7 @@
                     <!-- Contact Form -->
                     <div class="md:w-1/2 p-8 md:p-12">
                         <h2 class="text-3xl font-bold mb-6 text-gray-800">Kirim Pesan</h2>
-                        <form action="" method="POST" class="space-y-6">
-                            @csrf
-                            <div>
-                                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nama</label>
-                                <input type="text" id="name" name="name" required
-                                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                                <input type="email" id="email" name="email" required
-                                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Pesan</label>
-                                <textarea id="message" name="message" rows="5" required
-                                    class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                            </div>
-                            <div>
-                                <button type="submit"
-                                    class="bg-gray-700 hover:bg-gray-600 transition duration-300 ease-in-out text-white font-bold py-3 px-4 rounded-xl focus:outline-none focus:shadow-outline w-full">
-                                    Kirim Pesan
-                                </button>
-                            </div>
-                        </form>
+                        <livewire:kontak-form />
                     </div>
 
                     <!-- Contact Information -->
@@ -128,8 +105,7 @@
                 <div class="rounded-3xl overflow-hidden shadow-2xl">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15883.943540823508!2d95.34162640000004!3d5.569103450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3040392cb2f10c0f%3A0xf5f91eb4060bd040!2sDPMPTSP%20Aceh!5e0!3m2!1sid!2sid!4v1722907987792!5m2!1sid!2sid"
-                        width="100%"
-                        height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>

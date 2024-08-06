@@ -1,44 +1,39 @@
 <div>
     <main class="p-4 sm:ml-64">
-        <div class="grid grid-cols-4 space-y-8 font-poppins">
-            @foreach ($ruangans as $items)
-            <div class="w-fit bg-white p-4 shadow  mt-8">
-                <img src="{{ $items->image_url }}" alt="" class="w-full h-48 object-cover">
-                <div class="flex justify-beetween mt-4">
-                    <p class="mx-2 text-xl">
-                        {{ $items->nama }}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 font-poppins">
+            @foreach ($ruangans as $item)
+            <div class="bg-white p-4 shadow rounded-lg">
+                <img src="{{ $item->image_url }}" alt="{{ $item->nama }}" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="flex justify-between items-center mt-4">
+                    <p class="text-xl font-semibold">
+                        {{ $item->nama }}
                     </p>
-                    <span class="bg-gray-300 px-2 rounded-lg text-xs flex items-center">
-                        {{ $items->bidang->nama }}
+                    <span class="bg-gray-300 px-2 py-1 rounded-lg text-xs">
+                        {{ $item->bidang->nama }}
                     </span>
                 </div>
-                <div class="flex justify-beetween space-x-4 p-2 text-xs">
-                    @if ($items->status == 'Tersedia')
-                    <span class="p-2 bg-green-200 text-green-700 rounded-lg text-center">
-                        {{ $items->status }}
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="p-2 text-xs rounded-lg {{ $item->status == 'Tersedia' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700' }}">
+                        {{ $item->status }}
                     </span>
-                    @else
-                    <span class="p-2 bg-red-200 text-red-700 rounded-lg text-center">
-                        {{ $items->status }}
+                    <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-xs">
+                        {{ $item->lokasi }}
                     </span>
-                    @endif
-                    <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-center">
-                        {{ $items->lokasi }}
-                    </span>
-                    <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-center">
-                        {{$items->kapasitas}} ORANG
+                    <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-xs">
+                        {{$item->kapasitas}} ORANG
                     </span>
                 </div>
-                <div class="flex justify-center space-x-2 my-4">
-                    <a wire:navigate href="{{ route('pinjam-ruangan', $items->id) }}" type="button" class="flex justify-center items-center w-1/2 h-16 text-white bg-blue-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Pinjam<br>Sekarang
-                    </a>                
-                    <button type="button" class="h-16 w-32 text-white bg-gray-500 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Detail</button>
+                <div class="flex justify-between space-x-2 my-4">
+                    <a wire:navigate href="{{ route('pinjam-ruangan', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
+                        Pinjam Sekarang
+                    </a>
+                    <a href="{{ route('pinjam-ruangan.detail', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
+                        Detail
+                    </a>
                 </div>
-                <div class="p-2 flex justify-end mt-4">
-                    <i class="ri-calendar-check-line text-gray-500"></i>
-                    <span class="text-gray-500 mr-1">{{ $items->total_peminjaman }}</span>
-                    <span class="text-gray-500">dipinjam</span>
+                <div class="flex justify-end items-center mt-4 text-sm text-gray-500">
+                    <i class="ri-calendar-check-line mr-1"></i>
+                    <span>{{ $item->total_peminjaman }} dipinjam</span>
                 </div>
             </div>
             @endforeach

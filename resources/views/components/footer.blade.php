@@ -16,7 +16,7 @@
                         <a href="/login" class="text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out me-4 md:me-6">Pinjaman</a>
                     </li>
                     <li>
-                        <a href="/contact" class="text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Contact</a>
+                        <a href="/contact" class="text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Kontak</a>
                     </li>
                 </ul>
             </div>

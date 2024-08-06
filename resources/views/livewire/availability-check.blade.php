@@ -70,11 +70,10 @@
                         <div class="card-body p-4">
                             <h3 class="card-title text-lg font-semibold text-gray-800">{{ $room->nama }}</h3>
                             <p>Lokasi: {{ $room->lokasi }}</p>
-                            <p>Lantai: {{ $room->lantai }}</p>
                             <p>Banyak Peminjaman: <span
                                     class="text-red-500 font-bold">{{ $room->peminjamans_count }}</span></p>
                             <a href="{{ route('ruangan.detail', $room->id) }}"
-                                class="bg-gray-800 text-white px-4 py-2 rounded-lg mt-4 inline-block">Lihat
+                                class="bg-gray-800 text-white px-4 py-2 rounded-lg mt-4 flex justify-center">Lihat
                                 Detail</a>
                         </div>
                     </div>
@@ -95,7 +94,7 @@
                             <p>Lokasi: {{ $room->lokasi }}</p>
                             <p>Lantai: {{ $room->lantai }}</p>
                             <a href="{{ route('ruangan.detail', $room->id) }}"
-                                class="bg-gray-800 text-white px-4 py-2 rounded-lg mt-4 inline-block">Lihat
+                                class="bg-gray-800 text-white px-4 py-2 rounded-lg mt-4 flex justify-center">Lihat
                                 Detail</a>
                         </div>
                     </div>
