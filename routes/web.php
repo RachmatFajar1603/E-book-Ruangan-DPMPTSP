@@ -76,6 +76,7 @@ Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'role_or_p
 Route::get('/datapenggunacreate', PenggunaCreate::class);
 Route::get('pengguna/{id}/update', PenggunaUpdate::class);
 
+
 Route::get('/datapeminjaman', DataPeminjaman::class);
 Route::get('/peminjamansaya', PeminjamanSaya::class);
 Route::get('/peminjamansaya/{id}/edit', EditPeminjaman::class);

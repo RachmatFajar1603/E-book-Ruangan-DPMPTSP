@@ -5,7 +5,7 @@
             <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">Ruangan</p>
-                    <p class="text-3xl mt-3">0</p>
+                    <p class="text-3xl mt-3">{{ $ruangs->count() }}</p>
                     <p class="text-xl mt-2">Total Ruangan</p>
                 </div>
                 <div class="">
@@ -16,7 +16,7 @@
             <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">Pengguna</p>
-                    <p class="text-3xl mt-3">0</p>
+                    <p class="text-3xl mt-3">{{ $pengguna}}</p>
                     <p class="text-xl mt-2">Total Pengguna</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
@@ -27,7 +27,7 @@
             <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">Bidang</p>
-                    <p class="text-3xl mt-3">0</p>
+                    <p class="text-3xl mt-3">{{$bidang}}</p>
                     <p class="text-xl mt-2">Total Bidang</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
@@ -38,7 +38,7 @@
             <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">Peminjaman</p>
-                    <p class="text-3xl mt-3">0</p>
+                    <p class="text-3xl mt-3">{{ $sumall }}</p>
                     <p class="text-xl mt-2">Total Peminjaman</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
@@ -51,7 +51,7 @@
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600">
             <div class="bg-white p-8 rounded-md shadow-md">
                 <p class="text-2xl mb-4">Statistik Peminjaman Ruangan</p>
-                <canvas id="barChart1"></canvas>
+                <canvas id="myBarChart"></canvas>
             </div>
             <div class="bg-white p-8 rounded-md shadow-md">
                 <p class="text-2xl mb-4">Pengguna Per Bidang</p>
@@ -73,44 +73,56 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Bar Chart 1
-        const barCtx1 = document.getElementById('barChart1').getContext('2d');
-        new Chart(barCtx1, {
-            type: 'bar',
-            data: {
-                labels: ['OPPROOM', 'MEETINGROOM', 'AUDITORIUM', 'LABORATORIUM', 'KANTOR', 'RUANGAN_A', 'RUANGAN_B'],
-                datasets: [{
-                    label: '# Peminjaman Ruangan',
-                    data: [12, 19, 3, 5, 2, 3, 7],
-                    backgroundColor: [
+
+       var ctx = document.getElementById('myBarChart').getContext('2d');
+
+                    var chartColors = [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
                         'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }]
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+    // Add more colors if needed
+];
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: @json($chartLabels),
+        datasets: [{
+            label: 'Jumlah Peminjaman',
+            data: @json($chartValues),
+            backgroundColor: function(context) {
+                var index = context.dataIndex;
+                return chartColors[index % chartColors.length];
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            borderColor: function(context) {
+                var index = context.dataIndex;
+                return chartColors[index % chartColors.length];
+            },
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                min: 0,
+                max: 30,
+                ticks: {
+                    stepSize: 1,
+                    callback: function(value) {
+                        return value; // Remove decimals
                     }
                 }
             }
-        });
+        }
+    }
+});
 
         // Bar Chart 2
         const barCtx2 = document.getElementById('barChart2').getContext('2d');
