@@ -14,8 +14,7 @@ class PeminjamanSaya extends Component
     public $search = ''; // Pastikan diinisialisasi dengan nilai kosong
 
     #[Title('Peminjaman Saya')]
-
-    public $search = '';
+    
     public $perPage = 10;
 
     protected $queryString = ['search' => ['except' => '']];

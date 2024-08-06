@@ -1,7 +1,7 @@
 <div>
     <main class="p-4 sm:ml-64">
         <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-600">
-            <div class="bg-white p-8 rounded-md shadow-md flex items-center justify-between">
+            <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-2xl">Peminjaman</p>
                     <p class="text-3xl mt-3">{{ $sumall }}</p>
@@ -10,26 +10,28 @@
                 <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
                     <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
                 </div>
+            </div>       
+            <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl">Peminjaman</p>
+                        <p class="text-3xl mt-3">{{ $sumall }}</p>
+                        <p class="text-xl mt-2">Total Peminjaman</p>
+                    </div>
+                    <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
+                    </div>
+            </div>    
+            <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl">DiSetujui</p>
+                        <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span></p>
+                        <p class="text-xl mt-2">Total DiSetujui</p>
+                    </div>
+                    <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
+                </div>
             </div>
-
-<div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-20 text-gray-600 ">
-    <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
-        <div>
-            <p class="text-2xl">Peminjaman</p>
-            <p class="text-3xl mt-3">{{ $sumall }}</p>
-            <p class="text-xl mt-2">Total Peminjaman</p>
         </div>
-        <div class="flex items-center justify-center bg-blue-300 rounded-md p-4">
-            <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="h-5 w-5" alt="Calendar Icon">
-        </div>
-    </div>
-    <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
-        <div>
-            <p class="text-2xl">DiSetujui</p>
-            <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span></p>
-            <p class="text-xl mt-2">Total DiSetujui</p>
-        </div>
-
         <!-- Add Riwayat Button -->
         <div class="flex justify-start mt-7">
             <a href="#" class="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-700 flex items-center">

@@ -41,11 +41,7 @@ class DataRuangan extends Component
 
         return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
     }
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
+   
     public function delete($id)
     {
         // delete ruang and fasilitas where ruang_id = $id
