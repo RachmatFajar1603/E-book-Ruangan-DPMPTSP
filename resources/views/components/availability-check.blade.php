@@ -73,13 +73,13 @@
             </div>
 
             <div class="w-full">
-                <label for="gedung" class="block mb-2 text-sm font-medium text-gray-900">Gedung</label>
-                <select id="gedung" name="gedung"
+                <label for="ruangan" class="block mb-2 text-sm font-medium text-gray-900">Ruangan</label>
+                <select id="ruangan" name="ruangan"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3">
-                    <option selected>-- Pilih Gedung --</option>
-                    <option value="gedung_a">Gedung A</option>
-                    <option value="gedung_b">Gedung B</option>
-                    <option value="gedung_c">Gedung C</option>
+                    <option selected>-- Pilih Ruangan --</option>
+                    <option value="ruangan_a">Ruangan A</option>
+                    <option value="ruangan_b">Ruangan B</option>
+                    <option value="ruangan_c">Ruangan C</option>
                 </select>
             </div>
             <div class="w-full sm:col-span-2 lg:col-span-1">
