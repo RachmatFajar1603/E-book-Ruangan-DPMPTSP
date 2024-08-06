@@ -49,11 +49,12 @@
 
         <!-- Updated section for charts -->
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600">
+
             <div class="bg-white p-8 rounded-md shadow-md">
                 <p class="text-2xl mb-4">Statistik Peminjaman Ruangan</p>
                 <canvas id="myBarChart"></canvas>
             </div>
-                <div class="bg-white p-8 rounded-md shadow-md mt-8">
+                <div class="bg-white p-8 rounded-md shadow-md">
                         <p class="text-2xl mb-4">Pengguna Per Bidang</p>
                     <canvas id="barChartBidang"></canvas>
                  </div>
