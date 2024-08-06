@@ -25,6 +25,8 @@ use App\Livewire\User\EditPeminjaman;
 use App\Livewire\Admin\Ruangan\DataRuangan as RuanganDataRuangan;
 use App\Livewire\Admin\Ruangan\RuanganCreate;
 use App\Livewire\Admin\AnnouncementUpdate;
+use App\Livewire\Admin\KontakMessages;
+use App\Livewire\Admin\PinjamRuanganDetail;
 use App\Livewire\Admin\Ruangan\EditRuang;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +52,8 @@ Route::get('/ruangan', function () {
 Route::get('/contact', function () {
     return view('pages/contact');
 });
+
+Route::get('/contact-messages', KontakMessages::class)->name('admin.contact-messages');
 
 
 Route::get('home', Dahsboard::class)->middleware(['auth', 'role_or_permission:admin|user']);
@@ -85,6 +89,7 @@ Route::get('/peggunaedit', PenggunaUpdate::class);
 Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
 Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruangan');
+Route::get('pinjam-ruangan/{id}/detail', PinjamRuanganDetail::class)->name('pinjam-ruangan.detail');
 Route::get('pegawai-create', PegawaiCreate::class);
 Route::get('pegawai', PegawaiList::class);
 Route::get('pegawai/{id}/update', PegawaiUpdate::class);

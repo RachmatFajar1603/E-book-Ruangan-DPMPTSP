@@ -43,7 +43,7 @@
                     <a href="/pengumuman"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Pengumuman</a>
                     <a href="/contact"
-                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Contact</a>
+                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Kontak</a>
                     @if (Route::has('login'))
                         <div class="flex items-center">
                             @auth

@@ -8,9 +8,13 @@ use App\Models\Ruang;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DataRuangan extends Component
-{   
+{
+    use WithPagination;
+
+    public $search = '';
 
     #[Title('Data Ruangan')]
 
@@ -22,17 +26,27 @@ class DataRuangan extends Component
     }
 
     public function render()
-    {   
-        $ruangtersedia = Ruang::where('status', 'Tersedia')->get();
-        $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->get();
-        $ruangs = Ruang::all();
+    {
+        $ruangtersedia = Ruang::where('status', 'Tersedia')->count();
+        $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->count();
 
-        foreach ($ruangs as $ruang){
+        $ruangs = Ruang::where('nama', 'like', '%' . $this->search . '%')
+            ->orWhere('lokasi', 'like', '%' . $this->search . '%')
+            ->orWhereHas('bidang', function ($query) {
+                $query->where('nama', 'like', '%' . $this->search . '%');
+            })
+            ->paginate(10);
+
+        foreach ($ruangs as $ruang) {
             $ruang->image_url = Storage::url($ruang->image);
             $ruang->total_peminjaman = $ruang->peminjamans->count();
         }
 
-        return view('livewire.admin.ruangan.data-ruangan', compact( 'ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
+        return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
+    }
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
     public function delete($id)

@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
 
         $user = User::create([
-            'nama' => 'user',
+            'nama' => 'User',
             'email' => 'user1@gmail.com',
             'telepon' => '081234567891',
             'nip_reg' => '1234567891',
