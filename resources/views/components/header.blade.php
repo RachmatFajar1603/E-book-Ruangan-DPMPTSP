@@ -5,27 +5,24 @@
                 <div class="flex items-center space-x-4 text-xs sm:text-sm mb-2 sm:mb-0">
                     <span class="flex items-center whitespace-nowrap">
                         <i class="fas fa-phone mr-1 sm:mr-2"></i>
-                        <span class="hidden sm:inline">+62 857-1624-3174</span>
+                        <span class="hidden sm:inline">+ 0651-23170</span>
                     </span>
                     <span class="flex items-center whitespace-nowrap">
                         <i class="fas fa-envelope mr-1 sm:mr-2"></i>
-                        <span class="hidden sm:inline">dpmptstProvAceh@gmail.com</span>
+                        <span class="hidden sm:inline">dpmptspaceh@gmail.com</span>
                     </span>
                 </div>
                 <div class="flex space-x-3 sm:space-x-4">
-                    <a href="#"
+                    <a href="https://www.facebook.com/dpmptspaceh/"
                         class="hover:text-gray-300 text-sm sm:text-base transition duration-300 ease-in-out"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="#"
+                    <a href="https://twitter.com/dpmptsprovpaceh"
                         class="hover:text-gray-300 text-sm sm:text-base transition duration-300 ease-in-out"><i
                             class="fab fa-twitter"></i></a>
-                    <a href="#"
-                        class="hover:text-gray-300 text-sm sm:text-base transition duration-300 ease-in-out"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a href="#"
+                    <a href="https://www.youtube.com/investinaceh"
                         class="hover:text-gray-300 text-sm sm:text-base transition duration-300 ease-in-out"><i
                             class="fab fa-youtube"></i></a>
-                    <a href="#"
+                    <a href="https://www.instagram.com/dpmptspaceh/"
                         class="hover:text-gray-300 text-sm sm:text-base transition duration-300 ease-in-out"><i
                             class="fab fa-instagram"></i></a>
                 </div>
@@ -46,7 +43,7 @@
                     <a href="/pengumuman"
                         class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Pengumuman</a>
                     <a href="/contact"
-                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Contact</a>
+                        class="text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out font-semibold">Kontak</a>
                     @if (Route::has('login'))
                         <div class="flex items-center">
                             @auth

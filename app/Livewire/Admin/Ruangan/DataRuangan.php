@@ -14,6 +14,8 @@ class DataRuangan extends Component
 {   
     use WithPagination;
 
+    public $search = '';
+
     #[Title('Data Ruangan')]
 
     public $search;
@@ -38,6 +40,10 @@ class DataRuangan extends Component
         }
 
         return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
+    }
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
     public function delete($id)

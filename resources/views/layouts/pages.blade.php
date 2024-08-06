@@ -21,16 +21,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    @livewireStyles
 </head>
 
 <body class="bg-gray-100">
-    
+
     <x-header />
 
     <main>
         @yield('content')
     </main>
     <x-footer />
+    @livewireScripts
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 
 </html>

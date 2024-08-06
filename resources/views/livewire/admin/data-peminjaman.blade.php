@@ -16,18 +16,6 @@
 
                 <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                     <div>
-                        <p class="text-2xl">Dibatalkan</p>
-                        <p class="text-3xl mt-3">0 <span class="text-lg text-red-500">(0%)</span></p>
-                        <p class="text-xl mt-2">Total Dibatalkan</p>
-                    </div>
-                    <div class="flex items-center justify-center bg-red-200 rounded-md p-4">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828665.png" class="h-5 w-5"
-                            alt="Cancel Icon">
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
-                    <div>
                         <p class="text-2xl">DiSetujui</p>
                         <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span></p>
                         <p class="text-xl mt-2">Total DiSetujui</p>
@@ -151,7 +139,7 @@
                             <td class="border-b px-4 py-2">{{ $item->waktu_selesai }}</td>
                             <td class="border-b px-4 py-2">{{ $item->acara_kegiatan }}</td>
                             <td class="border-b px-4 py-2">{{ $item->kapasitas }}</td>
-                            <td class="border-b px-4 py-2 
+                            <td class="border-b px-4 py-2
                         @if ($item->status == 'booked') text-yellow-400
                         @elseif ($item->status == 'verified') text-green-400
                         @else text-red-400

@@ -17,5 +17,21 @@ class PegawaiSeeder extends Seeder
             'nama' => 'Muhammad Ichsan',
             'nip' => '117301084219481',
         ]);
+        Pegawai::create([
+            'nama' => 'Muhammad Fauzan',
+            'nip' => '117301084219482',
+        ]);
+        Pegawai::create([
+            'nama' => 'Muhammad fajar',
+            'nip' => '117301084219483',
+        ]);
+        Pegawai::create([
+            'nama' => 'Muhammad ardi',
+            'nip' => '117301084219484',
+        ]);
+        Pegawai::create([
+            'nama' => 'Muhammad rizky',
+            'nip' => '117301084219485',
+        ]);
     }
 }

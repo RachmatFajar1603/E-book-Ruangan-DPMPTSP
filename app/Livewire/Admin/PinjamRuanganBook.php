@@ -10,7 +10,7 @@ use App\Models\Peminjaman;
 use Carbon\Carbon;
 use App\Jobs\ManageRoomBooking;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Validator;
 class PinjamRuanganBook extends Component
 {
     #[Title('Book Ruangan')]
@@ -28,13 +28,14 @@ class PinjamRuanganBook extends Component
     public $tanggalError = '';
     public $waktuError = '';
     public $fasilitas = [];
+    public $imageUrl;
 
 
 
     public function mount($id)
     {
         $this->ruangan = Ruang::findOrFail($id);
-        $this->ruangan->image_url = Storage::url($this->ruangan->image);
+        $this->imageUrl = Storage::url($this->ruangan->image);
         $this->ruang_id = $id;
         $this->fasilitas = $this->getFacilities();
 
@@ -117,7 +118,7 @@ class PinjamRuanganBook extends Component
 
         for ($date = $start_date; $date->lte($end_date); $date->addDay()) {
             $conflict = Peminjaman::where('ruang_id', $ruang_id)
-                ->where('status', 'verified')
+                ->whereIn('status', ['booked', 'verified'])
                 ->where('tanggal_pinjam', '<=', $date)
                 ->where('tanggal_selesai', '>=', $date)
                 ->where(function ($query) use ($waktu_mulai, $waktu_selesai) {
@@ -138,8 +139,9 @@ class PinjamRuanganBook extends Component
     
     public function create()
     {   
-        $this->validateDates();
-        $this->validateTimes();
+        try {
+            $this->validateDates();
+            $this->validateTimes();
 
         if ($this->tanggalError || $this->waktuError) {
             return;
@@ -159,7 +161,7 @@ class PinjamRuanganBook extends Component
         ]);
     
         if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
-            session()->flash('toast', ['type' => 'success', 'message' => 'Ruangan sudah dipesan pada waktu tersebut']);
+            throw new \Exception('Ruangan sudah dipesan pada waktu tersebut.');
             return;
         }
         
@@ -182,5 +184,11 @@ class PinjamRuanganBook extends Component
     
         session()->flash('toast', ['type' => 'success', 'message' => 'Peminjaman berhasil diajukan']);
         $this->redirect('/pinjam-ruangan');
+
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        $this->dispatch('showToast', type: 'error', message: 'Validasi gagal. Silakan periksa kembali input Anda.');
+    } catch (\Exception $e) {
+        $this->dispatch('showToast', type: 'error', message: $e->getMessage());
     }
+}
 }

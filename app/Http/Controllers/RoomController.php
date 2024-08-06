@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class RoomController extends Controller
 {
     public function index()
-    {     
+    {
         $rooms = Ruang::all();
 
         foreach($rooms as $room){
@@ -24,9 +24,9 @@ class RoomController extends Controller
             $query->where('tanggal_pinjam', '>=', now())
                   ->orderBy('tanggal_pinjam');
         }])->findOrFail($id);
-    
+
         $room->image_url = Storage::url($room->image);
-    
+
         $bookings = $room->peminjamans->map(function ($peminjamans) {
             return [
                 'tanggal_pinjam' => $peminjamans->tanggal_pinjam,
@@ -35,7 +35,7 @@ class RoomController extends Controller
                 'waktu_selesai' => $peminjamans->waktu_selesai
             ];
         });
-    
+
         return view('pages.ruangan-detail', compact('room', 'bookings'));
     }
 }
