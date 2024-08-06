@@ -53,16 +53,16 @@
                 <p class="text-2xl mb-4">Statistik Peminjaman Ruangan</p>
                 <canvas id="myBarChart"></canvas>
             </div>
-            <div class="bg-white p-8 rounded-md shadow-md">
-                <p class="text-2xl mb-4">Pengguna Per Bidang</p>
-                <canvas id="barChart2"></canvas>
-            </div>
+                <div class="bg-white p-8 rounded-md shadow-md mt-8">
+                        <p class="text-2xl mb-4">Pengguna Per Bidang</p>
+                    <canvas id="barChartBidang"></canvas>
+                 </div>
         </div>
         <div class="flex justify-center">
             <div class="mt-8 w-full">
                 <div class="bg-white p-8 rounded-md shadow-md">
-                    <p class="text-2xl mb-4">Total peminjaman Ruangan</p>
-                    <canvas id="barChart3"></canvas>
+                    <p class="text-2xl mb-4">Total Peminjaman Ruangan per Bulan</p>
+                    <canvas id="barChartMonthly"></canvas>
                 </div>
             </div>
         </div>
@@ -124,15 +124,18 @@ var myBarChart = new Chart(ctx, {
     }
 });
 
-        // Bar Chart 2
-        const barCtx2 = document.getElementById('barChart2').getContext('2d');
-        new Chart(barCtx2, {
+        // Bar Chart Bidang
+        const barCtxBidang = document.getElementById('barChartBidang').getContext('2d');
+        const chartBidangLabels = @json($chartBidangLabels);
+        const chartBidangValues = @json($chartBidangValues);
+
+        new Chart(barCtxBidang, {
             type: 'bar',
             data: {
-                labels: ['DALAK', 'DATIN', 'P2IPM', 'SEKRETARIAT', 'PROMOSI', 'KEUANGAN', 'PERIZINAN_A', 'PERIZINAN_B', 'PERIZINAN_C', 'PERIZINAN_D'],
+                labels: chartBidangLabels,
                 datasets: [{
                     label: '# Pengguna Ruangan Per Bidang',
-                    data: [12, 19, 3, 5, 2, 7, 8, 6, 4, 3],
+                    data: chartBidangValues,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -143,7 +146,9 @@ var myBarChart = new Chart(ctx, {
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -155,7 +160,9 @@ var myBarChart = new Chart(ctx, {
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -163,21 +170,26 @@ var myBarChart = new Chart(ctx, {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 30 // Set max value for y-axis
                     }
                 }
             }
         });
 
-        // Bar Chart 3  
-        const barCtx3 = document.getElementById('barChart3').getContext('2d');
-        new Chart(barCtx3, {
+       
+        // Bar Chart Monthly
+        const barCtxMonthly = document.getElementById('barChartMonthly').getContext('2d');
+        const chartMonthlyLabels = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+        const chartMonthlyValues = @json(array_values($chartMonthlyValues));
+
+        new Chart(barCtxMonthly, {
             type: 'bar',
             data: {
-                labels: ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER','NOVEMBER','DESEMBER'],
+                labels: chartMonthlyLabels,
                 datasets: [{
-                    label: '# Total Peminjaman Ruangan',
-                    data: [12, 19, 3, 5, 2, 7, 8, 6, 4, 3,6,8,2],
+                    label: '# Peminjaman Ruangan per Bulan',
+                    data: chartMonthlyValues,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -188,7 +200,9 @@ var myBarChart = new Chart(ctx, {
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -200,7 +214,9 @@ var myBarChart = new Chart(ctx, {
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -208,13 +224,12 @@ var myBarChart = new Chart(ctx, {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 50
                     }
                 }
             }
         });
-
-
 
     </script>
 </div>
