@@ -43,9 +43,4 @@ class PeminjamanSaya extends Component
 
         return view('livewire.admin.peminjaman-saya', compact('peminjaman', 'sumall', 'sumverified', 'sumrejected'));
     }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
 }
