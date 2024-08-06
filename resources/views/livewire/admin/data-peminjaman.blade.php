@@ -17,7 +17,8 @@
                 <div class="bg-white p-6 rounded-md shadow-md flex items-center justify-between">
                     <div>
                         <p class="text-2xl">DiSetujui</p>
-                        <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span></p>
+                        <p class="text-3xl mt-3">{{ $sumverified }} <span class="text-lg text-green-500">(0%)</span>
+                        </p>
                         <p class="text-xl mt-2">Total DiSetujui</p>
                     </div>
                     <div class="flex items-center justify-center bg-green-200 rounded-md p-4">
@@ -93,7 +94,7 @@
                     <div>
                         <label class="mr-2">Cari:</label>
                         <input wire:model.live="search" type="text" class="border-gray-300 rounded-md" />
-                        </div>
+                    </div>
                 </div>
 
                 <table class="min-w-full border-collapse w-full">
@@ -113,19 +114,19 @@
                             <th class="border-b px-4 py-4 text-left">JUMLAH YANG HADIR</th>
                             <th class="border-b px-3 py-4 text-left">STATUS</th>
                             @if (auth()->user()->can('approve_peminjaman') || auth()->user()->can('reject_peminjaman'))
-                            <th class="border-b px-4 py-4 text-left">AKSI</th>
+                                <th class="border-b px-4 py-4 text-left">AKSI</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($peminjaman as $item)
-                        @if ($item->status == 'booked')
-                        <tr class="bg-blue-100">
-                        @elseif ($item->status == 'verified')
-                        <tr class="bg-green-100">
-                        @else
-                        <tr class="bg-red-100">
-                        @endif
+                            @if ($item->status == 'booked')
+                                <tr class="bg-blue-100">
+                                @elseif ($item->status == 'verified')
+                                <tr class="bg-green-100">
+                                @else
+                                <tr class="bg-red-100">
+                            @endif
                             <td class="border-b px-4 py-2">
                                 {{ ($peminjaman->currentPage() - 1) * $peminjaman->perPage() + $loop->iteration }}</td>
                             <td class="border-b px-4 py-2 ">{{ $item->user->nama }}
@@ -139,69 +140,71 @@
                             <td class="border-b px-4 py-2">{{ $item->waktu_selesai }}</td>
                             <td class="border-b px-4 py-2">{{ $item->acara_kegiatan }}</td>
                             <td class="border-b px-4 py-2">{{ $item->kapasitas }}</td>
-                            <td class="border-b px-4 py-2
+                            <td
+                                class="border-b px-4 py-2
                         @if ($item->status == 'booked') text-yellow-400
                         @elseif ($item->status == 'verified') text-green-400
-                        @else text-red-400
-                        @endif">
+                        @else text-red-400 @endif">
                                 {{ ucfirst($item->status) }}
                             </td>
                             @if (auth()->user()->can('approve_peminjaman') || auth()->user()->can('reject_peminjaman'))
-                        <td class="border-b px-4 py-2">
-                            <div class="flex flex-col items-start space-y-2">
-                                @if($item->status == 'booked')
-                                <button wire:click="approve({{ $item->id }})"
-                                    class="bg-green-500 text-white hover:bg-green-600 flex items-center px-2 py-1 rounded-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="ml-1">Approve</span>
-                                </button>
-                                <button wire:click="reject({{ $item->id }})"
-                                    class="bg-red-500 text-white hover:bg-red-600 flex items-center px-2 py-1 rounded-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                    <span class="ml-1">Reject</span>
-                                </button>
-                                @elseif($editingId === $item->id)
-                                <select wire:model="editStatus" class="border-gray-300 rounded-md">
-                                    <option value="booked">Booked</option>
-                                    <option value="verified">Verified</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                                <button wire:click="saveEdit"
-                                    class="bg-blue-500 text-white hover:bg-blue-600 flex items-center px-2 py-1 rounded-lg mt-2">
-                                    <span class="ml-1">Save</span>
-                                </button>
-                                <button wire:click="cancelEdit"
-                                    class="bg-gray-500 text-white hover:bg-gray-600 flex items-center px-2 py-1 rounded-lg mt-2">
-                                    <span class="ml-1">Cancel</span>
-                                </button>
-                                @else
-                                <button wire:click="startEdit({{ $item->id }})"
-                                    class="bg-yellow-500 text-white hover:bg-yellow-600 flex items-center px-2 py-1 rounded-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                    <span class="ml-1">Edit</span>
-                                </button>
-                                @endif
-                            </div>
-                        </td>
-                        @endif
-                    </tr>
-                    @endforeach
+                                <td class="border-b px-4 py-2">
+                                    <div class="flex flex-col items-start space-y-2">
+                                        @if ($item->status == 'booked')
+                                            <button wire:click="approve({{ $item->id }})"
+                                                class="bg-green-500 text-white hover:bg-green-600 flex items-center px-2 py-1 rounded-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span class="ml-1">Approve</span>
+                                            </button>
+                                            <button wire:click="reject({{ $item->id }})"
+                                                class="bg-red-500 text-white hover:bg-red-600 flex items-center px-2 py-1 rounded-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                                <span class="ml-1">Reject</span>
+                                            </button>
+                                        @elseif($editingId === $item->id)
+                                            <select wire:model="editStatus" class="border-gray-300 rounded-md">
+                                                <option value="booked">Booked</option>
+                                                <option value="verified">Verified</option>
+                                                <option value="rejected">Rejected</option>
+                                            </select>
+                                            <button wire:click="saveEdit"
+                                                class="bg-blue-500 text-white hover:bg-blue-600 flex items-center px-2 py-1 rounded-lg mt-2">
+                                                <span class="ml-1">Save</span>
+                                            </button>
+                                            <button wire:click="cancelEdit"
+                                                class="bg-gray-500 text-white hover:bg-gray-600 flex items-center px-2 py-1 rounded-lg mt-2">
+                                                <span class="ml-1">Cancel</span>
+                                            </button>
+                                        @else
+                                            <button wire:click="startEdit({{ $item->id }})"
+                                                class="bg-yellow-500 text-white hover:bg-yellow-600 flex items-center px-2 py-1 rounded-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                                <span class="ml-1">Edit</span>
+                                            </button>
+                                        @endif
+                                    </div>
+                                </td>
+                            @endif
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Menampilkan {{ $peminjaman->firstItem() }} hingga {{ $peminjaman->lastItem() }} dari {{ $peminjaman->total() }} entri</span>
+                    <span>Menampilkan {{ $peminjaman->firstItem() }} hingga {{ $peminjaman->lastItem() }} dari
+                        {{ $peminjaman->total() }} entri</span>
                     {{ $peminjaman->links('pagination::simple-tailwind') }}
                 </div>
             </div>
