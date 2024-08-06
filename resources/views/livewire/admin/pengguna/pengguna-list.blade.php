@@ -80,7 +80,7 @@
                 </div>
                 <div>
                     <label class="mr-2">Cari:</label>
-                    <input type="text" class="border-gray-300 rounded-md" />
+                    <input type="text" class="border-gray-300 rounded-md" wire:model.live="search" />
                 </div>
             </div>
 
@@ -100,7 +100,7 @@
                 <tbody>
                     @foreach($users as $user)
                     <tr class="bg-green-100">
-                        <td class="border-b px-4 py-2">{{ $loop->index + 1 }}</td>
+                        <td class="border-b px-4 py-2">{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</td>
                         <td class="border-b px-4 py-2 flex items-center">
                             {{ $user->nama }}
                         </td>
@@ -142,14 +142,9 @@
 
             <!-- Pagination Controls -->
             <div class="flex justify-between items-center mt-4">
-                <span>Menampilkan 1 hingga 1 dari 1 entri</span>
-                <div class="flex space-x-1">
-                    <button class="bg-gray-200 text-gray-600 px-3 py-1 rounded-md">Sebelumnya</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-md">1</button>
-                    <button class="bg-gray-200 text-gray-600 px-3 py-1 rounded-md">Selanjutnya</button>
-                </div>
+                <span>Menampilkan {{ $users->firstItem() }} hingga {{ $users->lastItem() }} dari {{ $users->total() }} entri</span>
+                {{ $users->links('pagination::simple-tailwind') }}
             </div>
         </div>
-
     </main>
 </div>
