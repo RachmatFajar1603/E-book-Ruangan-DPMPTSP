@@ -1,6 +1,6 @@
 <div>
-    <main class="p-4 sm:ml-64 grid grid-cols-3 space-x-8 font-poppins">
-        <div class="bg-white col-span-2 p-8 text-center rounded-lg shadow">
+    <main class="p-4 sm:ml-64 grid grid-cols-1 lg:grid-cols-3 space-y-8 lg:space-y-0 lg:space-x-8 font-poppins">
+        <div class="bg-white col-span-1 lg:col-span-2 p-8 text-center rounded-lg shadow">
             <p class="text-2xl text-blue-400">
                 {{ $ruangan->nama }}
             </p>
@@ -14,8 +14,7 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <label for="penanggung_jawab"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanggung
-                            Jawab</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanggung Jawab</label>
                         <input type="text" wire:model="penanggung_jawab"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -29,16 +28,14 @@
                     </div>
                     <div>
                         <label for="kapasitas"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah
-                            peserta</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah peserta</label>
                         <input type="number" wire:model="kapasitas" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="nomor_handphone"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                            Handphone</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Handphone</label>
                         <input type="tel" wire:model="nomor_handphone" pattern="08[0-9]{10}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="08XXXXXXXXX" required />
@@ -46,16 +43,14 @@
                     <input type="hidden" wire:model="ruang_id">
                     <div>
                         <label for="tanggal_pinjam"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                            Pinjam</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pinjam</label>
                         <input type="date" wire:model="tanggal_pinjam"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="tanggal_selesai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                            Selesai</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Selesai</label>
                         <input type="date" wire:model="tanggal_selesai"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -65,8 +60,7 @@
                     </div>
                     <div>
                         <label for="waktu_mulai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
-                            Mulai:</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Mulai:</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_mulai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -84,8 +78,7 @@
                     </div>
                     <div>
                         <label for="waktu_selesai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
-                            Selesai:</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Selesai:</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_selesai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -112,8 +105,7 @@
                 </div>
                 <div>
                     <label for="catatan"
-                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah
-                        pesan</label>
+                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah pesan</label>
                     <textarea wire:model="catatan" rows="4"
                         class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                 </div>
@@ -121,7 +113,7 @@
                     class="my-8 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
         </div>
-        <div class="bg-white col-span p-8 rounded-lg shadow">
+        <div class="bg-white col-span-1 p-8 rounded-lg shadow">
             <p class="text-2xl text-blue-400 text-center">
                 Info Ruangan
             </p>
@@ -130,9 +122,27 @@
                 <span class="mx-4 text-gray-500">Data Peminjaman</span>
                 <div class="flex-grow border-t border-gray-400"></div>
             </div>
-            <img src="{{ $imageUrl }} " alt=""
-                class="w-full h-72 border mx-auto rounded-lg mt-8 object-cover">
-            <p class="text-2xl text-gray-500 mt-4">
+            {{-- carousel --}}
+            <div class="flex justify-center mt-9">
+                <div class="carousel w-full h-72 overflow-hidden mt-0 md:mt-2 rounded-xl shadow-xl"
+                    id="myCarousel">
+                    @foreach ($ruangan->images as $image)
+                    <div id="{{ "slide" . $image->id }}" class="carousel-item relative w-full">
+                        <img src="{{ Storage::url($image->image) }}"
+                            class="w-full h-full object-cover animate-fade-in" />
+                    </div>
+                    @endforeach
+                    <!-- Repeat for slide2, slide3, and slide4 -->
+                </div>
+            </div>
+            <div class="flex justify-center w-full py-2 gap-2">
+                <a href="#slide1" class="btn btn-xs">1</a>
+                <a href="#slide2" class="btn btn-xs">2</a>
+                <a href="#slide3" class="btn btn-xs">3</a>
+                <a href="#slide4" class="btn btn-xs">4</a>
+            </div>
+            {{-- end carousel --}}
+            <p class="text-2xl text-gray-500">
                 {{ $ruangan->nama }}
             </p>
             <div class="mt-2 space-x-2">
@@ -160,3 +170,41 @@
         </div>
     </main>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('myCarousel');
+        const slides = carousel.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].style.display = 'block';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Prevent default behavior for navigation buttons
+        document.querySelectorAll('.btn-xs').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const slideNumber = parseInt(this.textContent) - 1;
+                showSlide(slideNumber);
+            });
+        });
+
+        // Initially show the first slide
+        showSlide(0);
+    });
+</script>
