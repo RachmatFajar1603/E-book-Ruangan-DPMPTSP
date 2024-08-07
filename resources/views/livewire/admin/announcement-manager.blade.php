@@ -61,14 +61,14 @@
             <h2 class="text-2xl font-semibold text-gray-700 p-6 bg-gray-50 border-b">Daftar Pengumuman</h2>
             <ul class="divide-y divide-gray-200">
                 @foreach ($announcements as $announcement)
-                    <li class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
-                        <div class="flex items-start space-x-4">
+                    <li class="p-4 sm:p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
                             @if ($announcement->photo)
                                 <img src="{{ Storage::url($announcement->photo) }}" alt="{{ $announcement->title }}"
-                                    class="w-24 h-24 object-cover rounded-md flex-shrink-0">
+                                    class="w-full sm:w-24 h-48 sm:h-24 object-cover rounded-md flex-shrink-0">
                             @else
                                 <div
-                                    class="w-24 h-24 bg-gray-200 flex items-center justify-center rounded-md flex-shrink-0">
+                                    class="w-full sm:w-24 h-48 sm:h-24 bg-gray-200 flex items-center justify-center rounded-md flex-shrink-0">
                                     <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -90,20 +90,17 @@
                                     </svg>
                                     Dipublikasikan pada {{ $announcement->created_at->format('d M Y') }}
                                 </div>
-                            </div>
-                            <div class="flex flex-col space-y-2 ml-4">
-                                <a href="/pengumuman-update/{{ $announcement->id }}">
-                                    <button
+                                <div class="mt-4 flex flex-wrap gap-2">
+                                    <a href="/pengumuman-update/{{ $announcement->id }}"
                                         class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                         Edit
+                                    </a>
+                                    <button wire:click="delete({{ $announcement->id }})"
+                                        class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
+                                        Hapus
                                     </button>
-                                </a>
-                                <button wire:click="delete({{ $announcement->id }})"
-                                    class="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
-                                    Hapus
-                                </button>
+                                </div>
                             </div>
-
                         </div>
                     </li>
                 @endforeach

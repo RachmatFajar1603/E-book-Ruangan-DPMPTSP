@@ -8,13 +8,13 @@ use App\Models\Peminjaman;
 use Livewire\WithPagination;
 
 class PeminjamanSaya extends Component
-{   
+{
     use WithPagination;
 
     public $search = ''; // Pastikan diinisialisasi dengan nilai kosong
 
     #[Title('Peminjaman Saya')]
-    
+
     public $perPage = 10;
 
     protected $queryString = ['search' => ['except' => '']];
@@ -33,9 +33,9 @@ class PeminjamanSaya extends Component
         $peminjamanQuery = Peminjaman::where('user_id', auth()->user()->id);
 
         if ($this->search) {
-            $peminjamanQuery->where(function($query) {
-                $query->where('penanggung_jawab', 'LIKE', '%'.$this->search.'%')
-                      ->orWhere('status', 'LIKE', '%'.$this->search.'%');
+            $peminjamanQuery->where(function ($query) {
+                $query->where('penanggung_jawab', 'LIKE', '%' . $this->search . '%')
+                    ->orWhere('status', 'LIKE', '%' . $this->search . '%');
             });
         }
 
