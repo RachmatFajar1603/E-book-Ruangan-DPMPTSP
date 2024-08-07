@@ -59,6 +59,8 @@ Route::get('/contact-messages', KontakMessages::class)->name('admin.contact-mess
 Route::get('home', Dahsboard::class)->middleware(['auth', 'role_or_permission:admin|user']);
 Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'role_or_permission:admin|view_beranda']);
 
+Route::get('/livewire/admin/beranda-admin', BerandaAdmin::class);
+
 //ruangan
 Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'role_or_permission:admin|view_dataruangan']);
 Route::get('/ruangancreate', RuanganCreate::class);
