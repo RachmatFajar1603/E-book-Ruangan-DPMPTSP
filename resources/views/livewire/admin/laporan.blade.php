@@ -63,19 +63,174 @@
             <table class="min-w-full border-collapse w-full">
                 <thead>
                     <tr>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">NO</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">USERNAME</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">NIP/NO REG/NIK</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">BIDANG</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">PENANGGUNG JAWAB</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">RUANGAN</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">TGL.MULAI PEMINJAMAN</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">TGL. SELESAI PEMINJAMAN</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">WAKTU MULAI</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">WAKTU SELESAI</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">KEPERLUAN</th>
-                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">JUMLAH YANG HADIR</th>
-                        <th class="border-b px-2 sm:px-3 py-2 text-left text-xs sm:text-sm">STATUS</th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span>NO</span>
+                                <button wire:click="sortBy('id')" class="ml-1">
+                                    @if ($sortField === 'id')
+                                        @if ($sortDirection === 'asc')
+                                            <i class="fas fa-sort-up"></i>
+                                        @else
+                                            <i class="fas fa-sort-down"></i>
+                                        @endif
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span>USERNAME</span>
+                                <button wire:click="sortBy('user_id')" class="ml-1">
+                                    @if ($sortField === 'user_id')
+                                        @if ($sortDirection === 'asc')
+                                            <i class="fas fa-sort-up"></i>
+                                        @else
+                                            <i class="fas fa-sort-down"></i>
+                                        @endif
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span>NIP/NO REG/NIK</span>
+                                <button wire:click="sortBy('nip_reg')" class="ml-1">
+                                    @if ($sortField === 'nip_reg')
+                                        @if ($sortDirection === 'asc')
+                                            <i class="fas fa-sort-up"></i>
+                                        @else
+                                            <i class="fas fa-sort-down"></i>
+                                        @endif
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">BIDANG</span>
+                                <button wire:click="sortBy('bidang')" class="ml-1">
+                                    @if ($sortField === 'bidang')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">PENANGGUNG JAWAB</span>
+                                <button wire:click="sortBy('penanggung_jawab')" class="ml-1">
+                                    @if ($sortField === 'penanggung_jawab')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">RUANGAN</span>
+                                <button wire:click="sortBy('ruangan')" class="ml-1">
+                                    @if ($sortField === 'ruangan')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">TGL.MULAI PEMINJAMAN</span>
+                                <button wire:click="sortBy('tanggal_pinjam')" class="ml-1">
+                                    @if ($sortField === 'tanggal_pinjam')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">TGL. SELESAI PEMINJAMAN</span>
+                                <button wire:click="sortBy('tanggal_selesai')" class="ml-1">
+                                    @if ($sortField === 'tanggal_selesai')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">WAKTU MULAI</span>
+                                <button wire:click="sortBy('waktu_mulai')" class="ml-1">
+                                    @if ($sortField === 'waktu_mulai')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">WAKTU SELESAI</span>
+                                <button wire:click="sortBy('waktu_selesai')" class="ml-1">
+                                    @if ($sortField === 'waktu_selesai')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">KEPERLUAN</span>
+                                <button wire:click="sortBy('catatan')" class="ml-1">
+                                    @if ($sortField === 'catatan')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">JUMLAH YANG HADIR</span>
+                                <button wire:click="sortBy('kapasitas')" class="ml-1">
+                                    @if ($sortField === 'kapasitas')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
+                        <th class="border-b px-2 sm:px-3 py-2 text-left text-xs sm:text-sm">
+                            <div class="flex items-center">
+                                <span class="font-bold uppercase">STATUS</span>
+                                <button wire:click="sortBy('status')" class="ml-1">
+                                    @if ($sortField === 'status')
+                                        <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @else
+                                        <i class="fas fa-sort"></i>
+                                    @endif
+                                </button>
+                            </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,10 +242,12 @@
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->user->nip_reg }}</td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->user->bidang->nama }}
                             </td>
-                            <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->penanggung_jawab }}</td>
+                            <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->penanggung_jawab }}
+                            </td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->ruangan->nama }}</td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->tanggal_pinjam }}</td>
-                            <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->tanggal_selesai }}</td>
+                            <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->tanggal_selesai }}
+                            </td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->waktu_mulai }}</td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->waktu_selesai }}</td>
                             <td class="border-b px-2 sm:px-4 py-2 text-xs sm:text-sm">{{ $item->catatan }}</td>

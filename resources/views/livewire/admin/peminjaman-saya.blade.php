@@ -74,20 +74,152 @@
                 <table class="min-w-full border-collapse w-full">
                     <thead>
                         <tr>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">NO</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">PENANGGUNG JAWAB
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">NO</th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>PENANGGUNG JAWAB</span>
+                                    <button wire:click="sortBy('penanggung_jawab')" class="ml-1">
+                                        @if ($sortField === 'penanggung_jawab')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">RUANGAN</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">TGL.MULAI</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">TGL.SELESAI</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">WAKTU MULAI</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">WAKTU SELESAI
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>RUANGAN</span>
+                                    <button wire:click="sortBy('ruang_id')" class="ml-1">
+                                        @if ($sortField === 'ruang_id')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">KEPERLUAN</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">JUMLAH HADIR
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>TGL.MULAI</span>
+                                    <button wire:click="sortBy('tanggal_pinjam')" class="ml-1">
+                                        @if ($sortField === 'tanggal_pinjam')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
-                            <th class="border-b px-2 sm:px-3 py-2 sm:py-4 text-left text-xs sm:text-sm">STATUS</th>
-                            <th class="border-b px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm">AKSI</th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>TGL.SELESAI</span>
+                                    <button wire:click="sortBy('tanggal_selesai')" class="ml-1">
+                                        @if ($sortField === 'tanggal_selesai')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>WAKTU MULAI</span>
+                                    <button wire:click="sortBy('waktu_mulai')" class="ml-1">
+                                        @if ($sortField === 'waktu_mulai')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>WAKTU SELESAI</span>
+                                    <button wire:click="sortBy('waktu_selesai')" class="ml-1">
+                                        @if ($sortField === 'waktu_selesai')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>KEPERLUAN</span>
+                                    <button wire:click="sortBy('acara_kegiatan')" class="ml-1">
+                                        @if ($sortField === 'acara_kegiatan')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>JUMLAH HADIR</span>
+                                    <button wire:click="sortBy('kapasitas')" class="ml-1">
+                                        @if ($sortField === 'kapasitas')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-3 py-2 text-left text-xs sm:text-sm">
+                                <div class="flex items-center">
+                                    <span>STATUS</span>
+                                    <button wire:click="sortBy('status')" class="ml-1">
+                                        @if ($sortField === 'status')
+                                            @if ($sortDirection === 'asc')
+                                                <i class="fas fa-sort-up"></i>
+                                            @else
+                                                <i class="fas fa-sort-down"></i>
+                                            @endif
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-2 sm:px-4 py-2 text-left text-xs sm:text-sm">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>

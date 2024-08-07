@@ -89,13 +89,90 @@
                 <table class="min-w-full border-collapse w-full">
                     <thead>
                         <tr>
-                            <th class="border-b px-4 py-2 text-left">NO</th>
-                            <th class="border-b px-4 py-2 text-left">PENGGUNA</th>
-                            <th class="border-b px-4 py-2 text-left">EMAIL</th>
-                            <th class="border-b px-4 py-2 text-left">NO. TELEPON</th>
-                            <th class="border-b px-4 py-2 text-left">BIDANG</th>
-                            <th class="border-b px-4 py-2 text-left">KET</th>
-                            <th class="border-b px-4 py-2 text-left">ROLE</th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>NO</span>
+                                    <button wire:click="sortBy('id')" class="ml-1">
+                                        @if ($sortField === 'id')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>PENGGUNA</span>
+                                    <button wire:click="sortBy('nama')" class="ml-1">
+                                        @if ($sortField === 'nama')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>EMAIL</span>
+                                    <button wire:click="sortBy('email')" class="ml-1">
+                                        @if ($sortField === 'email')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>NO. TELEPON</span>
+                                    <button wire:click="sortBy('telepon')" class="ml-1">
+                                        @if ($sortField === 'telepon')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>BIDANG</span>
+                                    <button wire:click="sortBy('bidang')" class="ml-1">
+                                        @if ($sortField === 'bidang')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>KET</span>
+                                    <button wire:click="sortBy('keterangan')" class="ml-1">
+                                        @if ($sortField === 'keterangan')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
+                            <th class="border-b px-4 py-2 text-left">
+                                <div class="flex items-center">
+                                    <span>ROLE</span>
+                                    <button wire:click="sortBy('role')" class="ml-1">
+                                        @if ($sortField === 'role')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
+                            </th>
                             <th class="border-b px-4 py-2 text-left">AKSI</th>
                         </tr>
                     </thead>

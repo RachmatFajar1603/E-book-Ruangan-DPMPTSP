@@ -16,13 +16,40 @@
                     <thead class="text-xs text-white uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3 w-10">
-                                No
+                                <div class="flex items-center">
+                                    <span class="font-bold uppercase">NO</span>
+                                    <button wire:click="sortBy('id')" class="ml-1">
+                                        @if ($sortField === 'id')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NIP
+                                <div class="flex items-center">
+                                    <span class="font-bold uppercase">NIP</span>
+                                    <button wire:click="sortBy('nip')" class="ml-1">
+                                        @if ($sortField === 'nip')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NAMA
+                                <div class="flex items-center">
+                                    <span class="font-bold uppercase">NAMA</span>
+                                    <button wire:click="sortBy('nama')" class="ml-1">
+                                        @if ($sortField === 'nama')
+                                            <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                        @else
+                                            <i class="fas fa-sort"></i>
+                                        @endif
+                                    </button>
+                                </div>
                             </th>
                             <th scope="col" class="py-3">
                                 Aksi
