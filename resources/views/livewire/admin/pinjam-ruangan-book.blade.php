@@ -14,7 +14,8 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <label for="penanggung_jawab"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanggung Jawab</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanggung
+                            Jawab</label>
                         <input type="text" wire:model="penanggung_jawab"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -28,14 +29,16 @@
                     </div>
                     <div>
                         <label for="kapasitas"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah peserta</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah
+                            peserta</label>
                         <input type="number" wire:model="kapasitas" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="nomor_handphone"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Handphone</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
+                            Handphone</label>
                         <input type="tel" wire:model="nomor_handphone" pattern="08[0-9]{10}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="08XXXXXXXXX" required />
@@ -43,28 +46,31 @@
                     <input type="hidden" wire:model="ruang_id">
                     <div>
                         <label for="tanggal_pinjam"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pinjam</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                            Pinjam</label>
                         <input type="date" wire:model="tanggal_pinjam"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="tanggal_selesai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Selesai</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                            Selesai</label>
                         <input type="date" wire:model="tanggal_selesai"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                         @if ($tanggalError)
-                        <p class="text-red-500 text-xs mt-1">{{ $tanggalError }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $tanggalError }}</p>
                         @endif
                     </div>
                     <div>
                         <label for="waktu_mulai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Mulai:</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
+                            Mulai:</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_mulai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                min="09:00" max="24:00" value="00:00" required>
+                                value="00:00" required>
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -78,11 +84,12 @@
                     </div>
                     <div>
                         <label for="waktu_selesai"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Selesai:</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
+                            Selesai:</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_selesai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                min="09:00" max="24:00" value="00:00" required>
+                                value="00:00" required>
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -94,7 +101,7 @@
                             </span>
                         </div>
                         @if ($waktuError)
-                        <p class="text-red-500 text-xs mt-1">{{ $waktuError }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $waktuError }}</p>
                         @endif
                     </div>
                 </div>
@@ -105,9 +112,11 @@
                 </div>
                 <div>
                     <label for="catatan"
-                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah pesan</label>
+                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah
+                        pesan</label>
                     <textarea wire:model="catatan" rows="4"
-                        class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required></textarea>
                 </div>
                 <button type="submit"
                     class="my-8 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -124,13 +133,12 @@
             </div>
             {{-- carousel --}}
             <div class="flex justify-center mt-9">
-                <div class="carousel w-full h-72 overflow-hidden mt-0 md:mt-2 rounded-xl shadow-xl"
-                    id="myCarousel">
+                <div class="carousel w-full h-72 overflow-hidden mt-0 md:mt-2 rounded-xl shadow-xl" id="myCarousel">
                     @foreach ($ruangan->images as $image)
-                    <div id="{{ "slide" . $image->id }}" class="carousel-item relative w-full">
-                        <img src="{{ Storage::url($image->image) }}"
-                            class="w-full h-full object-cover animate-fade-in" />
-                    </div>
+                        <div id="{{ 'slide' . $image->id }}" class="carousel-item relative w-full">
+                            <img src="{{ Storage::url($image->image) }}"
+                                class="w-full h-full object-cover animate-fade-in" />
+                        </div>
                     @endforeach
                     <!-- Repeat for slide2, slide3, and slide4 -->
                 </div>
@@ -156,14 +164,15 @@
                 <h4 class="text-lg font-semibold text-gray-700 mb-3">Fasilitas:</h4>
                 <div class="grid grid-cols-2 gap-2">
                     @foreach ($fasilitas as $facility)
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                        <span class="text-gray-600 text-sm">{{ $facility }}</span>
-                    </div>
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7">
+                                </path>
+                            </svg>
+                            <span class="text-gray-600 text-sm">{{ $facility }}</span>
+                        </div>
                     @endforeach
                 </div>
             </div>

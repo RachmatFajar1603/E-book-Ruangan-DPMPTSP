@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Jobs\ManageRoomBooking;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 class PinjamRuanganBook extends Component
 {
     #[Title('Book Ruangan')]
@@ -38,7 +39,6 @@ class PinjamRuanganBook extends Component
         $this->imageUrl = Storage::url($this->ruangan->image);
         $this->ruang_id = $id;
         $this->fasilitas = $this->getFacilities();
-
     }
 
     private function getFacilities()
@@ -124,7 +124,7 @@ class PinjamRuanganBook extends Component
                 ->where(function ($query) use ($waktu_mulai, $waktu_selesai) {
                     $query->where(function ($q) use ($waktu_mulai, $waktu_selesai) {
                         $q->where('waktu_mulai', '<', $waktu_selesai)
-                          ->where('waktu_selesai', '>', $waktu_mulai);
+                            ->where('waktu_selesai', '>', $waktu_mulai);
                     });
                 })
                 ->exists();
@@ -133,62 +133,61 @@ class PinjamRuanganBook extends Component
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     public function create()
-    {   
+    {
         try {
             $this->validateDates();
             $this->validateTimes();
 
-        if ($this->tanggalError || $this->waktuError) {
-            return;
-        }
+            if ($this->tanggalError || $this->waktuError) {
+                return;
+            }
 
-        $this->validate([
-            'ruang_id' => 'required',
-            'acara_kegiatan' => 'required',
-            'kapasitas' => 'required',
-            'penanggung_jawab' => 'required',
-            'nomor_handphone' => 'required',
-            'tanggal_pinjam' => 'required|date',
-            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_pinjam',
-            'waktu_mulai' => 'required',
-            'waktu_selesai' => 'required|after:waktu_mulai',
-            'catatan' => 'required',
-        ]);
-    
-        if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
-            throw new \Exception('Ruangan sudah dipesan pada waktu tersebut.');
-            return;
-        }
-        
-        $peminjaman = Peminjaman::create([
-            'user_id' => auth()->user()->id,
-            'ruang_id' => $this->ruang_id,
-            'penanggung_jawab' => $this->penanggung_jawab,
-            'acara_kegiatan' => $this->acara_kegiatan,
-            'kapasitas' => $this->kapasitas,
-            'nomor_handphone' => $this->nomor_handphone,
-            'tanggal_pinjam' => $this->tanggal_pinjam,
-            'tanggal_selesai' => $this->tanggal_selesai,
-            'waktu_mulai' => $this->waktu_mulai,
-            'waktu_selesai' => $this->waktu_selesai,
-            'catatan' => $this->catatan,
-        ]);
-    
-        // Dispatch the job to manage room booking
-        ManageRoomBooking::dispatch($peminjaman->id);
-    
-        session()->flash('toast', ['type' => 'success', 'message' => 'Peminjaman berhasil diajukan']);
-        $this->redirect('/pinjam-ruangan');
+            $this->validate([
+                'ruang_id' => 'required',
+                'acara_kegiatan' => 'required',
+                'kapasitas' => 'required',
+                'penanggung_jawab' => 'required',
+                'nomor_handphone' => 'required',
+                'tanggal_pinjam' => 'required|date',
+                'tanggal_selesai' => 'required|date|after_or_equal:tanggal_pinjam',
+                'waktu_mulai' => 'required',
+                'waktu_selesai' => 'required|after:waktu_mulai',
+                'catatan' => 'required',
+            ]);
 
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        $this->dispatch('showToast', type: 'error', message: 'Validasi gagal. Silakan periksa kembali input Anda.');
-    } catch (\Exception $e) {
-        $this->dispatch('showToast', type: 'error', message: $e->getMessage());
+            if ($this->isRoomOccupied($this->ruang_id, $this->tanggal_pinjam, $this->tanggal_selesai, $this->waktu_mulai, $this->waktu_selesai)) {
+                throw new \Exception('Ruangan sudah dipesan pada waktu tersebut.');
+                return;
+            }
+
+            $peminjaman = Peminjaman::create([
+                'user_id' => auth()->user()->id,
+                'ruang_id' => $this->ruang_id,
+                'penanggung_jawab' => $this->penanggung_jawab,
+                'acara_kegiatan' => $this->acara_kegiatan,
+                'kapasitas' => $this->kapasitas,
+                'nomor_handphone' => $this->nomor_handphone,
+                'tanggal_pinjam' => $this->tanggal_pinjam,
+                'tanggal_selesai' => $this->tanggal_selesai,
+                'waktu_mulai' => $this->waktu_mulai,
+                'waktu_selesai' => $this->waktu_selesai,
+                'catatan' => $this->catatan,
+            ]);
+
+            // Dispatch the job to manage room booking
+            ManageRoomBooking::dispatch($peminjaman->id);
+
+            session()->flash('toast', ['type' => 'success', 'message' => 'Peminjaman berhasil diajukan']);
+            $this->redirect('/pinjam-ruangan');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->dispatch('showToast', type: 'error', message: 'Validasi gagal. Silakan periksa kembali input Anda.');
+        } catch (\Exception $e) {
+            $this->dispatch('showToast', type: 'error', message: $e->getMessage());
+        }
     }
-}
 }
