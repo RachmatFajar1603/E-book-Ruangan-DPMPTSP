@@ -19,6 +19,8 @@ class PenggunaUpdate extends Component
     public $selectedRole;  // Changed from $role to $selectedRole
     public $password;
     public $pengguna;
+    public $isPengguna = true;
+
     public function mount($id){
         
         $this->pengguna = User::find($id);
@@ -34,7 +36,7 @@ class PenggunaUpdate extends Component
     {   
         $roles = Role::all();
         $bidangs = Bidang::all();
-        return view('livewire.admin.pengguna.pengguna-update', compact('bidangs', 'roles'));
+        return view('livewire.admin.pengguna.pengguna-update', compact('bidangs', 'roles'),['isPengguna' => $this->isPengguna]);
     }
 
     public function checkNip($nip)

@@ -53,7 +53,7 @@
                         <span>entri</span>
                     </div>
                     <div class="w-full sm:w-auto">
-                        <a wire:navigate href="/ruangancreate"
+                        <a wire:navigate href="/dataruangan/create"
                             class="bg-blue-500 text-white p-2 rounded-md block text-center">Tambah Ruangan</a>
                     </div>
                     <div class="w-full sm:w-auto">
@@ -102,7 +102,7 @@
                                                 wire:confirm="Apakah anda yakin ingin menghapus ruangan ini?">
                                                 <img src="/images/trash.svg" class="h-6 w-6" alt="Delete">
                                             </button>
-                                            <a href="/ruangan/{{ $ruang->id }}/edit"
+                                            <a wire:navigate href="/dataruangan/{{ $ruang->id }}/edit"
                                                 class="text-blue-600 hover:text-blue-800">
                                                 <img src="/images/edit.svg" class="h-6 w-6" alt="Edit">
                                             </a>

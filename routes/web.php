@@ -63,8 +63,8 @@ Route::get('/livewire/admin/beranda-admin', BerandaAdmin::class);
 
 //ruangan
 Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'role_or_permission:admin|view_dataruangan']);
-Route::get('/ruangancreate', RuanganCreate::class);
-Route::get('/ruangan/{id}/edit', EditRuang::class);
+Route::get('/dataruangan/create', RuanganCreate::class);
+Route::get('/dataruangan/{id}/edit', EditRuang::class);
 
 Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
 
@@ -79,8 +79,8 @@ Route::get('/pengumuman', function () {
 
 //pengguna
 Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'role_or_permission:admin|view_datapengguna']);
-Route::get('/datapenggunacreate', PenggunaCreate::class);
-Route::get('pengguna/{id}/update', PenggunaUpdate::class);
+Route::get('/datapengguna/create', PenggunaCreate::class);
+Route::get('/datapengguna/{id}/update', PenggunaUpdate::class);
 
 
 Route::get('/datapeminjaman', DataPeminjaman::class);
@@ -92,7 +92,7 @@ Route::get('pinjam-ruangan', PinjamRuangan::class);
 Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
 Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruangan');
 Route::get('pinjam-ruangan/{id}/detail', PinjamRuanganDetail::class)->name('pinjam-ruangan.detail');
-Route::get('pegawai-create', PegawaiCreate::class);
+Route::get('pegawai/create', PegawaiCreate::class);
 Route::get('pegawai', PegawaiList::class);
 Route::get('pegawai/{id}/update', PegawaiUpdate::class);
 Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');

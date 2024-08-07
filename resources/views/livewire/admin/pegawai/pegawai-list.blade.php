@@ -7,7 +7,7 @@
                     <input type="text" class="border-gray-300 rounded-md w-full sm:w-auto" wire:model.live="search" />
                 </div>
                 <div class="bg-blue-500 w-full sm:w-fit mb-4 text-white rounded-md text-center">
-                    <a wire:navigate href="pegawai-create" class="font-semibold block py-2 px-4">Tambah Pegawai</a>
+                    <a wire:navigate href="pegawai/create" class="font-semibold block py-2 px-4">Tambah Pegawai</a>
                 </div>
             </div>
             <div class="overflow-x-auto">
@@ -45,7 +45,7 @@
                                 <td class="py-4">
                                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                                         <div class="bg-yellow-400 p-2 rounded-md text-white text-center">
-                                            <a href="/pegawai/{{ $pegawai->id }}/update" class="block w-full">Edit</a>
+                                            <a wire:navigate href="/pegawai/{{ $pegawai->id }}/update" class="block w-full">Edit</a>
                                         </div>
                                         <div class="bg-red-500 p-2 rounded-md text-white text-center">
                                             <button wire:click="delete({{ $pegawai->id }})"

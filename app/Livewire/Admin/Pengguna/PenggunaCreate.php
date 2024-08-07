@@ -21,6 +21,7 @@ class PenggunaCreate extends Component
     public $keterangan;
     public $selectedRole;
     public $password;
+    public $isPengguna = true;
 
     public function updateNama($nama)
     {
@@ -31,7 +32,7 @@ class PenggunaCreate extends Component
     {   
         $bidangs = Bidang::all();
         $roles = Role::all();
-        return view('livewire.admin.pengguna.pengguna-create', compact('bidangs', 'roles'));
+        return view('livewire.admin.pengguna.pengguna-create', compact('bidangs', 'roles'), ['isPengguna' => $this->isPengguna]);
     }
 
     public function checkNip($nip)

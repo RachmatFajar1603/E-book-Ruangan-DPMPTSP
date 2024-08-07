@@ -1,6 +1,9 @@
 <div class="flex flex-col min-h-screen">
     <!-- Navbar -->
 
+    {{-- @php
+    dd($isPengguna)
+    @endphp --}}
 
     <!-- Main Content -->
     <main class="flex-grow p-4 sm:ml-64">

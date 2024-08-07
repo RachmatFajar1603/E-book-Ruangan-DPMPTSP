@@ -61,74 +61,73 @@
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                 </a>
             </div>
-
             @if (auth()->user()->can('view_beranda'))
                 <p class="pt-16 ml-6 font-semibold text-gray-400">DASHBOARD</p>
                 <div class="pt-4 ml-6">
                     <ul class="space-y-2 font-medium">
                         <li>
-                            <a wire:navigate href="/beranda"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <i class="ri-database-line text-gray-500"></i>
-                                <span class="ms-3 text-gray-600">Beranda</span>
+                            <a wire:navigate href="/beranda" class="{{ $isPage == "beranda" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                <i class="ri-database-line mr-3 {{ $isPage == "beranda" ? 'text-white' : 'text-gray-600' }}"></i>
+                              Beranda
                             </a>
                         </li>
                         <li>
-                            <a wire:navigate href="/pengumuman-manager"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <i class="ri-information-line text-gray-500"></i>
-                                <span class="ms-3 text-gray-600">Pengumuman</span>
+                            <a wire:navigate href="/pengumuman-manager" class="{{ $isPage == "pengumuman-manager" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                <i class="ri-information-line mr-3 {{ $isPage == "pengumuman-manager" ? 'text-white' : 'text-gray-600' }}"></i>
+                               Pengumuman
                             </a>
                         </li>
                         <li>
-                            <a wire:navigate href="/contact-messages"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <i class="ri-message-line text-gray-500"></i>
-                                <span class="ms-3 text-gray-600">Saran</span>
+                            <a wire:navigate href="/contact-messages" class="{{ $isPage == "contact-messages" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                <i class="ri-message-line mr-3 {{ $isPage == "contact-messages" ? 'text-white' : 'text-gray-600' }}"></i>
+                               Saran
                             </a>
                         </li>
                     </ul>
                 </div>
             @endif
 
+
             @if (auth()->user()->can('view_datapegawai') ||
                     auth()->user()->can('view_dataruangan') ||
                     auth()->user()->can('view_datapengguna'))
                 <p class="pt-10  ml-6 font-semibold text-gray-400">DATA MASTER</p>
-                <div class="pt-5 ml-6">
+                <div class="pt-5 ml-6 space-y-2">
                     @if (auth()->user()->can('view_datapegawai'))
-                        <ul class="space-y-2 font-medium">
+                        <ul class="space-y-4 font-medium">
                             <li>
-                                <a wire:navigate href="/pegawai"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <i class="ri-database-line text-gray-500"></i>
-                                    <span class="ms-3 text-gray-600">Data Pegawai</span>
+                                <a wire:navigate href="/pegawai" class="{{ $isPage == "pegawai" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                    <i class="mr-3 ri-database-line {{ $isPage == "pegawai" ? 'text-white' : 'text-gray-600' }}"></i>
+                                    Data Pegawai
                                 </a>
                             </li>
                         </ul>
                     @endif
                     @if (auth()->user()->can('view_dataruangan'))
-                        <ul class="space-y-2 font-medium">
+                        <ul class="space-y-4 font-medium">
                             <li>
                                 <a wire:navigate href="/dataruangan"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <i class="ri-database-fill text-gray-500"></i>
-                                    <span class="ms-3 text-gray-600">Data Ruangan</span>
+                                    class="{{ $isPage == "dataruangan" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                    <i class="ri-database-fill mr-3 {{ $isPage == "dataruangan" ? 'text-white' : 'text-gray-600' }}"></i>
+                                    Data Ruangan
                                 </a>
                             </li>
                         </ul>
                     @endif
-                    @if (auth()->user()->can('view_datapengguna'))
-                        <ul class="space-y-2 font-medium">
-                            <li>
-                                <a wire:navigate href="/datapengguna"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <i class="ri-user-line text-gray-500"></i>
-                                    <span class="ms-3 text-gray-600">Data Pengguna</span>
-                                </a>
-                            </li>
-                        </ul>
-                    @endif
+                   <!-- resources/views/livewire/admin/pengguna/pengguna-list.blade.php -->
+                    <div>
+                        @if (auth()->user()->can('view_datapengguna'))
+                            <ul class="space-y-4 font-medium">
+                                <li>
+                                    <a wire:navigate href="/datapengguna"
+                                        class="{{ $isPage == "datapengguna" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                                        <i class="ri-user-line mr-3 {{ $isPage == "datapengguna" ? 'text-white' : 'text-gray-600' }}"></i>
+                                    Data Pengguna
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
+                    </div>
                 </div>
             @endif
             <p class="pt-10 ml-6 font-semibold text-gray-400">PEMINJAMAN</p>
@@ -136,30 +135,30 @@
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a wire:navigate href="/datapeminjaman"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="ri-calendar-2-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-600">Data Peminjaman</span>
+                            class="{{ $isPage == "datapeminjaman" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                            <i class="ri-calendar-2-line mr-3 {{ $isPage == "datapeminjaman" ? 'text-white' : 'text-gray-600' }}"></i>
+                            Data Peminjaman
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="/pinjam-ruangan"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="ri-calendar-check-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-600">Pinjam Ruangan</span>
+                            class="{{ $isPage == "pinjam-ruangan" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                            <i class="ri-calendar-check-line mr-3 {{ $isPage == "pinjam-ruangan" ? 'text-white' : 'text-gray-600' }}"></i>
+                            Pinjam Ruangan
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="/peminjamansaya"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="ri-user-shared-2-fill text-gray-500"></i>
-                            <span class="ms-3 text-gray-600">Peminjaman Saya</span>
+                            class="{{ $isPage == "peminjamansaya" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                            <i class="ri-user-shared-2-fill mr-3 {{ $isPage == "peminjamansaya" ? 'text-white' : 'text-gray-600' }}"></i>
+                           Peminjaman Saya
                         </a>
                     </li>
                     <li>
                         <a wire:navigate href="/laporan"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <i class="ri-file-3-line text-gray-500"></i>
-                            <span class="ms-3 text-gray-600">Laporan</span>
+                            class="{{ $isPage == "laporan" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                            <i class="ri-file-3-line mr-3 {{ $isPage == "laporan" ? 'text-white' : 'text-gray-600' }}"></i>
+                           Laporan
                         </a>
                     </li>
                 </ul>
@@ -188,5 +187,3 @@
         }
     }
 </script>
-
-{{ $slot }}

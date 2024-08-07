@@ -1,7 +1,5 @@
 <div class="flex flex-col min-h-screen">
     <!-- Navbar -->
-
-
     <!-- Main Content -->
     <main class="flex-grow p-4 sm:ml-64">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full">

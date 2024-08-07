@@ -12,11 +12,13 @@ class PegawaiCreate extends Component
 
     public $nip;
     public $nama;
+    public $isPegawai = true;
+    
 
     #[Title('Tambah Pegawai')]
     public function render()
     {
-        return view('livewire.admin.pegawai.pegawai-create');
+        return view('livewire.admin.pegawai.pegawai-create', ['isPegawai' => $this->isPegawai]);
     }
 
     public function create(){

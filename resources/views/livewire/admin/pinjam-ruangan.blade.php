@@ -27,7 +27,7 @@
                     <a wire:navigate href="{{ route('pinjam-ruangan', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
                         Pinjam Sekarang
                     </a>
-                    <a href="{{ route('pinjam-ruangan.detail', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
+                    <a wire:navigate href="{{ route('pinjam-ruangan.detail', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
                         Detail
                     </a>
                 </div>

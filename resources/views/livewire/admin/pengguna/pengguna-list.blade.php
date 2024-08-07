@@ -62,7 +62,7 @@
             <div class="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-2 sm:space-y-0">
                 <!-- Add User Button -->
                 <div class="w-full sm:w-auto mb-2 sm:mb-0">
-                    <a wire:navigate href="/datapenggunacreate"
+                    <a wire:navigate href="/datapengguna/create"
                         class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 inline-block w-full sm:w-auto text-center">
                         + Tambah Pengguna
                     </a>
@@ -127,7 +127,7 @@
                                         class="text-green-600 hover:text-green-800">
                                         <img src="/images/trash.svg" class="h-6 w-6" alt="Delete">
                                     </button>
-                                    <a href="/pengguna/{{ $user->id }}/update"
+                                    <a wire:navigate href="/datapengguna/{{ $user->id }}/update"
                                         class="text-red-600 hover:text-red-800">
                                         <img src="/images/edit.svg" class="h-6 w-6" alt="Edit">
                                     </a>

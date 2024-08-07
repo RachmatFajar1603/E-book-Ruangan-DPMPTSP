@@ -31,6 +31,7 @@ class EditRuang extends Component
     public $existingThumbnail;
     public $existingAdditionalImages;
 
+    #[Title('Update Data Pengguna')]
     public function mount($id)
     {
         $ruang = Ruang::with('fasilitas', 'bidang', 'images')->findOrFail($id);
