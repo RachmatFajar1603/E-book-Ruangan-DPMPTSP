@@ -15,8 +15,13 @@ class DataRuangan extends Component
     use WithPagination;
 
     public $search = '';
+    public $perPage = 10;
+    public $sortField = 'nama';
+    public $sortDirection = 'asc';
 
     #[Title('Data Ruangan')]
+
+    protected $queryString = ['search' => ['except' => ''], 'sortField', 'sortDirection'];
 
     public function mount()
     {
@@ -30,12 +35,7 @@ class DataRuangan extends Component
         $ruangtersedia = Ruang::where('status', 'Tersedia')->count();
         $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->count();
 
-        $ruangs = Ruang::where('nama', 'like', '%' . $this->search . '%')
-            ->orWhere('lokasi', 'like', '%' . $this->search . '%')
-            ->orWhereHas('bidang', function ($query) {
-                $query->where('nama', 'like', '%' . $this->search . '%');
-            })
-            ->paginate(10);
+        $ruangs = $this->getRuangs();
 
         foreach ($ruangs as $ruang) {
             $ruang->image_url = Storage::url($ruang->image);
@@ -44,6 +44,56 @@ class DataRuangan extends Component
 
         return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
     }
+
+    public function getRuangs()
+    {
+        $query = Ruang::where(function ($query) {
+            $query->where('nama', 'like', '%' . $this->search . '%')
+                ->orWhere('lokasi', 'like', '%' . $this->search . '%')
+                ->orWhereHas('bidang', function ($subQuery) {
+                    $subQuery->where('nama', 'like', '%' . $this->search . '%');
+                });
+        });
+
+        $query = $this->applySorting($query);
+
+        return $query->paginate($this->perPage);
+    }
+
+    protected function applySorting($query)
+    {
+        switch ($this->sortField) {
+            case 'nama':
+            case 'lokasi':
+            case 'kapasitas':
+            case 'status':
+                $query->orderBy($this->sortField, $this->sortDirection);
+                break;
+            case 'bidang':
+                $query->orderBy(function ($query) {
+                    $query->select('nama')
+                        ->from('bidangs')
+                        ->whereColumn('bidangs.id', 'ruangs.bidang_id')
+                        ->limit(1);
+                }, $this->sortDirection);
+                break;
+            default:
+                $query->orderBy('nama', 'asc');
+        }
+
+        return $query;
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+        $this->sortField = $field;
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -51,7 +101,6 @@ class DataRuangan extends Component
 
     public function delete($id)
     {
-        // delete ruang and fasilitas where ruang_id = $id
         Fasilitas::where('id', $id)->delete();
         Ruang::where('id', $id)->delete();
         $this->dispatch('showToast', type: 'error', message: 'Ruangan Dihapus');

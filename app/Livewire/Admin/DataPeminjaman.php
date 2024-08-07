@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DataPeminjaman extends Component
-{   
+{
     use WithPagination;
 
     #[Title('Data Peminjaman')]
@@ -23,6 +23,10 @@ class DataPeminjaman extends Component
     public $perPage = 10;
     public $editingId = null;
     public $editStatus = '';
+    public $sortField = 'created_at';
+    public $sortDirection = 'desc';
+
+    protected $queryString = ['search' => ['except' => ''], 'sortField', 'sortDirection'];
 
     public function updatingSearch()
     {
@@ -45,10 +49,10 @@ class DataPeminjaman extends Component
             $peminjaman = Peminjaman::findOrFail($id);
             $peminjaman->status = 'rejected';
             $peminjaman->save();
-    
+
             $this->cancelRoomStatusJobs($peminjaman);
             $this->freeUpTimeSlot($peminjaman);
-    
+
             DB::commit();
             $this->dispatch('showToast', type: 'error', message: 'Peminjaman ditolak');
         } catch (\Exception $e) {
@@ -98,17 +102,17 @@ class DataPeminjaman extends Component
         } else {
             // Jika batch tidak ditemukan, coba batalkan job individual
             $jobs = DB::table('jobs')
-            ->where('payload', 'like', '%UpdateRoomStatus%')
-            ->where('payload', 'like', '%"peminjaman_id":' . $peminjaman->id . '%')
-            ->get();
-            
+                ->where('payload', 'like', '%UpdateRoomStatus%')
+                ->where('payload', 'like', '%"peminjaman_id":' . $peminjaman->id . '%')
+                ->get();
+
             foreach ($jobs as $job) {
                 DB::table('jobs')->where('id', $job->id)->delete();
                 Log::info("Cancelled individual job for peminjaman_id: {$peminjaman->id}");
             }
         }
     }
-    
+
     private function freeUpTimeSlot($peminjaman)
     {
         $ruang = Ruang::find($peminjaman->ruang_id);
@@ -117,12 +121,23 @@ class DataPeminjaman extends Component
         Log::info("Set room status to 'Tersedia' for room_id: {$ruang->id}");
     }
 
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+        $this->sortField = $field;
+    }
+
     public function render()
     {
         $sumall = Peminjaman::count();
         $sumverified = Peminjaman::where('status', 'verified')->count();
         $sumrejected = Peminjaman::where('status', 'rejected')->count();
-        $peminjaman = Peminjaman::with(['user', 'user.bidang', 'ruang'])
+
+        $query = Peminjaman::with(['user', 'user.bidang', 'ruang'])
             ->when($this->search, function ($query) {
                 $query->where('penanggung_jawab', 'like', '%' . $this->search . '%')
                     ->orWhere('acara_kegiatan', 'like', '%' . $this->search . '%')
@@ -132,9 +147,27 @@ class DataPeminjaman extends Component
                     ->orWhereHas('ruang', function ($q) {
                         $q->where('nama', 'like', '%' . $this->search . '%');
                     });
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            });
+
+        // Aplikasikan sorting
+        switch ($this->sortField) {
+            case 'user.nama':
+                $query->orderBy('user_id', $this->sortDirection);
+                break;
+            case 'user.nip_reg':
+                $query->orderBy('user_id', $this->sortDirection);
+                break;
+            case 'user.bidang.nama':
+                $query->orderBy('user_id', $this->sortDirection);
+                break;
+            case 'ruang.nama':
+                $query->orderBy('ruang_id', $this->sortDirection);
+                break;
+            default:
+                $query->orderBy($this->sortField, $this->sortDirection);
+        }
+
+        $peminjaman = $query->paginate($this->perPage);
 
         return view('livewire.admin.data-peminjaman', compact('peminjaman', 'sumall', 'sumverified', 'sumrejected'));
     }

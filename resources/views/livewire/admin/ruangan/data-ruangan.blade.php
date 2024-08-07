@@ -67,13 +67,85 @@
                     <table class="min-w-full border-collapse w-full">
                         <thead>
                             <tr>
-                                <th class="border-b px-4 py-2 text-left">NO</th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>NO</span>
+                                        <button wire:click="sortBy('id')" class="ml-1">
+                                            @if ($sortField === 'id')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
                                 <th class="border-b px-4 py-2 text-left">THUMBNAIL</th>
-                                <th class="border-b px-4 py-2 text-left">NAMA</th>
-                                <th class="border-b px-4 py-2 text-left">BIDANG</th>
-                                <th class="border-b px-4 py-2 text-left">LOKASI</th>
-                                <th class="border-b px-4 py-2 text-left">KAPASITAS</th>
-                                <th class="border-b px-4 py-2 text-left">STATUS</th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>NAMA</span>
+                                        <button wire:click="sortBy('nama')" class="ml-1">
+                                            @if ($sortField === 'nama')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>BIDANG</span>
+                                        <button wire:click="sortBy('bidang')" class="ml-1">
+                                            @if ($sortField === 'bidang')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>LOKASI</span>
+                                        <button wire:click="sortBy('lokasi')" class="ml-1">
+                                            @if ($sortField === 'lokasi')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>KAPASITAS</span>
+                                        <button wire:click="sortBy('kapasitas')" class="ml-1">
+                                            @if ($sortField === 'kapasitas')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
+                                <th class="border-b px-4 py-2 text-left">
+                                    <div class="flex items-center">
+                                        <span>STATUS</span>
+                                        <button wire:click="sortBy('status')" class="ml-1">
+                                            @if ($sortField === 'status')
+                                                <i
+                                                    class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                            @else
+                                                <i class="fas fa-sort"></i>
+                                            @endif
+                                        </button>
+                                    </div>
+                                </th>
                                 <th class="border-b px-4 py-2 text-left">AKSI</th>
                             </tr>
                         </thead>
@@ -115,7 +187,8 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-2 sm:space-y-0">
-                    <span class="text-sm">Menampilkan {{ $ruangs->firstItem() }} hingga {{ $ruangs->lastItem() }} dari
+                    <span class="text-sm">Menampilkan {{ $ruangs->firstItem() }} hingga {{ $ruangs->lastItem() }}
+                        dari
                         {{ $ruangs->total() }} entri</span>
                     {{ $ruangs->links('pagination::simple-tailwind') }}
                 </div>

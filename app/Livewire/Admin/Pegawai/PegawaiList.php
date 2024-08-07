@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiList extends Component
 {
@@ -13,17 +14,58 @@ class PegawaiList extends Component
 
     #[Title('Data Pegawai')]
 
-    public $search;
+    public $search = '';
+    public $sortField = 'id';
+    public $sortDirection = 'asc';
+    public $perPage = 10;
+
+    protected $queryString = ['search' => ['except' => ''], 'sortField', 'sortDirection'];
+
     public function render()
     {
-        return view('livewire.admin.pegawai.pegawai-list', [
-            "pegawais" => Pegawai::where(function ($query) {
-                $query->where('nip', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('nama', 'LIKE', '%' . $this->search . '%');
-                // Tambahkan kolom lain yang ingin Anda cari di sini
-                // Contoh: ->orWhere('email', 'LIKE', '%'.$this->search.'%');
-            })->paginate(10)
-        ]);
+        $pegawais = $this->getPegawais();
+        return view('livewire.admin.pegawai.pegawai-list', compact('pegawais'));
+    }
+
+    public function getPegawais()
+    {
+        $query = Pegawai::where(function ($query) {
+            $query->where('nip', 'like', '%' . $this->search . '%')
+                ->orWhere('nama', 'like', '%' . $this->search . '%');
+        });
+
+        $query = $this->applySorting($query);
+
+        return $query->paginate($this->perPage);
+    }
+
+    protected function applySorting($query)
+    {
+        switch ($this->sortField) {
+            case 'id':
+                $query->orderBy('id', $this->sortDirection);
+                break;
+            case 'nip':
+                $query->orderBy('nip', $this->sortDirection);
+                break;
+            case 'nama':
+                $query->orderBy('nama', $this->sortDirection);
+                break;
+            default:
+                $query->orderBy('id', 'asc');
+        }
+
+        return $query;
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+        $this->sortField = $field;
     }
 
     public function delete($id)
@@ -35,6 +77,6 @@ class PegawaiList extends Component
 
     public function updatingSearch()
     {
-        $this->gotoPage(1);
+        $this->resetPage();
     }
 }
