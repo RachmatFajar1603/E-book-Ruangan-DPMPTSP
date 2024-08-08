@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'telepon' => '081234567891',
             'nip_reg' => '1234567891',
             'bidang_id' => 1,
-            'keterangan' =>'EKSTERNAL',
+            'keterangan' =>'INTERNAL',
             'password' => bcrypt('12345678'),
         ]);
 

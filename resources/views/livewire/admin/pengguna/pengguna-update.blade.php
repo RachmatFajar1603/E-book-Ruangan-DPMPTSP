@@ -51,7 +51,7 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
                             <option value="" disabled selected>-- Pilih KETERANGAN --</option>
                             <option value="internal">INTERNAL</option>
-                            <option value="eksternal">EKSTERNAL</option>
+                            <option value="eksternal" disabled>EKSTERNAL</option>
                         </select>
                     </div>
                     <div class="mb-4">
