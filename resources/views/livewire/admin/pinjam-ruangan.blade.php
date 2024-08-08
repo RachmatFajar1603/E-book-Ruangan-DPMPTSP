@@ -13,9 +13,18 @@
                     </span>
                 </div>
                 <div class="flex flex-wrap gap-2 mt-2">
-                    <span class="p-2 text-xs rounded-lg {{ $item->status == 'Tersedia' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700' }}">
+                    <!-- <span class="p-2 text-xs rounded-lg {{ $item->status == 'Tersedia' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700' }}">
+                        {{ $item->status }}
+                    </span> -->
+                    @if ($item->status == 'Tersedia')
+                    <span class="p-2 bg-green-200 text-green-700 rounded-lg text-xs">
                         {{ $item->status }}
                     </span>
+                    @elseif ($item->status == 'Tidak Tersedia')
+                    <span class="p-2 bg-red-200 text-red-700 rounded-lg text-xs">
+                        Sedang Dibooking
+                    </span>
+                    @endif
                     <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-xs">
                         {{ $item->lokasi }}
                     </span>

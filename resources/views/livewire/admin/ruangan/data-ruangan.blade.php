@@ -164,9 +164,15 @@
                                     <td class="border-b px-4 py-2">{{ $ruang->lokasi }}</td>
                                     <td class="border-b px-4 py-2">{{ $ruang->kapasitas }}</td>
                                     <td class="border-b px-4 py-2">
+                                        @if ($ruang->status == 'Tersedia')
                                         <span class="p-2 bg-green-500 rounded text-white text-center">
                                             {{ $ruang->status }}
                                         </span>
+                                        @elseif ($ruang->status == 'Tidak Tersedia')
+                                        <span class="p-2 bg-red-500 rounded text-white text-center">
+                                            {{ $ruang->status }}
+                                        </span>
+                                        @endif
                                     </td>
                                     <td class="border-b px-4 py-2">
                                         <div class="flex space-x-2">
