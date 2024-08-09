@@ -1,6 +1,6 @@
 <div>
     <main class="p-4 sm:ml-64 font-poppins min-h-screen">
-        <div class="max-w-2xl mx-auto">
+        <div class="w-full max-w-7xl mx-auto">
             <h2 class="text-2xl font-bold mb-6 text-center">Pesan Kontak</h2>
             <div class="space-y-4">
                 @foreach ($messages as $message)
