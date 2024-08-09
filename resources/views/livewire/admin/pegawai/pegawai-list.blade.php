@@ -29,7 +29,7 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
-                                    <span class="font-bold uppercase">NIP</span>
+                                    <span class="font-bold uppercase">NIP/NOREG</span>
                                     <button wire:click="sortBy('nip')" class="ml-1">
                                         @if ($sortField === 'nip')
                                             <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>

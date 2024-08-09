@@ -15,14 +15,14 @@
                     <div>
                         <label for="penanggung_jawab"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanggung
-                            Jawab</label>
+                            Jawab *</label>
                         <input type="text" wire:model="penanggung_jawab"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
                     </div>
                     <div>
                         <label for="acara_kegiatan"
-                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Acara/Kegiatan</label>
+                            class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Acara/Kegiatan *</label>
                         <input type="text" wire:model="acara_kegiatan"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -30,7 +30,7 @@
                     <div>
                         <label for="kapasitas"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah
-                            peserta</label>
+                            peserta * </label>
                         <input type="number" wire:model="kapasitas" aria-describedby="helper-text-explanation"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -38,7 +38,7 @@
                     <div>
                         <label for="nomor_handphone"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                            Handphone</label>
+                            Handphone *</label>
                         <input type="tel" wire:model="nomor_handphone" pattern="08[0-9]{10}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="08XXXXXXXXX" required />
@@ -47,7 +47,7 @@
                     <div>
                         <label for="tanggal_pinjam"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                            Pinjam</label>
+                            Pinjam *</label>
                         <input type="date" wire:model="tanggal_pinjam"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -55,7 +55,7 @@
                     <div>
                         <label for="tanggal_selesai"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                            Selesai</label>
+                            Selesai *</label>
                         <input type="date" wire:model="tanggal_selesai"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required />
@@ -66,7 +66,7 @@
                     <div>
                         <label for="waktu_mulai"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
-                            Mulai:</label>
+                            Mulai: *</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_mulai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -85,7 +85,7 @@
                     <div>
                         <label for="waktu_selesai"
                             class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu
-                            Selesai:</label>
+                            Selesai: *</label>
                         <div class="flex">
                             <input type="time" wire:model="waktu_selesai"
                                 class="rounded-none rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -113,7 +113,7 @@
                 <div>
                     <label for="catatan"
                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tambah
-                        pesan</label>
+                        pesan *</label>
                     <textarea wire:model="catatan" rows="4"
                         class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required></textarea>

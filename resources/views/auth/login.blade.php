@@ -20,7 +20,7 @@
 
         <!-- NIP -->
         <div>
-            <x-input-label for="nip_reg" :value="__('NIP')" class="block text-sm font-medium text-gray-700" />
+            <x-input-label for="nip_reg" :value="__('NIP/NOREG')" class="block text-sm font-medium text-gray-700" />
             <div class="mt-1">
                 <x-text-input id="nip_reg"
                     class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-700 focus:outline-none focus:ring-gray-700 sm:text-sm"
@@ -71,7 +71,7 @@
         <div class="relative">
             <div class="relative flex justify-center">
                 <span class="px-2 bg-white text-gray-500 ">
-                    Dont Have An Account? 
+                    Dont Have An Account?
                 </span>
                 <a href="/register">Register</a>
             </div>
