@@ -4,10 +4,10 @@
         <div class="relative py-24 px-4 sm:px-6 lg:px-8">
             <div class="w-full sm:w-5/6 max-w-screen-xl mx-auto">
                 <div class="relative h-64 bg-cover bg-center rounded-xl overflow-hidden"
-                    style="background-image: url('https://plus.unsplash.com/premium_photo-1689701711379-154c21998787?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cnVhbmdhbiUyMHJhcGF0fGVufDB8fDB8fHww');">
+                    style="background-image: url('/images/ruangan-1.jpeg');">
                     <div class="absolute inset-0 bg-black opacity-50"></div>
                     <div class="relative z-10 flex flex-col justify-center items-center h-full text-white">
-                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Hubungi Kami</h1>
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Ruangan Kami</h1>
                         <nav class="text-sm">
                             <ol class="list-none p-0 inline-flex">
                                 <li class="flex items-center">
