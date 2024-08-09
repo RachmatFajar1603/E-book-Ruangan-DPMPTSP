@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Announcement;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class AnnouncementPage extends Component
 {
@@ -12,22 +13,70 @@ class AnnouncementPage extends Component
 
     public $showPopup = false;
     public $currentAnnouncement;
+    public $search = '';
+    public $startDate;
+    public $endDate;
+    public $perPage = 9;
 
-    protected $listeners = ['showAnnouncement'];
+    protected $queryString = ['search' => ['except' => ''], 'startDate', 'endDate'];
 
     public function mount()
     {
-        $this->showPopup = !session('popupShown');
-        if ($this->showPopup) {
-            $this->currentAnnouncement = Announcement::latest()->first();
-        }
+        $this->resetDates();
     }
 
     public function render()
     {
+        $query = Announcement::query();
+
+        if ($this->startDate && $this->endDate) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($this->startDate)->startOfDay(),
+                Carbon::parse($this->endDate)->endOfDay()
+            ]);
+        }
+
+        if ($this->search !== '') {
+            $query->where(function ($q) {
+                $q->where('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('content', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        $announcements = $query->latest()->paginate($this->perPage);
+
         return view('livewire.admin.announcement-page', [
-            'announcements' => Announcement::latest()->paginate(9), // Menampilkan 9 pengumuman per halaman
+            'announcements' => $announcements,
+            'totalAnnouncements' => Announcement::count(),
         ]);
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedStartDate()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedEndDate()
+    {
+        $this->resetPage();
+    }
+
+    public function resetDates()
+    {
+        $this->startDate = now()->startOfMonth()->format('Y-m-d');
+        $this->endDate = now()->endOfMonth()->format('Y-m-d');
+    }
+
+    public function clearFilter()
+    {
+        $this->resetDates();
+        $this->search = '';
+        $this->resetPage();
     }
 
     public function showAnnouncement($id)
