@@ -22,7 +22,7 @@
                     </span>
                     @elseif ($item->status == 'Tidak Tersedia')
                     <span class="p-2 bg-red-200 text-red-700 rounded-lg text-xs">
-                        Sedang Dibooking
+                        Sedang Digunakan
                     </span>
                     @endif
                     <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-xs">
