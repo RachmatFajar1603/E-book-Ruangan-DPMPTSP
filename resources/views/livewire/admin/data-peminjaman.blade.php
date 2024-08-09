@@ -36,9 +36,10 @@
                     <p class="text-lg sm:text-xl mt-1">Total DiTolak</p>
                 </div>
                 <div class="flex items-center justify-center bg-red-200 rounded-md p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 64 64" viewBox="0 0 64 64"
-                        class="h-5 w-5" alt="hand-palm-icon">
-                        <!-- SVG path data -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
             </div>

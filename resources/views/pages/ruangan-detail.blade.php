@@ -8,7 +8,7 @@
             <div class="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
             <div class="absolute inset-0 flex flex-col md:flex-row items-center justify-between p-4 md:px-8">
                 <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-0 z-10">{{ $room->nama }}</h1>
-                <a href="#"
+                <a href="/login"
                     class="bg-green-500 text-white px-6 py-2 rounded-full text-sm hover:bg-green-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 z-10">
                     Booking
                 </a>

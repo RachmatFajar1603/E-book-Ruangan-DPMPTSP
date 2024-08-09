@@ -1,21 +1,18 @@
 <div>
     <main class="p-2 sm:p-4 sm:ml-64">
         <!-- Date Filter Section -->
-        <div
-            class="flex flex-col sm:flex-row justify-start items-start sm:items-center mb-8 space-y-4 sm:space-y-0 sm:space-x-4">
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-4 sm:mb-0">
-                <div>
-                    <label for="start_date" class="block text-sm font-medium text-gray-700">Tanggal Awal</label>
-                    <input type="date" wire:model.live="startDate" id="start_date"
-                        class="w-full sm:w-auto border-gray-300 rounded-md px-4 py-2" placeholder="hh/bb/tttt">
-                </div>
-                <div>
-                    <label for="end_date" class="block text-sm font-medium text-gray-700">Tanggal Akhir</label>
-                    <input type="date" wire:model.live="endDate" id="end_date"
-                        class="w-full sm:w-auto border-gray-300 rounded-md px-4 py-2" placeholder="hh/bb/tttt">
-                </div>
+        <div class="flex flex-wrap items-end space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+            <div class="w-full sm:w-auto">
+                <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Awal</label>
+                <input type="date" wire:model.live="startDate" id="start_date"
+                    class="w-full sm:w-auto border-gray-300 rounded-md px-4 py-2" placeholder="hh/bb/tttt">
             </div>
-            <div class="flex space-x-2">
+            <div class="w-full sm:w-auto">
+                <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Akhir</label>
+                <input type="date" wire:model.live="endDate" id="end_date"
+                    class="w-full sm:w-auto border-gray-300 rounded-md px-4 py-2" placeholder="hh/bb/tttt">
+            </div>
+            <div class="w-full sm:w-auto">
                 <button wire:click="clearFilter"
                     class="w-full sm:w-auto bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 flex items-center justify-center">
                     <i class="fas fa-trash-alt h-5 w-5 mr-2"></i>

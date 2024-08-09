@@ -37,18 +37,6 @@
             </div>
         </div>
 
-        <!-- Add Riwayat Button -->
-        <div class="flex justify-start mt-7">
-            <a href="#" class="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-700 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    id="history-icon">
-                    <path d="M12 8v4l2 2M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path>
-                </svg>
-                Riwayat
-            </a>
-        </div>
-
         <!-- Users Table -->
         <div class="bg-white p-4 rounded-md shadow-md mt-8 overflow-x-auto">
             <div
