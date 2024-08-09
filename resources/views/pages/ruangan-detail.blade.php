@@ -16,13 +16,19 @@
         </div>
 
         <!-- Room Images -->
-        <div class="mb-8">
-            <img src="{{ $room->image_url }}" alt="Room" class="w-full h-96 object-cover rounded-xl mb-4">
-            <div class="flex space-x-4 overflow-x-auto">
-                @foreach ($room->images as $image)
-                    <img src="{{ Storage::url($image->image) }}" alt="Room {{ $loop->iteration }}"
-                        class="w-1/4 h-24 object-cover rounded-lg flex-shrink-0">
-                @endforeach
+        <div class="mb-8 flex flex-col md:flex-row gap-4">
+            <div class="md:w-3/4">
+                <img id="main-image" src="{{ $room->image_url }}" alt="Room"
+                    class="w-full h-96 object-cover rounded-xl">
+            </div>
+            <div class="md:w-1/2">
+                <div class="grid grid-cols-2 gap-2 h-96">
+                    @foreach ($room->images->take(4) as $image)
+                        <img src="{{ Storage::url($image->image) }}" alt="Room {{ $loop->iteration }}"
+                            class="carousel-image w-full h-[188px] object-cover rounded-lg cursor-pointer transform transition duration-300 hover:scale-105"
+                            onclick="changeMainImage('{{ Storage::url($image->image) }}')">
+                    @endforeach
+                </div>
             </div>
         </div>
 
@@ -130,4 +136,23 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('main-image').src = src;
+        }
+
+        // Carousel functionality
+        let currentImageIndex = 0;
+        const images = Array.from(document.querySelectorAll('.carousel-image')).map(img => img.src);
+
+        function startCarousel() {
+            setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                changeMainImage(images[currentImageIndex]);
+            }, 3000); // Change image every 3 seconds
+        }
+
+        document.addEventListener('DOMContentLoaded', startCarousel);
+    </script>
 @endsection

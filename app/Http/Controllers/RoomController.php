@@ -12,7 +12,7 @@ class RoomController extends Controller
     {
         $rooms = Ruang::all();
 
-        foreach($rooms as $room){
+        foreach ($rooms as $room) {
             $room->image_url = Storage::url($room->image);
         }
         return view('pages.ruangan', compact('rooms'));
@@ -20,9 +20,9 @@ class RoomController extends Controller
 
     public function show($id)
     {
-        $room = Ruang::with(['fasilitas', 'images', 'peminjaman' => function($query) {
+        $room = Ruang::with(['fasilitas', 'images', 'peminjaman' => function ($query) {
             $query->where('tanggal_pinjam', '>=', now())
-                  ->orderBy('tanggal_pinjam');
+                ->orderBy('tanggal_pinjam');
         }])->findOrFail($id);
 
         $room->image_url = Storage::url($room->image);
