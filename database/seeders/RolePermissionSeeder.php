@@ -16,6 +16,8 @@ class RolePermissionSeeder extends Seeder
     {
         Permission::create(['name' => 'view_home']);
         Permission::create(['name' => 'view_beranda']);
+        Permission::create(['name' => 'view_pengumuman']);
+        Permission::create(['name' => 'view_saran']);
         Permission::create(['name' => 'view_datapegawai']);
         Permission::create(['name' => 'view_dataruangan']);
         Permission::create(['name' => 'view_datapengguna']);
@@ -29,10 +31,11 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'edit_peminjamansaya']);
         Permission::create(['name' => 'hapus_peminjamansaya']);
         
-        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'superadmin']);
+        Role::create(['name' => 'adminbidang']);
         Role::create(['name' => 'user']);
 
-        $roleAdmin = Role::findByName('admin');
+        $roleAdmin = Role::findByName('superadmin');
         $roleAdmin->givePermissionTo([
             'view_home',
             'view_beranda',
@@ -40,6 +43,21 @@ class RolePermissionSeeder extends Seeder
             'view_dataruangan',
             'view_datapengguna',
             'view_datapeminjaman',
+            'view_pinjamruangan',
+            'view_peminjamansaya',
+            'view_laporan',
+            'approve_peminjaman',
+            'reject_peminjaman',
+            'edit_peminjaman',
+        ]);
+
+        $roleAdminBidang = Role::findByName('adminbidang');
+        $roleAdminBidang->givePermissionTo([
+            'view_home',
+            'view_beranda',
+            'view_saran',
+            'view_dataruangan',
+            'view_datapengguna',
             'view_pinjamruangan',
             'view_peminjamansaya',
             'view_laporan',
