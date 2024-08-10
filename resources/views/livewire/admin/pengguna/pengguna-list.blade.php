@@ -1,11 +1,11 @@
 <div>
     <main class="p-4 sm:ml-64 font-poppins">
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-gray-600">
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-600">
             <!-- Pegawai Card -->
             <div class="bg-white p-4 sm:p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-xl sm:text-2xl">Pegawai</p>
-                    <p class="text-2xl sm:text-3xl mt-2">0</p>
+                    <p class="text-2xl sm:text-3xl mt-2">{{ $pegawai }}</p>
                     <p class="text-lg sm:text-xl mt-1">Total Pegawai</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-400 rounded-md p-3 sm:p-4">
@@ -17,7 +17,7 @@
             <div class="bg-white p-4 sm:p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-xl sm:text-2xl">Admin</p>
-                    <p class="text-2xl sm:text-3xl mt-2">0</p>
+                    <p class="text-2xl sm:text-3xl mt-2">{{ $admin }}</p>
                     <p class="text-lg sm:text-xl mt-1">Total Admin</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-400 rounded-md p-3 sm:p-4">
@@ -29,25 +29,12 @@
             <div class="bg-white p-4 sm:p-6 rounded-md shadow-md flex items-center justify-between">
                 <div>
                     <p class="text-xl sm:text-2xl">Admin Bidang</p>
-                    <p class="text-2xl sm:text-3xl mt-2">0</p>
+                    <p class="text-2xl sm:text-3xl mt-2">{{ $adminbidang }}</p>
                     <p class="text-lg sm:text-xl mt-1">Total Admin Bidang</p>
                 </div>
                 <div class="flex items-center justify-center bg-blue-400 rounded-md p-3 sm:p-4">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5"
                         alt="Admin Bidang Icon">
-                </div>
-            </div>
-
-            <!-- Kepala Dinas Card -->
-            <div class="bg-white p-4 sm:p-6 rounded-md shadow-md flex items-center justify-between">
-                <div>
-                    <p class="text-xl sm:text-2xl">Kepala Dinas</p>
-                    <p class="text-2xl sm:text-3xl mt-2">0</p>
-                    <p class="text-lg sm:text-xl mt-1">Total Kepala Dinas</p>
-                </div>
-                <div class="flex items-center justify-center bg-blue-400 rounded-md p-3 sm:p-4">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-5 w-5"
-                        alt="Kepala Dinas Icon">
                 </div>
             </div>
         </div>

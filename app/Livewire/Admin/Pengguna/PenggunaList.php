@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Pengguna;
 
+use App\Models\Pegawai;
 use App\Models\User;
 use Livewire\Attributes\isPage;
 use Livewire\Attributes\Title;
@@ -26,8 +27,15 @@ class PenggunaList extends Component
     public function render()
     {
         $users = $this->getUsers();
+        $pegawai = Pegawai::count();
+        $admin = User::whereHas('roles', function ($query) {
+            $query->where('name', 'superadmin');
+        })->count();
+        $adminbidang = User::whereHas('roles', function ($query) {
+            $query->where('name', 'adminbidang');
+        })->count();
 
-        return view('livewire.admin.pengguna.pengguna-list', compact('users'));
+        return view('livewire.admin.pengguna.pengguna-list', compact('users', 'pegawai', 'admin', 'adminbidang'));
     }
 
     public function getUsers()
