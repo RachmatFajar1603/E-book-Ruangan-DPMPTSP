@@ -29,98 +29,85 @@ use App\Livewire\Admin\KontakMessages;
 use App\Livewire\Admin\PinjamRuanganDetail;
 use App\Livewire\Admin\Ruangan\EditRuang;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Auth;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('pages/welcome');
+// Routes yang tidak memerlukan autentikasi
+Route::group([], function () {
+    Route::get('/', function () {
+        return view('pages/welcome');
+    });
+
+    Route::get('/ruangan', [RoomController::class, 'index'])->name('ruangan.index');
+
+    Route::get('/pengumuman', function () {
+        return view('pages.pengumuman');
+    })->name('pengumuman.index');
+
+    Route::get('/contact', function () {
+        return view('pages/contact');
+    });
+
+    Route::get('/ruangan-detail/{id}', [RoomController::class, 'show'])->name('ruangan.detail');
+    Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
 });
 
-Route::get('/ruangan', function () {
-    return view('pages/ruangan');
-})->middleware(['auth', 'verified']);
-
-Route::get('/contact', function () {
-    return view('pages/contact');
-});
-
-Route::get('/contact-messages', KontakMessages::class)->name('admin.contact-messages');
-
-
-Route::get('home', Dahsboard::class)->middleware(['auth', 'role_or_permission:admin|user']);
-Route::get('/beranda', BerandaAdmin::class)->middleware(['auth', 'role_or_permission:admin|view_beranda']);
-
-Route::get('/livewire/admin/beranda-admin', BerandaAdmin::class);
-
-//ruangan
-Route::get('/dataruangan', RuanganDataRuangan::class)->middleware(['auth', 'role_or_permission:admin|view_dataruangan']);
-Route::get('/dataruangan/create', RuanganCreate::class);
-Route::get('/dataruangan/{id}/edit', EditRuang::class);
-
-Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
-
-
-Route::get('/pengumuman-manager', AnnouncementManager::class);
-Route::get('/pengumuman-update/{id}', AnnouncementUpdate::class);
-Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
-Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
-Route::get('/pengumuman', function () {
-    return view('pages.pengumuman');
-})->name('pengumuman.index');
-
-//pengguna
-Route::get('/datapengguna', PenggunaList::class)->middleware(['auth', 'role_or_permission:admin|view_datapengguna']);
-Route::get('/datapengguna/create', PenggunaCreate::class);
-Route::get('/datapengguna/{id}/update', PenggunaUpdate::class);
-
-
-Route::get('/datapeminjaman', DataPeminjaman::class);
-Route::get('/peminjamansaya', PeminjamanSaya::class);
-Route::get('/peminjamansaya/{id}/edit', EditPeminjaman::class);
-Route::get('/laporan', Laporan::class);
-Route::get('/peggunaedit', PenggunaUpdate::class);
-Route::get('pinjam-ruangan', PinjamRuangan::class);
-Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
-Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruangan');
-Route::get('pinjam-ruangan/{id}/detail', PinjamRuanganDetail::class)->name('pinjam-ruangan.detail');
-Route::get('pegawai/create', PegawaiCreate::class);
-Route::get('pegawai', PegawaiList::class);
-Route::get('pegawai/{id}/update', PegawaiUpdate::class);
-Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
-
-Route::get('/gedung', function () {
-    return view('pages/gedung');
-});
-
-Route::get('/ruangan-detail/{id}', [RoomController::class, 'show'])->name('ruangan.detail');
-
-Route::get('/dashboard', function () {
-    return view('beranda');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+// Routes yang memerlukan autentikasi dan verifikasi
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('home', Dahsboard::class);
+    Route::get('/beranda', BerandaAdmin::class)->middleware('role_or_permission:superadmin|view_beranda')->name('dashboard');
+    Route::get('/livewire/admin/beranda-admin', BerandaAdmin::class);
+    
+    // Ruangan routes
+    Route::get('/dataruangan', RuanganDataRuangan::class)->middleware('role_or_permission:superadmin|view_dataruangan');
+    Route::get('/dataruangan/create', RuanganCreate::class);
+    Route::get('/dataruangan/{id}/edit', EditRuang::class);
+    
+    // Pengumuman routes
+    Route::get('/pengumuman-manager', AnnouncementManager::class);
+    Route::get('/pengumuman-update/{id}', AnnouncementUpdate::class);
+    Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
+    Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
+    
+    // Pengguna routes
+    Route::get('/datapengguna', PenggunaList::class)->middleware('role_or_permission:superadmin|view_datapengguna');
+    Route::get('/datapengguna/create', PenggunaCreate::class);
+    Route::get('/datapengguna/{id}/update', PenggunaUpdate::class);
+    
+    // Peminjaman routes
+    Route::get('/datapeminjaman', DataPeminjaman::class)->middleware('role_or_permission:superadmin|view_datapeminjaman');
+    Route::get('/peminjamansaya', PeminjamanSaya::class)->middleware('role_or_permission:superadmin|view_peminjamansaya');
+    Route::get('/peminjamansaya/{id}/edit', EditPeminjaman::class);
+    Route::get('/laporan', Laporan::class)->middleware('role_or_permission:superadmin|view_laporan');
+    Route::get('/peggunaedit', PenggunaUpdate::class);
+    Route::get('pinjam-ruangan', PinjamRuangan::class);
+    Route::get('data-ruangan-pinjam', PinjamRuanganBook::class);
+    Route::get('pinjam-ruangan/{id}', PinjamRuanganBook::class)->name('pinjam-ruangan');
+    Route::get('pinjam-ruangan/{id}/detail', PinjamRuanganDetail::class)->name('pinjam-ruangan.detail');
+    
+    // Pegawai routes
+    Route::get('pegawai/create', PegawaiCreate::class);
+    Route::get('pegawai', PegawaiList::class);
+    Route::get('pegawai/{id}/update', PegawaiUpdate::class);
+    
+    // Other authenticated routes
+    Route::get('/contact-messages', KontakMessages::class)->name('admin.contact-messages');
+    Route::get('/gedung', function () {
+        return view('pages/gedung');
+    });
+    
+    // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-Route::get('/ruangan', [RoomController::class, 'index'])->name('rooms.index');
 
+});
+
+// Route untuk verifikasi email
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verify-email');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -128,4 +115,5 @@ Route::post('/email/resend', [EmailVerificationNotificationController::class, 's
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
+// Include auth routes
 require __DIR__ . '/auth.php';
