@@ -21,8 +21,10 @@
                         <div class="ml-2">
                             <p class="text-gray-800 font-semibold"> {{ auth()->user()->nama }} </p>
                             <p class="text-gray-600 text-sm">
-                                @if (auth()->user()->hasRole('admin'))
-                                    Administrator
+                                @if (auth()->user()->hasRole('superadmin'))
+                                    Super Admin
+                                @elseif (auth()->user()->hasRole('adminbidang'))
+                                    Admin Bidang
                                 @elseif(auth()->user()->hasRole('user'))
                                     Regular User
                                 @else
@@ -61,28 +63,34 @@
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                 </a>
             </div>
-            @if (auth()->user()->can('view_beranda'))
+            @if (auth()->user()->can('view_beranda') || auth()->user()->can('view_pengumuman') || auth()->user()->can('view_saran'))
                 <p class="pt-16 ml-6 font-semibold text-gray-400">DASHBOARD</p>
                 <div class="pt-4 ml-6">
                     <ul class="space-y-2 font-medium">
+                    @if (auth()->user()->can('view_beranda'))
                         <li>
                             <a wire:navigate href="/beranda" class="{{ $isPage == "beranda" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
                                 <i class="ri-database-line mr-3 {{ $isPage == "beranda" ? 'text-white' : 'text-gray-600' }}"></i>
                               Beranda
                             </a>
                         </li>
+                    @endif
+                    @if (auth()->user()->can('view_pengumuman'))
                         <li>
                             <a wire:navigate href="/pengumuman-manager" class="{{ $isPage == "pengumuman-manager" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
                                 <i class="ri-information-line mr-3 {{ $isPage == "pengumuman-manager" ? 'text-white' : 'text-gray-600' }}"></i>
                                Pengumuman
                             </a>
                         </li>
+                    @endif
+                    @if (auth()->user()->can('view_saran'))
                         <li>
                             <a wire:navigate href="/contact-messages" class="{{ $isPage == "contact-messages" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
                                 <i class="ri-message-line mr-3 {{ $isPage == "contact-messages" ? 'text-white' : 'text-gray-600' }}"></i>
                                Saran
                             </a>
                         </li>
+                    @endif
                     </ul>
                 </div>
             @endif
@@ -130,9 +138,14 @@
                     </div>
                 </div>
             @endif
+            @if (auth()->user()->can('view_datapeminjaman') ||
+                    auth()->user()->can('view_pinjamruangan') ||
+                    auth()->user()->can('view_peminjamansaya') ||
+                    auth()->user()->can('view_laporan'))
             <p class="pt-10 ml-6 font-semibold text-gray-400">PEMINJAMAN</p>
             <div class="pt-5 ml-6">
                 <ul class="space-y-2 font-medium">
+                @if (auth()->user()->can('view_datapeminjaman'))
                     <li>
                         <a wire:navigate href="/datapeminjaman"
                             class="{{ $isPage == "datapeminjaman" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
@@ -140,6 +153,8 @@
                             Data Peminjaman
                         </a>
                     </li>
+                @endif
+                @if (auth()->user()->can('view_pinjamruangan'))
                     <li>
                         <a wire:navigate href="/pinjam-ruangan"
                             class="{{ $isPage == "pinjam-ruangan" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
@@ -147,6 +162,8 @@
                             Pinjam Ruangan
                         </a>
                     </li>
+                @endif
+                @if (auth()->user()->can('view_peminjamansaya'))
                     <li>
                         <a wire:navigate href="/peminjamansaya"
                             class="{{ $isPage == "peminjamansaya" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
@@ -154,6 +171,8 @@
                            Peminjaman Saya
                         </a>
                     </li>
+                @endif
+                @if (auth()->user()->can('view_laporan'))
                     <li>
                         <a wire:navigate href="/laporan"
                             class="{{ $isPage == "laporan" ? 'flex items-center p-2 text-white rounded-lg dark:text-white bg-gray-500 dark:bg-gray-700 group' : 'flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
@@ -161,8 +180,10 @@
                            Laporan
                         </a>
                     </li>
+                @endif
                 </ul>
             </div>
+            @endif
         </div>
     </aside>
 </main>

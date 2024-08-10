@@ -172,6 +172,10 @@
                                         <span class="p-2 bg-red-500 rounded text-white text-center">
                                             {{ $ruang->status }}
                                         </span>
+                                        @elseif ($ruang->status == 'Renovasi')
+                                        <span class="p-2 bg-yellow-500 rounded text-white text-center">
+                                            {{ $ruang->status }}
+                                        </span>
                                         @endif
                                     </td>
                                     <td class="border-b px-4 py-2">

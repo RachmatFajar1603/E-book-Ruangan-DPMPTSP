@@ -24,6 +24,10 @@
                     <span class="p-2 bg-red-200 text-red-700 rounded-lg text-xs">
                         Sedang Digunakan
                     </span>
+                    @elseif ($item->status == 'Renovasi')
+                    <span class="p-2 bg-yellow-200 text-yellow-700 rounded-lg text-xs">
+                        {{ $item->status }}
+                    </span>
                     @endif
                     <span class="p-2 bg-purple-200 text-purple-700 rounded-lg text-xs">
                         {{ $item->lokasi }}
@@ -33,9 +37,15 @@
                     </span>
                 </div>
                 <div class="flex justify-between space-x-2 my-4">
-                    <a wire:navigate href="{{ route('pinjam-ruangan', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
-                        Pinjam Sekarang
-                    </a>
+                @if ($item->status != 'Renovasi')
+                        <a wire:navigate href="{{ route('pinjam-ruangan', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
+                            Pinjam Sekarang
+                        </a>
+                    @else
+                        <button wire:click="showRenovationToast" class="flex-1 flex justify-center items-center h-12 text-white bg-gray-400 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Pinjam Sekarang
+                        </button>
+                    @endif
                     <a wire:navigate href="{{ route('pinjam-ruangan.detail', $item->id) }}" class="flex-1 flex justify-center items-center h-12 text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out">
                         Detail
                     </a>

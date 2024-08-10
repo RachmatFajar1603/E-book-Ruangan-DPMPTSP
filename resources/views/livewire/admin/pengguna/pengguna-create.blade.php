@@ -51,7 +51,6 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
                             <option value="" selected>-- Pilih KETERANGAN --</option>
                             <option value="INTERNAL">INTERNAL</option>
-                            <!-- set option eksternal inactive -->
                             <option value="EKSTERNAL" disabled>EKSTERNAL</option>
                         </select>
                         @error('keterangan') <span class="error text-red-500">{{ $message }}</span> @enderror

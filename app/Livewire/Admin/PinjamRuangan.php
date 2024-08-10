@@ -20,5 +20,10 @@ class PinjamRuangan extends Component
         }
 
         return view('livewire.admin.pinjam-ruangan', compact('ruangans'));
-    }   
+    }
+    
+    public function showRenovationToast()
+    {
+        $this->dispatch('showToast', type: 'warning', message: 'Ruangan Sedang Di Renovasi');
+    }
 }

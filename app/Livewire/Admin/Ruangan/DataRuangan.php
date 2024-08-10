@@ -35,7 +35,11 @@ class DataRuangan extends Component
         $ruangtersedia = Ruang::where('status', 'Tersedia')->count();
         $ruangtidaktersedia = Ruang::where('status', 'Tidak Tersedia')->count();
 
-        $ruangs = $this->getRuangs();
+        if (auth()->user()->hasRole('superadmin')) {
+            $ruangs = $this->getRuangs();
+        } elseif (auth()->user()->hasRole('adminbidang')) {
+            $ruangs = Ruang::where('bidang_id', auth()->user()->bidang_id)->paginate($this->perPage);
+        }
 
         foreach ($ruangs as $ruang) {
             $ruang->image_url = Storage::url($ruang->image);
@@ -44,6 +48,7 @@ class DataRuangan extends Component
 
         return view('livewire.admin.ruangan.data-ruangan', compact('ruangs', 'ruangtersedia', 'ruangtidaktersedia'));
     }
+    
 
     public function getRuangs()
     {

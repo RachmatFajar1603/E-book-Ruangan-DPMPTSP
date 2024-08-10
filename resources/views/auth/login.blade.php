@@ -13,7 +13,7 @@
                 required>
                 <option value="">Select Role</option>
                 <option value="internal">Internal</option>
-                <option value="external">External</option>
+                <option value="external" disabled>External</option>
             </select>
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>

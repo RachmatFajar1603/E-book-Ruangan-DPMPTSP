@@ -27,12 +27,12 @@ class PinjamRuanganDetail extends Component
 
         $this->room->image_url = Storage::url($this->room->image);
 
-        $this->bookings = $this->room->peminjaman->map(function ($peminjaman) {
+        $this->bookings = $this->room->peminjamans->map(function ($peminjamans) {
             return [
-                'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
-                'tanggal_selesai' => $peminjaman->tanggal_selesai,
-                'waktu_mulai' => $peminjaman->waktu_mulai,
-                'waktu_selesai' => $peminjaman->waktu_selesai
+                'tanggal_pinjam' => $peminjamans->tanggal_pinjam,
+                'tanggal_selesai' => $peminjamans->tanggal_selesai,
+                'waktu_mulai' => $peminjamans->waktu_mulai,
+                'waktu_selesai' => $peminjamans->waktu_selesai
             ];
         });
     }

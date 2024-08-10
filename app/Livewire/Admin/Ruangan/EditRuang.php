@@ -30,6 +30,7 @@ class EditRuang extends Component
     public $projector;
     public $existingThumbnail;
     public $existingAdditionalImages;
+    public $status;
 
     #[Title('Update Data Pengguna')]
     public function mount($id)
@@ -44,6 +45,7 @@ class EditRuang extends Component
         $this->fasilitas_id = $ruang->fasilitas_id;
         $this->existingThumbnail = $ruang->image;
         $this->existingAdditionalImages = $ruang->images;
+        $this->status = $ruang->status;
         
         if ($ruang->fasilitas) {
             $this->ac = $ruang->fasilitas->ac;
@@ -102,6 +104,7 @@ class EditRuang extends Component
             'deskripsi' => $this->deskripsi,
             'bidang_id' => $this->kepemilikan,
             'image' => $thumbnailPath,
+            'status' => $this->status,
         ]);
 
         Fasilitas::updateOrCreate(

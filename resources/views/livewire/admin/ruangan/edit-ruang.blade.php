@@ -32,14 +32,25 @@
                         class="h-48 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Tambahkan deskripsi..."></textarea>
                 </div>
-                <div class="mt-3">
-                    <label for="kepemilikan" class="block mb-2 text-sm font-medium text-gray-900">Kepemilikan</label>
-                    <select wire:model="kepemilikan"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        @foreach ($bidangs as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @endforeach
-                    </select>
+                <div class="flex justify-between mt-3 space-x-6">
+                    <div class="w-1/2">
+                        <label for="kepemilikan"
+                            class="block mb-2 text-sm font-medium text-gray-900">Kepemilikan</label>
+                        <select wire:model="kepemilikan"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            @foreach ($bidangs as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Status Ruangan</label>
+                        <select wire:model="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="Tersedia">Tersedia</option>
+                            <option value="Renovasi">Renovasi</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <label class="block mb-2 text-sm font-medium text-gray-900">Kelengkapan</label>
