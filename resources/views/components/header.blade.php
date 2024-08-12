@@ -47,7 +47,7 @@
                     @if (Route::has('login'))
                         <div class="flex items-center">
                             @auth
-                                <a href="{{ url('/dashboard') }}"
+                                <a href="{{ url('beranda') }}"
                                     class="font-semibold text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                             @else
                                 <a href="{{ route('login') }}"
@@ -98,7 +98,7 @@
                     class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Contact</a>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}"
+                        <a href="{{ url('beranda') }}"
                             class="block py-2 text-base font-medium text-gray-700 hover:text-gray-300 transition duration-300 ease-in-out">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}"

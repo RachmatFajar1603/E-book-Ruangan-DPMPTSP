@@ -48,6 +48,8 @@ Route::group([], function () {
 
     Route::get('/ruangan-detail/{id}', [RoomController::class, 'show'])->name('ruangan.detail');
     Route::get('/check-nip/{nip}', [RegisteredUserController::class, 'checkNip'])->name('check.nip');
+
+    Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
 });
 
 // Routes yang memerlukan autentikasi dan verifikasi
@@ -64,8 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Pengumuman routes
     Route::get('/pengumuman-manager', AnnouncementManager::class);
     Route::get('/pengumuman-update/{id}', AnnouncementUpdate::class);
-    Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
-    Route::get('/pengumuman/{id}', [AnnouncementController::class, 'show'])->name('pengumuman.show');
+    // Route::get('/pengumumans', [AnnouncementController::class, 'index'])->name('pengumuman.index');
     
     // Pengguna routes
     Route::get('/datapengguna', PenggunaList::class)->middleware('role_or_permission:superadmin|view_datapengguna');

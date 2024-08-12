@@ -39,6 +39,8 @@ class RolePermissionSeeder extends Seeder
         $roleAdmin->givePermissionTo([
             'view_home',
             'view_beranda',
+            'view_pengumuman',
+            'view_saran',
             'view_datapegawai',
             'view_dataruangan',
             'view_datapengguna',
