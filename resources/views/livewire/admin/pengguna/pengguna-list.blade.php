@@ -171,12 +171,12 @@
                                 <td class="border-b px-4 py-2">{{ $user->bidang->nama }}</td>
                                 <td class="border-b px-4 py-2">{{ $user->keterangan }}</td>
                                 <td class="border-b px-4 py-2">
-                                    @if ($user->hasRole('admin'))
-                                        Admin
-                                    @elseif($user->hasRole('admin_bidang'))
+                                    @if ($user->hasRole('superadmin'))
+                                        Super Admin
+                                    @elseif($user->hasRole('adminbidang'))
                                         Admin Bidang
-                                    @elseif($user->hasRole('kepala_dinas'))
-                                        Kepala Dinas
+                                    @elseif($user->hasRole('user'))
+                                        User
                                     @else
                                         User
                                     @endif
